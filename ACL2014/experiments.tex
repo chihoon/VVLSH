@@ -1,0 +1,238 @@
+
+\section{Experiments}
+We evaluate our  distributed large-scale approximate similarity framework by conducting 
+several experiments on a publicly available query logs and 
+large-scale query logs sampled from a commercial search engine. 
+
+\subsection{Data}
+The public dataset that we demonstrate result on is adapted from the query logs of AOL (\aol dataset) search engine \cite{Pass06}. 
+Moreover, we show results on large-scale query logs (billion queries) sampled from a commercial search engine. The \dataA  
+denotes $1$\% sampled query logs from a commercial search engine, \dataB ($10$\%), and  \dataC ($100$\%). 
+Each query point has an associated feature vector, that is high dimensional and sparse. 
+Feature vector contains the  webpages (urls) that are weighted based on click through rate on the urls for the query term.  
+As a pre-processing step, we remove all those queries that have less than or equal to five clicked urls. 
+Table \ref{tab:data} summarizes the statistics of our several query-logs datasets. Our biggest dataset has $N=600$ million unique queries 
+with billions of unique urls as features. 
+
+{\bf Test Data:} We conduct all the experiments on 2000 random queries sampled from the query logs. 
+For evaluation, we compute the true similar candidates for all 2000 test queries by calculating cosine similarity 
+between 2000 test queries and all the queries in the dataset. In this paper, we set similarity threshold  $\tau=0.7$ 
+that means the algorithm need to retrieve candidates that have cosine similarity larger than or equal to $\tau$.
+
+\begin{table}
+\centering
+\begin{tabular}{|c|r|r|}
+\hline
+Data & $N$ & $D$  \\ 
+\hline
+\aol &  $0.3 \times 10^6$  & $0.7 \times 10^6$ \\
+\dataA & $6 \times 10^6$  & $66 \times 10^6$ \\
+\dataB & $62 \times 10^6$  & $464 \times 10^6$ \\
+\dataC &  $617 \times 10^6$  & $ 2.4 \times 10^9$  \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Query-logs statistics}}
+\label{tab:data}
+\end{table}
+
+\subsection{Evaluation Metrics}
+We use two metrics for evaluation: Recall and Comparisons. 
+Recall is the fraction of \emph{true} similar candidates (found in exact cosine similarity returned candidates) 
+retrieved by approximate LSH algorithms.  
+Comparisons is the average number of pairwise comparisons per query. 
+The goal of this paper is to maximize recall and minimize comparisons.
+
+\subsection{Evaluating Vanilla LSH} 
+\label{subsec:eval:vanillaLSH}
+In the first experiment, we vary $L=\{1,10,28,55\}$ with fixed $K=16$. 
+$L$ denotes the number of tables and $K$ denotes the length of the index of the table. 
+If we increase $K$ (increasing the precision to reduce false positives), we also need to 
+increase $L$ to get good recall (increasing the recall to reduce false negatives). 
+Table \ref{tab:varyL} shows that increasing $L$ leads to better recall, 
+however at the expense of more comparisons. In addition, having large $L$ 
+means generating large number of random projection bits that is 
+both time and memory intensive. Hence, we fix $L=10$, 
+which leads to reasonable recall with fewer comparisons. 
+
+In the second experiment, we vary $K=\{4,8,16\}$ with fixed $L=10$. 
+As expected, Table \ref{tab:varyK} shows that increasing $K$ reduces the number of 
+comparisons and worse recall. This is intuitive as we reduce the value of $K$, it leads to 
+brute force linear search. Hence, we fix $K=16$ to have fewer number of comparisons.   
+
+In the third experiment, we fix $L=10$ and $K=16$ and increase the size of training data. 
+Table \ref{tab:varyData} demonstrates that as we increase the training data size, 
+the number of comparisons also increase. This result indicates that $K$ and $L$  
+needs to be tuned with respect to a specific dataset. $K$ and $L$ can be tuned by 
+randomly sampling small set of queries.\footnote{In this paper, we randomly select 2000 queries to tune $K$ and $L$ parameters.}
+
+In the fourth experiment, Table \ref{tab:bestLSH} shows the best $K$ and $L$ parameter settings on different 
+sized datasets.\footnote{Recall on \dataC cannot be computed, as it was computationally intensive to find exact similar neighbors.} 
+On our biggest dataset of 600 million queries, we set $K=24$, $L=10$. These parameter settings require only 
+$464$ comparisons to find approximate nearest neighbors compared to exact cosine similarity that involves 
+brute force search over all 600 million queries in the dataset.  
+
+\begin{table}
+\centering
+\begin{tabular}{|c|r|c|}
+\hline
+$L$ & Comparisons & Recall \\
+\hline
+1 & 7  & .28 \\
+ \rowcolor[gray]{0.9} 10  &  57 & .63 \\
+28 &  152 & .77 \\
+55 &  297 & .89 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Varying $L$ with fixed $K=16$ on \aol with $\tau=0.7$.}}
+\label{tab:varyL}
+\end{table}
+
+
+\begin{table}
+\centering
+\begin{tabular}{|c|r|c|}
+\hline
+$K$ & Comparisons & Recall \\
+\hline
+4  &  112,347 & .98 \\
+8 &  11,008 & .90 \\
+\rowcolor[gray]{0.9}16 &  57 & .63 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Varying $K$ with fixed $L=10$ on \aol with $\tau=0.7$.}}
+\label{tab:varyK}
+\end{table}
+
+
+\begin{table}
+\centering
+\begin{tabular}{|c|r|c|}
+\hline
+Data & Comparisons & Recall \\
+\hline
+\aol & 57  & .63 \\
+\dataA  &  1,052 & .67 \\
+\dataB    & 10,515 & .64 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Fixed $K=16$  and $L=10$ on different sized datasets with $\tau=0.7$.}}
+\label{tab:varyData}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{|c|r|c|}
+\hline
+Data & Comparisons & Recall \\
+\hline
+\aol  ($K=16$) & 57  & .63 \\
+\dataA ($K=16$)  &  1,052 & .67 \\
+\dataB ($K=20$)   & 695 & .53 \\
+\dataC ($K=24$)   & 464 & - \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ on different sized datasets.}}
+\label{tab:bestLSH}
+\end{table}
+
+\subsection{Evaluating Multi-Probe LSH}
+\label{subsec:eval:multiProbeLSH}
+In the first experiment, we compare flipping the bits in query only. We evaluate two approaches: \rflipq and \dflipq. We can make several observations from Table \ref{tab:query:aol}: 1) As expected, increasing the number of flips improve recall at expense of more comparisons for both \dflipq and \rflipq. 2) Our results show that \dflipq has significantly better recall than \rflipq with similar number of comparisons. In second row of the table with $F=2$, \dflipq has nine points better recall than \rflipq.  
+
+In the second experiment, we compare flipping the bits in both query and the dataset. We can make similar observations from Table \ref{tab:both:aol} as made in the first experiment. In the second row of the Table with $F=2$, \dflipb has thirteen points better recall than \rflipb with similar number of comparisons. Comparing across second row of  Table \ref{tab:query:aol} and \ref{tab:both:aol} shows that flipping the bits in both query and the dataset has better recall at the expense of more comparisons. This is expected as flipping both means that we can find queries at distance two (one flip in query, one flip in dataset), hence more queries in each table when we do probe. Note, we also compared distance based flipping with random flipping on different sized data-sets, and found distance based flipping is always significantly better in terms of recall as compared to random flipping. 
+
+In the third experiment, we show the results of both variants of distance based Multi Probe that is \dflipq and \dflipb on different sized datasets. Table \ref{tab:dataset:final} shows the results with parameter $L=10$, $F=2$, and data-size dependent $K$ (same settings of $K$ for different sized datasets is used as in the last experiment of Section \ref{subsec:eval:vanillaLSH}). As observed in the last experiment, flipping bits in both query and the dataset is significantly better in terms of recall (eight points on \dataA and \dataB) with more number of comparisons. 
+
+In the fourth experiment, Table \ref{tab:lists} shows the qualitative results for some arbitrary queries. These results are found by applying our system (\dflipb with parameters $L=10$, $K=24$, and $F=2$ ) on \dataC. The first two columns in Table \ref{tab:lists} show that the returned approximate similar neighbors can be useful in finding related queries \cite{Jones06WWW,Jain11SIGIR}. The third column shows an example, where we can find several popular spell errors. The last column shows different variants of a query, where user intends to find out the ``weather in trumbull ct''. Modern search engines provide a direct display with respect to ``weather'' related queries. Hence, if we don't have enough evidence about a specific query being related to ``weather'', we can use queries approximately similar to it to infer that if this query is about ``weather'' or not.  
+
+paraphrasing \cite{ganitkevitch13Paraphrase}
+
+\begin{table}
+\centering
+{
+\small \addtolength{\tabcolsep}{-4.5pt}
+\begin{tabular}{|c|cc|cc|} 
+\hline
+Method & \multicolumn{2}{c}{\rflipq} & \multicolumn{2}{c}{\dflipq}   \\
+\hline
+$F$ & Comparisons & Recall  & Comparisons & Recall \\
+\hline
+1 & 108 & .65 & 106 & .72 \\
+2 & 159 & .66 &  {\it155} & {\bf .75}  \\
+5 &  311 & .70 &  {\it 303} & {\bf .79}  \\
+\hline 
+ \end{tabular}
+ }
+\caption{\footnotesize{Flipping the bits in the query only with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
+\label{tab:query:aol}
+\end{table}
+
+
+\begin{table}
+\centering
+{
+\small \addtolength{\tabcolsep}{-4.5pt}
+\begin{tabular}{|c|cc|cc|} 
+\hline
+Method & \multicolumn{2}{c}{\rflipb} & \multicolumn{2}{c}{\dflipb}   \\
+\hline
+$F$ & Comparisons & Recall  & Comparisons & Recall \\
+\hline
+1 & 204 & .71 & 192 & .80 \\
+ 2 & 433 & .73    &  {\it 405} & {\bf .86}  \\
+5 &  1557 & .86  & 1475 & .93     \\
+\hline 
+ \end{tabular}
+ }
+\caption{\footnotesize{Flipping the bits in both the query and the dataset with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
+\label{tab:both:aol}
+\end{table}
+
+\begin{table}
+\centering
+{
+\small \addtolength{\tabcolsep}{-4.5pt}
+\begin{tabular}{|c|cc|cc|} 
+\hline
+Method & \multicolumn{2}{c}{\dflipq} & \multicolumn{2}{c}{\dflipb}   \\
+\hline
+$Data$ & Comparisons & Recall  & Comparisons & Recall \\
+\hline
+\aol ($K=16$) & 155 & .75 & 405 & .86 \\
+\dataA ($K=16$) & 2980 & .76  & 7904  & .84   \\
+\dataB ($K=20$) & 1954  & .64 & 5242  & .72     \\
+\dataC ($K=24$) & 1280  & -  & 3427 & -      \\
+\hline 
+ \end{tabular}
+ }
+\caption{\footnotesize{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ and $F=2$ on different sized datasets with $\tau=0.7$.}}
+\label{tab:dataset:final}
+\end{table}
+
+\begin{table*}[t]
+\centering
+\footnotesize \addtolength{\tabcolsep}{-0.5pt} \addtolength{\tabcolsep}{-0.6pt}
+{
+
+\begin{tabular}{|c!{\vrule width 1.3pt}c!{\vrule width 1.3pt}c!{\vrule width 1.3pt}c!{\vrule width 1.3pt}c|}
+\hline
+\textbf{how lbs in a ton}&\textbf{coldwell banker baileys harbor }&\textbf{michaels} &\textbf{trumbull ct weather} \\ %&\textbf{E} \\
+%\textbf{how lbs in a ton}&\textbf{coldwell banker baileys harbor }&\textbf{michaels}&\textbf{D}&\textbf{E} \\
+\hline
+how much lbs is a ton & coldwell banker sturgeon bay wi & maichaels & trumbull ct weather forecast \\
+number of pounds in a ton & coldwell banker door county & machaels & weather in trumbull ct  \\
+how many lb are in a ton & door county wi mls listings & mechaels   & weather in trumbull ct 06611 \\
+How many pounds are in a ton? & door county realtors sturgeon bay & miachaels & trumbull weather forecast \\
+how many pounds in a ton & DOOR CTY REAL & michaeils & trumbull ct 06611 \\
+1 short ton equals how many pounds & door county coldwell banker & michaelos & trumbull weather ct \\   
+how many lbs in a ton? & door realty & michaeks & trumbull ct weather report \\
+how many pounds in a ton? & coldwell banker door county horizons & michaeels & trumbull connecticut weather \\ 
+How many pounds are in a ton & door county coldwell banker real estate & michaelas & weather 06611  \\
+how many lb in a ton & coldwell banker door county wisconsin & michae;ls  & weather trumbull ct  \\
+\hline
+\end{tabular}
+\caption{\footnotesize{Sample $10$ similar neighbors returned by \dflipb with $L=10$, $K=24$, and $F=2$ on \dataC dataset.}}
+\label{tab:lists}
+}
+\end{table*}
+
