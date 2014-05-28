@@ -1,0 +1,76 @@
+
+\section{System}
+We are interested in finding out, using a batch process, a \emph{small} set of
+neighbor candidates for each query such that: 1) the similarity of any
+point to a neighbor candidate returned is large and within a user-specified 
+similarity threshold ($\tau$). 2) We return an approximate set of neighbor 
+candidates with a $100\%$ precision and a large recall. 
+
+To solve the above problem, we propose a distributed Hadoop framework based on Locality Sensitive Hashing. 
+Our framework has three main steps: 
+i) Generate $256$ bit signature for each query.  
+ii) Use the $256$ bit signature for each query to generate $L$ tables for each table with $K$ bit signature. 
+Next, generate query pairs which fall in the same table.
+iii) Compute cosine similarity between query points which fall in the same table and return the query pairs  
+with similarity $\geq\tau$.  
+
+
+To minimize the number of hash functions computations (time intensive to read all features and 
+evaluate hash functions to generate a single bit), we use a trick from Andoni and Indyk \shortcite{Andoni08CACM} 
+in which hash functions are reused to generate $L$ tables. $K$ vis assumed to be even and $R \approx	\sqrt L$. 
+We generate $f(q)=(h_1(q),h_2(q),\dots,h_{k/2}(q)))$ of length $k/2$. 
+Next, we define $g(q)=(f_a,f_b)$, where $1\leq a < b \leq R$. This scheme generates $L= \frac{R (R -1)}{2}$. 
+This scheme requires O($K  \sqrt L$) hash functions, instead of O($KL$).    
+
+ \begin{table}
+\centering
+{
+\small \addtolength{\tabcolsep}{-4.5pt}
+\begin{tabular}{ll}
+\hline
+\hline
+ \textbf{Symbol} &  \textbf{Description} \\
+\hline 
+$N$ & \# of query points \\
+$D$ & \# of features i.e. all clicked unique urls \\
+\hline
+\multirow{3}{*}{$K$} & \# of hash functions concatenated together \\ 
+   & $g(q)=(h_1(q),h_2(q),\dots,h_k(q)))$ \\ 
+	 & to generate the index of a table \\
+\hline
+ \multirow{2}{*}{$L$} & \# of tables generated independently \\ 
+	  &  with $g_j(q)$ index, $\forall 1 \leq j \leq  L$  \\
+\hline
+$F$ & \# of bits flipped, $\forall 1 \leq j \leq  L$   \\
+$\tau$ & $\tau$ threshold \\
+Recall & fraction of similar candidates retrieved \\
+Comparisons & Avg \# of pairwise comparisons per query  \\
+\hline 
+\end{tabular}
+\caption{\footnotesize{Major Notations}}
+}
+\label{tab:notation}
+\end{table}
+
+
+\section{Multi Probe LSH}
+
+One strategy that we have experimented with is the following variant of Multi-probe LSH:  first we compute the initial LSH of a query q, which gives the $L$ bucket ids. We then create alternate bucket ids by taking each of the $L$ bucket ids and then creating alternate candidate buckets by flipping a set of coordinates in the LSH of just the query or both the query and the database of queries. We have experimented with two different methods to choose which coordinate to flip: randomly choosing a specified number of coordinates or choosing the set of coordinates based on the distance of q from the random hyperplane that was used in to create this coordinate.  
+\subsection{\rflip LSH}
+Random Flips
+
+We experimented with flipping the bits in just the query and both the query and the database of all queries.  
+1. Generate less number of hash functions
+2. Have to compute similarity over less number of data pairs
+
+Advantages of Flipping bits compared to increasing L:
+1. Increasing $L$ means generating more random projection bits that is both time and memory intensive.   
+%Note, we are already using the trick mentioned in Original LSH to decrease
+%the number of tables. Our implementation requires O(sqrt(L)) tables.
+2. Probing in more tables for vanilla LSH, hence we need to read data from the disk (more disk read operations.). While Flipping bits, data is
+already in memory, and the given data needs to be flipped.
+3. Disadvantage of flipping is we need to store random projection distances to perform flipping (which takes space).
+
+
+\subsection{\dflip LSH}
+Based on random projection distance 
