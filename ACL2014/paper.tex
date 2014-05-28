@@ -3,7 +3,8 @@
 % Contact  jshin@csie.ncnu.edu.tw or pkoehn@inf.ed.ac.uk
 %%
 %% Based on the style files for ACL-IJCNLP-2009, which were, in turn,
-%% based on the style files for EACL-2009 and IJCNLP-2008...
+%% based on the \section{bb}
+%tyle files for EACL-2009 and IJCNLP-2008...
 
 %% Based on the style files for EACL 2006 by 
 %%e.agirre@ehu.es or Sergi.Balari@uab.es
@@ -13,63 +14,25 @@
 \usepackage{acl2012}
 \input{preamble}
 
-% How do we merge entries in GI lexicons
-\title{Computing Large-Scale Similarities : Distributed Locality Sensitive Hashing}
-%\title{Hadoop-Based Locality Sensitive Hashing for Computing Large-Scale Pairwise Similarities}
+% Contributions
 
+\title{Computing Large-Scale Similarities : Distributed Locality Sensitive Hashing}
 
 \begin{document}
-
 \maketitle 
 
-\begin{abstract}
-Millions of users visit commercial search engines and  ``query'' their interests.
-To provide users with high quality of services, 
-commercial search engines such as Yahoo!, Google, and Bing require
-intelligent analysis to realize users' implicit intents, in particular taking
-advantage of very large scaled query logs.  One of the key
-interesting tasks involved in learning users' implicit intents often involves 
-computing pairwise similarity between all queries.
-Due to the large scaled volume that is based on streaming querying, 
-computing pairwise similarity is a computationally time intensive task. 
-To challenge the aforementioned problem, we exploit  several
-Locality Sensitive Hashing (a.k.a, LSH) methods and their novel variants. 
-In particular, we develop the framework of LSHs on a distributed system (e.g. Hadoop) to take
-advantage of its computing efficiency.
-%and their novel variants 
-%within the Hadoop framework.  
+%\input{notes}
+\input{abstract}
+\input{intro}
+\input{system}
+\input{experiments}
+\input{applications}
+\input{relatedwork}
+\input{discussion}
 
 
 
-
-\end{abstract}
-
-
- \section{Introduction}
-Many real-world problems on the Web like spelling correction \cite{}, 
-finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, finding near-duplicate queries \cite{}, 
-diversifying search results \cite{Song11SIGIR} etc 
-can benefit from query logs from a commercial search engine. 
-We can take advantage of large-scale query logs 
-by computing pairwise similarity between all queries. Each query point also has an associated feature vector, that is
-very high dimensional and sparse $\--$ these are the set of webpages (urls) that
-get clicked for this query term.
-
-However, computing pairwise similarity between 
-all queries on a commercial large-scale query logs (consisting of hundreds of millions of  queries) 
-is a computationally time intensive task. 
-To solve this problem, we exploit research advances in Locality Sensitive Hashing 
-\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  
-to propose an efficient approximate similarity Hadoop framework.  
-
-%We are interested in the following setting: given a large set of 
-%points $q_1,q_2,\dots,q_n$, each of them is a search-query. 
-
-Spelling {grouping mis-spellings in same group}
-Similar entities {LOTR,}
-Finding related queries
-
- \section{Background}
+ %\section{Background}
 
 %mysubsection{Dimensionality Reduction from $\mathbb{R}^D$ to $\mathbb{R}^k$}
 %\label{subsec:randProj}
@@ -92,670 +55,353 @@ Finding related queries
 % Locality Sensitive Hash (\lsh ) function that preserves the cosine similarity between every pair of word vectors. This idea was first proposed by Charikar \cite{Charikar02sim} and used in NLP for large-scale noun clustering \cite{ravichandran05}. However, in large-scale noun clustering research, they had to store the random projection matrix of size $D \times k$; where $D$ denotes the number of all unique contexts (which is generally large and $D>> Z$) and this research does not explicitly require storing a random projection matrix.
 
 
-\section{System}
-We are interested in finding out, using a batch process, a \emph{small} set of
-neighbor candidates for each query such that: 1) the similarity of any
-point to a neighbor candidate returned is large and within a user-specified 
-similarity threshold ($\tau$). 2) We return an approximate set of neighbor 
-candidates with a $100\%$ precision and a large recall. 
-
-To solve the above problem, we propose a Hadoop-based framework based on Locality Sensitive Hashing. 
-Our framework has three main steps: 
-i) Generate $256$ bit signature for each query.  
-ii) Use the $256$ bit signature for each query to generate $L$ tables for each table with $K$ bit signature. 
-Next, generate query pairs which fall in the same table.
-iii) Compute cosine similarity between query points which fall in the same table and return the query pairs  
-with similarity $\geq\tau$.  
-
-
-To minimize the number of hash functions computations (time intensive to read all features and 
-evaluate hash functions to generate a single bit), we use a trick from Andoni and Indyk \shortcite{Andoni08CACM} 
-in which hash functions are reused to generate $L$ tables. $K$ vis assumed to be even and $R \approx	\sqrt L$. 
-We generate $f(q)=(h_1(q),h_2(q),\dots,h_{k/2}(q)))$ of length $k/2$. 
-Next, we define $g(q)=(f_a,f_b)$, where $1\leq a < b \leq R$. This scheme generates $L= \frac{R (R -1)}{2}$. 
-This scheme requires O($K  \sqrt L$) hash functions, instead of O($KL$).    
-
-%Our solution is to return nearest neighbors for any point where cosine similarity > threshold. Threshold considered are
-%0.7, 0.8, and 0.9.
-
-
-\begin{table}
-\centering
-{
-\small \addtolength{\tabcolsep}{-4.5pt}
-\begin{tabular}{ll}
-\hline
-\hline
- \textbf{Symbol} &  \textbf{Description} \\
-\hline 
-$N$ & \# of query points \\
-$D$ & \# of features i.e. all clicked unique urls \\
-\hline
-\multirow{3}{*}{$K$} & \# of hash functions concatenated together \\ 
-   & $g(q)=(h_1(q),h_2(q),\dots,h_k(q)))$ \\ 
-	 & to generate the index of a table \\
-\hline
- \multirow{2}{*}{$L$} & \# of tables generated independently \\ 
-	  &  with $g_j(q)$ index, $\forall 1 \leq j \leq  L$  \\
-\hline
-$F$ & \# of bits flipped, $\forall 1 \leq j \leq  L$   \\
-$\tau$ & $\tau$ threshold \\
-Recall & fraction of similar candidates retrieved \\
-Comparisons & Avg \# of pairwise comparisons per query  \\
-\hline 
-\end{tabular}
-\caption{\footnotesize{Major Notations}}
-}
-\label{tab:notation}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-$L$ & $\tau$ & Comparisons & Recall \\
-\hline
-\multirow{3}{*}{10}  & 0.7 & 57.2255 & 0.63 \\
- & 0.8 & 57.2255 & 0.84 \\
- & 0.9 & 57.2255 & 0.98 \\
-\hline
-\multirow{3}{*}{28} & 0.7 & 152.3315 & 0.77 \\
- & 0.8 & 152.3315 & 0.90 \\
- & 0.9 & 152.3315 & 0.99 \\
-\hline
-\multirow{3}{*}{55} & 0.7 & 296.6195 & 0.89 \\
- & 0.8 & 296.6195 & 0.97 \\
- & 0.9 & 296.6195 & 0.99 \\
-\hline
-\multirow{3}{*}{120} & 0.7 & 629.5505 & 0.93 \\
- & 0.8 & 629.5505 & 0.98 \\
- & 0.9 & 629.5505 & 0.99 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=16$ on \aol.}}
-\label{tab:data-so}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\
-\hline
-\multirow{3}{*}{2} & 0.7 & 433.041 & 0.73 \\
- & 0.8 & 433.041 & 0.88 \\
- & 0.9 & 433.041 & 0.98 \\
-\hline
-\multirow{3}{*}{5} & 0.7 & 1556.5815 & 0.86 \\
- & 0.8 & 1556.5815 & 0.95 \\
- & 0.9 & 1556.5815 & 0.99 \\
-\hline
-\multirow{3}{*}{10} & 0.7 & 4138.3675 & 0.94 \\
- & 0.8 & 4138.3675 & 0.99 \\
- & 0.9 & 4138.3675 & 1.00 \\
-\hline 
-\multicolumn{4}{c}{Flip query Bits only} \\
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\
-\hline
-\multirow{3}{*}{1}  & 0.7 & 108.3585 & 0.65 \\
- & 0.8 & 108.3585 & 0.85 \\
-  & 0.9 & 108.3585 & 0.98 \\
-\hline
-\multirow{3}{*}{2} & 0.7 & 158.9565 & 0.66 \\
- & 0.8 & 158.9565 & 0.85 \\
- & 0.9 & 158.9565 & 0.98 \\
-\hline
-\multirow{3}{*}{5} & 0.7 & 310.7435 & 0.70 \\
- & 0.8 & 310.7435 & 0.86 \\
- & 0.9 & 310.7435 & 0.98 \\
-\hline
-\multirow{3}{*}{10} & 0.7 & 556.796 & 0.75 \\
- & 0.8 & 556.796 & 0.89 \\
- & 0.9 & 556.796 & 0.99 \\
-\hline
-\multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
- & 0.8 & 838.8535 & 0.92 \\
-& 0.9 & 838.8535 & 0.99 \\
-\hline
-\end{tabular}
-\caption{\footnotesize{$K=16$ on \aol. Random Flipping is tested here.}}
-\label{tab:data-so}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\
-\hline
-\multirow{3}{*}{2} & 0.7 & 405.239 & 0.86 \\
- & 0.8 & 405.239 & 0.96 \\
- & 0.9 & 405.239 & 0.99 \\
-\hline
-\multirow{3}{*}{5} & 0.7 & 1475.484 & 0.93 \\
- & 0.8 & 1475.484 & 0.99 \\
- & 0.9 & 1475.484 & 1.00 \\
-\hline
-\multirow{3}{*}{10} & 0.7 & 4059.0105 & 0.96 \\
- & 0.8 & 4059.0105 & 0.99 \\
- & 0.9 & 4059.0105 & 1.00 \\
-\hline
-\multicolumn{4}{c}{Flip query Bits only} \\
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\
-\hline
-\multirow{3}{*}{1} & 0.7 & 106.2105 & 0.72 \\
- & 0.8 & 106.2105 & 0.88 \\
- & 0.9 & 106.2105 & 0.98 \\
-\hline
-\multirow{3}{*}{2} & 0.7 & 155.354 & 0.75 \\
- & 0.8 & 155.354 & 0.89 \\
- & 0.9 & 155.354 & 0.98 \\
-\hline
- \multirow{3}{*}{5} & 0.7 & 303.0655 & 0.79 \\
- & 0.8 & 303.0655 & 0.91 \\
- & 0.9 & 303.0655 & 0.99 \\
-\hline
- \multirow{3}{*}{10} & 0.7 & 551.8475 & 0.81 \\
- & 0.8 & 551.8475 & 0.92 \\
- & 0.9 & 551.8475 & 0.99 \\
-\hline
- \multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
- & 0.8 & 838.8535 & 0.92 \\
- & 0.9 & 838.8535 & 0.99 \\
-\hline
-\end{tabular}
-\caption{\footnotesize{$K=16$ on \aol. Query Driven Flipping is tested here.}}
-\label{tab:data-so}
-\end{table}
-
- % ($h_1(q),h_2(q),\dots,h_k(q)$)) to generate the index of a table \\
-
-
-\section{Multi Probe LSH}
-
-One strategy that we have experimented with is the following variant of Multi-probe LSH:  first we compute the initial LSH of a query q, which gives the L bucket ids. We then create alternate bucket ids by taking each of the L bucket ids and then creating alternate candidate buckets by flipping a set of coordinates in the LSH(q). We have experimented with two different methods to choose which coordinate to flip: randomly choosing a specified number of coordinates or choosing the set of coordinates based on the distance of q from the random hyperplane that was used in to create this coordinate.  
-\subsection{Random Flip LSH}
-Random Flips
-1. Generate less number of hash functions
-2. Have to compute similarity over less number of data pairs
-
-\subsection{Query Driven LSH}
-Based on random projection distance 
-
-
-\section{Experiment}
-To evaluate our large-scale approximate similarity framework, we perform several experiments on query logs sampled from a commercial search engine. 
-
-\subsection{Data}
-
-We remove all those queries which have less than or equal to 5 features. 
-
-The public dataset that we demonstrate result on is adapted from the query log of AOL search engine \cite{Pass06}. 
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-Data & $N$ & $D$  \\ 
-\hline
-\aol &  $0.3 \times 10^6$  & $0.7 \times 10^6$ \\
-\dataA & $6 \times 10^6$  & $66 \times 10^6$ \\
-\dataB & $62 \times 10^6$  & $464 \times 10^6$ \\
-\dataC &  $617 \times 10^6$  & $ 2.4 \times 10^9$  \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{Query-logs statistics}}
-\label{tab:data}
-\end{table}
-
-
-
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-$L$ & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{10} & 0.7 & 1052.419 & 0.67 \\
-& 0.8 & 1052.419 & 0.81 \\
-& 0.9 & 1052.419 & 0.96 \\
-\hline
-\multirow{3}{*}{28} & 0.7 & 2908.1875 & 0.78 \\
-& 0.8 & 2908.1875 & 0.90 \\
-& 0.9 & 2908.1875 & 0.96 \\
-\hline
-\multirow{3}{*}{55} & 0.7 & 5648.186 & 0.84 \\
-& 0.8 & 5648.186 & 0.92 \\
-& 0.9 & 5648.186 & 0.97 \\
-\hline
-\multirow{3}{*}{120} & 0.7 & 12130.4065 & 0.91 \\
-& 0.8 & 12130.4065 & 0.96 \\
-& 0.9 & 12130.4065 & 0.99 \\
-\hline
-\multirow{3}{*}{253} & 0.7 & 25039.1265 & 0.95 \\
-& 0.8 & 25039.1265 & 0.96 \\
-& 0.9 & 25039.1265 & 0.99 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=16$ on \dataA.}}
-\label{tab:data-so}
-\end{table}
-
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{2} & 0.7 & 8558.23 & 0.76 \\
- & 0.8 & 8558.23 & 0.86 \\
- & 0.9 & 8558.23 & 0.96 \\
-\hline 
-\multirow{3}{*}{5} & 0.7 & 31119.1765 & 0.83 \\
- & 0.8 & 31119.1765 & 0.90 \\
- & 0.9 & 31119.1765 & 0.96 \\
-\hline 
-\multirow{3}{*}{10} & 0.7 & 83196.2015 & 0.90 \\
- & 0.8 & 83196.2015 & 0.93 \\
- & 0.9 & 83196.2015 & 0.99 \\
-\hline
-\multicolumn{4}{c}{Flipping only bits for the query} \\
-\multirow{3}{*}{2} & 0.7 & 3091.9095 & 0.72 \\
-& 0.8 & 3091.9095 & 0.84 \\
- & 0.9 & 3091.9095 & 0.96 \\
-\multirow{3}{*}{5} & 0.7 & 6095.7215 & 0.73 \\
- & 0.8 & 6095.7215 & 0.86 \\
- & 0.9 & 6095.7215 & 0.96 \\
-\multirow{3}{*}{10} & 0.7 & 10976.4205 & 0.79 \\
- & 0.8 & 10976.4205 & 0.87 \\
- & 0.9 & 10976.4205 & 0.96 \\
-\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
- & 0.8 & 16634.244 & 0.89 \\
- & 0.9 & 16634.244 & 0.96 \\
-
- \end{tabular}
-\caption{\footnotesize{$K=16$ on \dataA. Random Flipping is tested here.}}
-\label{tab:data-so}
-\end{table}
 
 
 
 
 
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{2} & 0.7 & 2979.8075 & 0.76 \\
- & 0.8 & 2979.8075 & 0.87 \\
- & 0.9 & 2979.8075 & 0.96 \\
-\hline
-\multirow{3}{*}{5} & 0.7 & 5903.528 & 0.78 \\
- & 0.8 & 5903.528 & 0.87 \\
- & 0.9 & 5903.528 & 0.96 \\
-\hline
-\multirow{3}{*}{10} & 0.7 & 10844.163 & 0.81 \\
- & 0.8 & 10844.163 & 0.88 \\
- & 0.9 & 10844.163 & 0.96 \\
-\hline
-\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
- & 0.8 & 16634.244 & 0.89 \\
- & 0.9 & 16634.244 & 0.96 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=16$ on \dataA. Query Driven Flipping is tested here.}}
-\label{tab:data-so}
-\end{table}
 
 
 
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-L & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{10} & 0.7 & 10514.8925 & 0.64 \\
- & 0.8 & 10514.8925 & 0.83 \\
- & 0.9 & 10514.8925 & 0.95 \\
-\hline
-\multirow{3}{*}{28} & 0.7 & 29065.2255 & 0.74 \\
- & 0.8 & 29065.2255 & 0.90 \\
- & 0.9 & 29065.2255 & 0.97 \\
-\hline
-\multirow{3}{*}{55} & 0.7 & 56472.7575 & 0.83 \\
- & 0.8 & 56472.7575 & 0.93 \\
- & 0.9 & 56472.7575 & 0.98 \\
-\hline
-\multirow{3}{*}{120} & 0.7 & 121284.769 & 0.89 \\
- & 0.8 & 121284.769 & 0.96 \\
- & 0.9 & 121284.769 & 0.99 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=16$ on \dataB.}}
-\label{tab:data-so}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-L & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{10} & 0.7 & 694.8745 & 0.53 \\
- & 0.8 & 694.8745 & 0.76 \\
- & 0.9 & 694.8745 & 0.92 \\
-\hline 
-\multirow{3}{*}{28} & 0.7 & 1922.759 & 0.63 \\
- & 0.8 & 1922.759 & 0.84 \\
- & 0.9 & 1922.759 & 0.95 \\
-\hline 
-\multirow{3}{*}{55} & 0.7 & 3761.9375 & 0.73 \\
- & 0.8 & 3761.9375 & 0.89 \\
- & 0.9 & 3761.9375 & 0.97 \\
-\hline 
-\multirow{3}{*}{120} & 0.7 & 8166.7285 & 0.79 \\
- & 0.8 & 8166.7285 & 0.93 \\
- & 0.9 & 8166.7285 & 0.99 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=20$ on \dataB.}}
-\label{tab:data-so}
-\end{table}
 
 
+
+
+
+
+
+
+%\begin{table}
+%\centering
+%{
+%\small \addtolength{\tabcolsep}{-4.5pt}
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%$L$ & $\tau$ & Comparisons & Recall \\
+%\hline
+%\multirow{3}{*}{10}  & 0.7 & 57.2255 & 0.63 \\
+% & 0.8 & 57.2255 & 0.84 \\
+% & 0.9 & 57.2255 & 0.98 \\
+%\hline
+%\multirow{3}{*}{28} & 0.7 & 152.3315 & 0.77 \\
+% & 0.8 & 152.3315 & 0.90 \\
+% & 0.9 & 152.3315 & 0.99 \\
+%\hline
+%\multirow{3}{*}{55} & 0.7 & 296.6195 & 0.89 \\
+% & 0.8 & 296.6195 & 0.97 \\
+% & 0.9 & 296.6195 & 0.99 \\
+%\hline
+%\multirow{3}{*}{120} & 0.7 & 629.5505 & 0.93 \\
+% & 0.8 & 629.5505 & 0.98 \\
+% & 0.9 & 629.5505 & 0.99 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=16$ on \aol.}}
+%}
+%\label{tab:data-so}
+%\end{table}
+%
 %\begin{table}
 %\centering
 %\begin{tabular}{|c|c|c|c|}
 %\hline
-%Bit Flips & $\tau$ & Comparisons & Recall \\ 
+%\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
 %\hline
-%\multirow{3}{*}{2} & 0.7 & 2747.571 & 0.54 \\
-% & 0.8 & 2747.571 & 0.77 \\
-% & 0.9 & 2747.571 & 0.92 \\
+%$F$ & $\tau$ & Comparisons & Recall \\
 %\hline
-%\multirow{3}{*}{5} & 0.7 & 13218.4995 & 0.60 \\
-% & 0.8 & 13218.4995 & 0.80 \\
-% & 0.9 & 13218.4995 & 0.93 \\
+%\multirow{3}{*}{2} & 0.7 & 433.041 & 0.73 \\
+% & 0.8 & 433.041 & 0.88 \\
+% & 0.9 & 433.041 & 0.98 \\
 %\hline
-%\multirow{3}{*}{10} & 0.7 & 46532.2865 & 0.72 \\
-% & 0.8 & 46532.2865 & 0.88 \\
-% & 0.9 & 46532.2865 & 0.97 \\
+%\multirow{3}{*}{5} & 0.7 & 1556.5815 & 0.86 \\
+% & 0.8 & 1556.5815 & 0.95 \\
+% & 0.9 & 1556.5815 & 0.99 \\
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 4138.3675 & 0.94 \\
+% & 0.8 & 4138.3675 & 0.99 \\
+% & 0.9 & 4138.3675 & 1.00 \\
 %\hline 
-% \end{tabular}
-%\caption{\footnotesize{K=20 with 50 million query dataset. Random Flipping is tested here.}}
+%\multicolumn{4}{c}{Flip query Bits only} \\
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\
+%\hline
+%\multirow{3}{*}{1}  & 0.7 & 108.3585 & 0.65 \\
+% & 0.8 & 108.3585 & 0.85 \\
+%  & 0.9 & 108.3585 & 0.98 \\
+%\hline
+%\multirow{3}{*}{2} & 0.7 & 158.9565 & 0.66 \\
+% & 0.8 & 158.9565 & 0.85 \\
+% & 0.9 & 158.9565 & 0.98 \\
+%\hline
+%\multirow{3}{*}{5} & 0.7 & 310.7435 & 0.70 \\
+% & 0.8 & 310.7435 & 0.86 \\
+% & 0.9 & 310.7435 & 0.98 \\
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 556.796 & 0.75 \\
+% & 0.8 & 556.796 & 0.89 \\
+% & 0.9 & 556.796 & 0.99 \\
+%\hline
+%\multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
+% & 0.8 & 838.8535 & 0.92 \\
+%& 0.9 & 838.8535 & 0.99 \\
+%\hline
+%\end{tabular}
+%\caption{\footnotesize{$K=16$ on \aol. Random Flipping is tested here.}}
 %\label{tab:data-so}
 %\end{table}
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\
+%\hline
+%\multirow{3}{*}{2} & 0.7 & 405.239 & 0.86 \\
+% & 0.8 & 405.239 & 0.96 \\
+% & 0.9 & 405.239 & 0.99 \\
+%\hline
+%\multirow{3}{*}{5} & 0.7 & 1475.484 & 0.93 \\
+% & 0.8 & 1475.484 & 0.99 \\
+% & 0.9 & 1475.484 & 1.00 \\
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 4059.0105 & 0.96 \\
+% & 0.8 & 4059.0105 & 0.99 \\
+% & 0.9 & 4059.0105 & 1.00 \\
+%\hline
+%\multicolumn{4}{c}{Flip query Bits only} \\
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\
+%\hline
+%\multirow{3}{*}{1} & 0.7 & 106.2105 & 0.72 \\
+% & 0.8 & 106.2105 & 0.88 \\
+% & 0.9 & 106.2105 & 0.98 \\
+%\hline
+%\multirow{3}{*}{2} & 0.7 & 155.354 & 0.75 \\
+% & 0.8 & 155.354 & 0.89 \\
+% & 0.9 & 155.354 & 0.98 \\
+%\hline
+% \multirow{3}{*}{5} & 0.7 & 303.0655 & 0.79 \\
+% & 0.8 & 303.0655 & 0.91 \\
+% & 0.9 & 303.0655 & 0.99 \\
+%\hline
+% \multirow{3}{*}{10} & 0.7 & 551.8475 & 0.81 \\
+% & 0.8 & 551.8475 & 0.92 \\
+% & 0.9 & 551.8475 & 0.99 \\
+%\hline
+% \multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
+% & 0.8 & 838.8535 & 0.92 \\
+% & 0.9 & 838.8535 & 0.99 \\
+%\hline
+%\end{tabular}
+%\caption{\footnotesize{$K=16$ on \aol. Query Driven Flipping is tested here.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%$L$ & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 1052.419 & 0.67 \\
+%& 0.8 & 1052.419 & 0.81 \\
+%& 0.9 & 1052.419 & 0.96 \\
+%\hline
+%\multirow{3}{*}{28} & 0.7 & 2908.1875 & 0.78 \\
+%& 0.8 & 2908.1875 & 0.90 \\
+%& 0.9 & 2908.1875 & 0.96 \\
+%\hline
+%\multirow{3}{*}{55} & 0.7 & 5648.186 & 0.84 \\
+%& 0.8 & 5648.186 & 0.92 \\
+%& 0.9 & 5648.186 & 0.97 \\
+%\hline
+%\multirow{3}{*}{120} & 0.7 & 12130.4065 & 0.91 \\
+%& 0.8 & 12130.4065 & 0.96 \\
+%& 0.9 & 12130.4065 & 0.99 \\
+%\hline
+%\multirow{3}{*}{253} & 0.7 & 25039.1265 & 0.95 \\
+%& 0.8 & 25039.1265 & 0.96 \\
+%& 0.9 & 25039.1265 & 0.99 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=16$ on \dataA.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{2} & 0.7 & 8558.23 & 0.76 \\
+% & 0.8 & 8558.23 & 0.86 \\
+% & 0.9 & 8558.23 & 0.96 \\
+%\hline 
+%\multirow{3}{*}{5} & 0.7 & 31119.1765 & 0.83 \\
+% & 0.8 & 31119.1765 & 0.90 \\
+% & 0.9 & 31119.1765 & 0.96 \\
+%\hline 
+%\multirow{3}{*}{10} & 0.7 & 83196.2015 & 0.90 \\
+% & 0.8 & 83196.2015 & 0.93 \\
+% & 0.9 & 83196.2015 & 0.99 \\
+%\hline
+%\multicolumn{4}{c}{Flipping only bits for the query} \\
+%\multirow{3}{*}{2} & 0.7 & 3091.9095 & 0.72 \\
+%& 0.8 & 3091.9095 & 0.84 \\
+% & 0.9 & 3091.9095 & 0.96 \\
+%\multirow{3}{*}{5} & 0.7 & 6095.7215 & 0.73 \\
+% & 0.8 & 6095.7215 & 0.86 \\
+% & 0.9 & 6095.7215 & 0.96 \\
+%\multirow{3}{*}{10} & 0.7 & 10976.4205 & 0.79 \\
+% & 0.8 & 10976.4205 & 0.87 \\
+% & 0.9 & 10976.4205 & 0.96 \\
+%\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
+% & 0.8 & 16634.244 & 0.89 \\
+% & 0.9 & 16634.244 & 0.96 \\
+%
+% \end{tabular}
+%\caption{\footnotesize{$K=16$ on \dataA. Random Flipping is tested here.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{2} & 0.7 & 2979.8075 & 0.76 \\
+% & 0.8 & 2979.8075 & 0.87 \\
+% & 0.9 & 2979.8075 & 0.96 \\
+%\hline
+%\multirow{3}{*}{5} & 0.7 & 5903.528 & 0.78 \\
+% & 0.8 & 5903.528 & 0.87 \\
+% & 0.9 & 5903.528 & 0.96 \\
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 10844.163 & 0.81 \\
+% & 0.8 & 10844.163 & 0.88 \\
+% & 0.9 & 10844.163 & 0.96 \\
+%\hline
+%\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
+% & 0.8 & 16634.244 & 0.89 \\
+% & 0.9 & 16634.244 & 0.96 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=16$ on \dataA. Query Driven Flipping is tested here.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%L & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 10514.8925 & 0.64 \\
+% & 0.8 & 10514.8925 & 0.83 \\
+% & 0.9 & 10514.8925 & 0.95 \\
+%\hline
+%\multirow{3}{*}{28} & 0.7 & 29065.2255 & 0.74 \\
+% & 0.8 & 29065.2255 & 0.90 \\
+% & 0.9 & 29065.2255 & 0.97 \\
+%\hline
+%\multirow{3}{*}{55} & 0.7 & 56472.7575 & 0.83 \\
+% & 0.8 & 56472.7575 & 0.93 \\
+% & 0.9 & 56472.7575 & 0.98 \\
+%\hline
+%\multirow{3}{*}{120} & 0.7 & 121284.769 & 0.89 \\
+% & 0.8 & 121284.769 & 0.96 \\
+% & 0.9 & 121284.769 & 0.99 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=16$ on \dataB.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%L & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 694.8745 & 0.53 \\
+% & 0.8 & 694.8745 & 0.76 \\
+% & 0.9 & 694.8745 & 0.92 \\
+%\hline 
+%\multirow{3}{*}{28} & 0.7 & 1922.759 & 0.63 \\
+% & 0.8 & 1922.759 & 0.84 \\
+% & 0.9 & 1922.759 & 0.95 \\
+%\hline 
+%\multirow{3}{*}{55} & 0.7 & 3761.9375 & 0.73 \\
+% & 0.8 & 3761.9375 & 0.89 \\
+% & 0.9 & 3761.9375 & 0.97 \\
+%\hline 
+%\multirow{3}{*}{120} & 0.7 & 8166.7285 & 0.79 \\
+% & 0.8 & 8166.7285 & 0.93 \\
+% & 0.9 & 8166.7285 & 0.99 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=20$ on \dataB.}}
+%\label{tab:data-so}
+%\end{table}
+%
+%\begin{table}
+%\centering
+%\small 
+%{
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%$F$ & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\hline 
+%\end{tabular}
+%\caption{$K=20$ on \dataB. Query Driven Flipping is tested here.}
+%}
+%\label{tab:big:queryDriven}
+%\end{table}
+%
+%\begin{table}
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%L & $\tau$ & Comparisons & Recall \\ 
+%\hline
+%\multirow{3}{*}{10} & 0.7 & 46.5485 & 0.49 \\
+%  & 0.8 & 46.5485 & 0.74 \\
+% & 0.9 & 46.5485 & 0.91 \\
+%\hline
+%\multirow{3}{*}{28} & 0.7 & 129.22 & 0.57 \\
+% & 0.8 & 129.22 & 0.81 \\
+% & 0.9 & 129.22 & 0.94 \\
+%\hline
+%\multirow{3}{*}{55} & 0.7 & 250.617 & 0.63 \\
+% & 0.8 & 250.617 & 0.85 \\
+% & 0.9 & 250.617 & 0.95 \\
+%\hline
+%\multirow{3}{*}{120} & 0.7 & 545.12 & 0.77 \\
+% & 0.8 & 545.12 & 0.90 \\
+% & 0.9 & 545.12 & 0.97 \\
+%\hline 
+% \end{tabular}
+%\caption{\footnotesize{$K=24$ on \dataB.}}
+%\label{tab:data-so}
+%\end{table}
+%
 
-\begin{table}
-\centering
-\small 
-{
-\begin{tabular}{|c|c|c|c|}
-\hline
-$F$ & $\tau$ & Comparisons & Recall \\ 
-\hline
-\hline 
-\end{tabular}
-\caption{$K=20$ on \dataB. Query Driven Flipping is tested here.}
-}
-\label{tab:big:queryDriven}
-\end{table}
 
 
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-L & $\tau$ & Comparisons & Recall \\ 
-\hline
-\multirow{3}{*}{10} & 0.7 & 46.5485 & 0.49 \\
-  & 0.8 & 46.5485 & 0.74 \\
- & 0.9 & 46.5485 & 0.91 \\
-\hline
-\multirow{3}{*}{28} & 0.7 & 129.22 & 0.57 \\
- & 0.8 & 129.22 & 0.81 \\
- & 0.9 & 129.22 & 0.94 \\
-\hline
-\multirow{3}{*}{55} & 0.7 & 250.617 & 0.63 \\
- & 0.8 & 250.617 & 0.85 \\
- & 0.9 & 250.617 & 0.95 \\
-\hline
-\multirow{3}{*}{120} & 0.7 & 545.12 & 0.77 \\
- & 0.8 & 545.12 & 0.90 \\
- & 0.9 & 545.12 & 0.97 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{$K=24$ on \dataB.}}
-\label{tab:data-so}
-\end{table}
 
 \bibliographystyle{acl}
 \bibliography{lsh}
 \end{document}
-
- 
-%
-%\section{Data}
-%
-%\section{Notation}
-%Let $q_1, q_2, \dots, q_N$ be $N$ queries. Each query is represented as a vector in high dimensional space ($\mathbb{R}^D$).  
-%
-%\section{Data}
-%Data: $N$=100K queries from query Logs. Each query is represented in a vector representation of sparse and high dimension $D$=12.5 million.  To generate features, first select user-clicked urls. Second, parse user-clicked urls into bag-of-words representation. These bag-of-words along with their frequency are used as features for queries.  
-%
-% \textbf{Hash Functions}: Pairwise  independent hash functions are used to generate random projections. Hash functions map each unique feature to \{-1,+1\}. 
-% 
-% \textbf{LSH algorithm}: Algorithm proposed by Alex Andoni is used here. Cosine to Hamming distance variant of LSH is being investigated. Hamming distance.\footnote{XOR operation should be faster than computing exact cosine. However, first generating LSH signature  for new query and then doing XOR may be expensive.} is currently being used to find nearest neighbors for selected candidates. If we use exact cosine instead of Hamming distance, then precision of the algorithm will be improved. 
-% 
-% 
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|}
-%\hline
-%Stats & \# of dimensions \\
-%\hline
-%Max & 296840 \\
-%Min & 2 \\
-%Median & 153 \\
-%Avg & 417  \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{Stats with respect to the dimensionality of the data.}}
-% \label{tab:data-so}
-%\end{table}
-%
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|}
-%\hline
-% \textbf{\# of Bits} 
-%  &  \textbf{Recall}     \\
-% \hline
-% {$16$}   & .02   \\
-%  {$32$}  & .05 \\
-%  {$64$}  & .12  \\
-%\rowcolor[gray]{.9}  {$128$} & .19  \\
-%\hline 
-% \end{tabular}
-% \caption{\footnotesize{Comparing Locality Sensitive Hashing (LSH) with Exact Cosine  on recall metric by varying number of bits \{$16$,$32$,$64$,$128$\}. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-% \label{tab:data-so}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|ccc|}
-%\hline
-% \textbf{LSH threshold} 
-%  &  \textbf{Pre} &  \textbf{Rec}  & \textbf{F1}       \\
-% \hline
-%0.75 &0.25 & 0.74 & 0.37 \\
-%\rowcolor[gray]{.9} 0.8 &0.52 & 0.60 & 0.56 \\
-%0.85 &0.83 & 0.38 & 0.52 \\
-%0.9 &0.87 & 0.18 & 0.30 \\
-%\hline 
-% \end{tabular}
-% \caption{\footnotesize{Comparing $128$-bits Locality Sensitive Hashing (LSH) with Exact Cosine (restrict to similarity$>$.75)  on recall metric by varying LSH similarity threshold \{$.75$,$.8$,$.85$,$.9$\}. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-% \label{tab:data-so}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|ccc|}
-%\hline
-% \textbf{\# of Tables (L)} &  \textbf{\# of Candidates}
-%  &  \textbf{Pre} &  \textbf{Rec}  & \textbf{F1}       \\
-% \hline
-%$8$ & 6.450 &0.68 & 0.37 & 0.48 \\
-%\rowcolor[gray]{.9} $10$ &1032.0 &0.54 & 0.53 & 0.54 \\
-%$12$ & 2279.3 & 0.53 & 0.58 & 0.55 \\
-%$16$ & 7664.0 &0.52 & 0.60 & 0.55 \\
-%\hline 
-%LSH & 100000 &0.52 & 0.60 & 0.56 \\
-%\hline 
-% \end{tabular}
-% \caption{\footnotesize{Comparing $128$-bits Locality Sensitive Hashing (LSH) with Exact Cosine (restrict to cosine similarity$>$.75 and LSH sim $>$ 0.8)  on recall metric by varying L \{$8$,$12$,$16$\} and $K=\frac{128}{L}$. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-% \label{tab:data-so}
-%\end{table}
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|}
-%\hline
-% \textbf{\# of Tables (L)} &  \textbf{\# of Candidates}
-%  &  \textbf{Recall}      \\
-% \hline
-%$6$ & 4 & .02 \\
-%\rowcolor[gray]{.9} $8$ & 27 & .05 \\
-% $10$ & 243 &.08  \\
-%$12$ & 1119 & .12\\
-%$16$ &7665 &0.17 \\
-%\hline 
-%LSH & 100000 & .19 \\
-%\hline 
-% \end{tabular}
-% \caption{\footnotesize{Comparing $128$-bits Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by varying L= \{$8$,$12$,$16$\} and $K=\frac{128}{L}$. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-% \label{tab:data-so}
-%\end{table}
-%
-%
-%%4 &1.148 &0.35 & 0.03 & 0.06 \\
-%%\begin{table}
-%%\centering
-%%\begin{tabular}{|c|c|c|}
-%%\hline
-%% \textbf{\# of Tables (L)} &  \textbf{\# of Candidates}
-%%  &  \textbf{Recall}      \\
-%% \hline
-%%\rowcolor[gray] {.9} $8$  &2562 &.17  \\
-%%$10$ &33978 &.19  \\
-%%$12$ &59047 &.19  \\
-%%\hline 
-%%LSH & 100000 & .19 \\
-%%\hline 
-%% \end{tabular}
-%% \caption{\footnotesize{Comparing $128$-bits Multi-Probe Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by varying L=\{$8$,$12$,$16$\} and $K=\frac{128}{L}$. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-%% \label{tab:data-so}
-%%\end{table}
-%
-%
-%\begin{table*}
-%\centering
-%\begin{tabular}{|c|cc|cc|cc|}
-%\hline
-% & \multicolumn{2}{c}{Deterministic} & \multicolumn{2}{c}{Random} & \multicolumn{2}{c}{Sorted Order} \\  
-% \textbf{\# of Bits (M) to be flipped} &  \textbf{\# of Candidates} &  \textbf{Recall}   &  \textbf{\# of Candidates}  &  \textbf{Recall}  &  \textbf{\# of Candidates}  &  \textbf{Recall}    \\
-% \hline
-%1 & 48 & 0.05 &86 &0.06 &101 & 0.08  \\
-%2 & 89 & 0.06 &180 &0.08 &215 & 0.11  \\
-%4 &225 &0.08 &456 &0.10 &540 & 0.14 \\
-%6 &437 &0.10 &828&0.13 &956 & 0.16  \\
-%8 &725 &0.12  &1275 &0.15 &1421 & 0.17\\
-%12 & 1500 & 0.15 &2160 &0.16 &2247 & 0.17 \\
-%16 &2562 & 0.17 &2562 &0.17 &2562 & 0.17  \\
-%\hline 
-% \end{tabular}
-% \caption{\footnotesize{Comparing $128$-bits Multi-Probe Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by varying L=\{$8$\} and $K=\frac{128}{L}$. Bits to be flipped are selected in different manner. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-% \label{tab:data-so}
-%\end{table*}
-%
-%
-%
-%
-%%\begin{table}
-%%\centering
-%%\begin{tabular}{|c|c|c|}
-%%\hline
-%% \textbf{\# of Bits (M) to be flipped} &  \textbf{\# of Candidates}
-%%  &  \textbf{Recall}      \\
-%% \hline
-%%1 & 48 & 0.05 \\
-%%2 & 89 & 0.06 \\
-%%4 &225 &0.08 \\
-%%6 &437 &0.10 \\
-%%8 &725 &0.12 \\
-%%12 & 1500 & 0.15 \\
-%%16 &2562 & 0.17  \\
-%%\hline 
-%% \end{tabular}
-%% \caption{\footnotesize{Comparing $128$-bits Multi-Probe Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by varying L=\{$8$\} and $K=\frac{128}{L}$. Bits to be flipped are selected in an deterministic manner. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-%% \label{tab:data-so}
-%%\end{table}
-%%
-%%\begin{table}
-%%\centering
-%%\begin{tabular}{|c|c|c|}
-%%\hline
-%% \textbf{\# of Bits (M) to be flipped} &  \textbf{\# of Candidates}
-%%  &  \textbf{Recall}      \\
-%% \hline
-%%1 &86 &0.06  \\
-%%2 &180 &0.08  \\
-%%4 &456 &0.10 \\
-%%6 &828&0.13  \\
-%%8 &1275 &0.15  \\
-%%12 &2160 &0.16  \\
-%%16 &2562 &0.17  \\
-%%\hline 
-%% \end{tabular}
-%% \caption{\footnotesize{Comparing $128$-bits Multi-Probe Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by varying L=\{$8$\} and $K=\frac{128}{L}$. Bits to be flipped are selected in a random order. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-%% \label{tab:data-so}
-%%\end{table}
-%%
-%%
-%%\begin{table}
-%%\centering
-%%\begin{tabular}{|c|c|c|}
-%%\hline
-%% \textbf{\# of Bits (M) to be flipped} &  \textbf{\# of Candidates}
-%%  &  \textbf{Recall}      \\
-%% \hline
-%%1 &101 & 0.08 \\
-%%2 &215 & 0.11 \\
-%%4 &540 & 0.14 \\
-%%\rowcolor[gray]{.9} 6 &956 & 0.16 \\
-%%8 &1421 & 0.17 \\
-%%12 &2247 & 0.17 \\
-%%16 &2562 & 0.17 \\
-%%\hline 
-%% \end{tabular}
-%% \caption{\footnotesize{Comparing $128$-bits Query Directed Multi-Probe Locality Sensitive Hashing (LSH) with Exact Cosine (No restriction on cosine and LSH similarity)  on recall metric by fixing L=\{$8$\} and $K=\frac{128}{L}$. Bits to be flipeed are selected based on the distance to random projection lines. Evaluation is done over 500 random queries and recall is with respect to top 10 nearest neighbors. }}
-%% \label{tab:data-so}
-%%\end{table}
-
 
 
