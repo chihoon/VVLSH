@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: acl.bst
+Database file #1: lsh.bib
+Warning--I didn't find a database entry for ""
+Warning--empty journal in Andoni06FOCS
+You've used 9 entries,
+            2490 wiz_defined-function locations,
+            602 strings with 6144 characters,
+and the built_in function-call counts, 3251 in all, are:
+= -- 330
+> -- 141
+< -- 0
++ -- 47
+- -- 46
+* -- 215
+:= -- 545
+add.period$ -- 40
+call.type$ -- 9
+change.case$ -- 59
+chr.to.int$ -- 9
+cite$ -- 10
+duplicate$ -- 154
+empty$ -- 267
+format.name$ -- 58
+if$ -- 684
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 9
+newline$ -- 56
+num.names$ -- 27
+pop$ -- 80
+preamble$ -- 1
+purify$ -- 68
+quote$ -- 0
+skip$ -- 99
+stack$ -- 0
+substring$ -- 46
+swap$ -- 24
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 72
+warning$ -- 1
+while$ -- 18
+width$ -- 11
+write$ -- 124
+(There were 2 warnings)

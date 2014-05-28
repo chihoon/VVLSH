@@ -1,0 +1,66 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Andoni and Indyk}2006]{Andoni06FOCS}
+Alexandr Andoni and Piotr Indyk.
+\newblock 2006.
+\newblock {Near-optimal hashing algorithms for approximate nearest neighbor in
+  high dimensions}.
+
+\bibitem[\protect\citename{Andoni and Indyk}2008]{Andoni08CACM}
+Alexandr Andoni and Piotr Indyk.
+\newblock 2008.
+\newblock {Near-optimal hashing algorithms for approximate nearest neighbor in
+  high dimensions}.
+\newblock {\em Communications of the ACM}.
+
+\bibitem[\protect\citename{Charikar}2002]{Charikar02STOC}
+Moses~S. Charikar.
+\newblock 2002.
+\newblock Similarity estimation techniques from rounding algorithms.
+\newblock In {\em Proceedings of the thiry-fourth annual ACM symposium on
+  Theory of computing}, STOC.
+
+\bibitem[\protect\citename{Indyk and Motwani}1998]{Indyk98STOC}
+Piotr Indyk and Rajeev Motwani.
+\newblock 1998.
+\newblock Approximate nearest neighbors: towards removing the curse of
+  dimensionality.
+\newblock In {\em Proceedings of the thirtieth annual ACM symposium on Theory
+  of computing}, STOC.
+
+\bibitem[\protect\citename{Jain \bgroup et al.\egroup }2011]{Jain11SIGIR}
+Alpa Jain, Umut Ozertem, and Emre Velipasaoglu.
+\newblock 2011.
+\newblock Synthesizing high utility suggestions for rare web search queries.
+\newblock In {\em Proceedings of the 34th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}. ACM.
+
+\bibitem[\protect\citename{Jones \bgroup et al.\egroup }2006]{Jones06WWW}
+Rosie Jones, Benjamin Rey, Omid Madani, and Wiley Greiner.
+\newblock 2006.
+\newblock Generating query substitutions.
+\newblock In {\em Proceedings of the 15th International Conference on World
+  Wide Web (WWW)}. ACM.
+
+\bibitem[\protect\citename{Pass \bgroup et al.\egroup }2006]{Pass06}
+Greg Pass, Abdur Chowdhury, and Cayley Torgeson.
+\newblock 2006.
+\newblock A picture of search.
+\newblock In {\em InfoScale '06: Proceedings of the 1st international
+  conference on Scalable information systems}. ACM Press.
+
+\bibitem[\protect\citename{Song \bgroup et al.\egroup }2011]{Song11SIGIR}
+Yang Song, Dengyong Zhou, and Li-wei He.
+\newblock 2011.
+\newblock Post-ranking query suggestion by diversifying search results.
+\newblock In {\em Proceedings of the 34th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval (SIGIR)}. ACM.
+
+\bibitem[\protect\citename{Song \bgroup et al.\egroup }2012]{Song12WSDM}
+Yang Song, Dengyong Zhou, and Li-wei He.
+\newblock 2012.
+\newblock Query suggestion by constructing term-transition graphs.
+\newblock In {\em Proceedings of the Fifth ACM International Conference on Web
+  Search and Data Mining (WSDM)}. ACM.
+
+\end{thebibliography}
