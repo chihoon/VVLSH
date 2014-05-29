@@ -34,41 +34,6 @@
 
  %\section{Background}
 
-%mysubsection{Dimensionality Reduction from $\mathbb{R}^D$ to $\mathbb{R}^k$}
-%\label{subsec:randProj}
-%Given context vectors for $Z$ words, the goal is to use $k$ random projections to project the context vectors from $\mathbb{R}^D$ to $\mathbb{R}^k$. 
-%There are total $D$ unique contexts ($D>>k$) for all $Z$ words. Let ($\langle(\con_1,v_1);(\con_2,v_2)\ldots ;(\con_d,v_d)\rangle$) be sparse context vectors of size $d$ for $Z$ words. For each word, I use hashing to project the context vectors onto $k$ directions. 
-%I use $k$ pairwise independent hash functions that maps each of the $d$ context ($\con_d$) dimensions onto $\beta_{d,k}$ $\in$  $\{-1,+1\}$;  
-%and compute inner product between  $\beta_{d,k}$ and $v_d$. Next,  $\forall k, \sum_d  \beta_{d,k} . v_d$  returns the $k$ random projections for each word ``z''.
-%I store the $k$ random projections for all words (mapped to integers)
-%as a matrix $A$ of size of $k \times Z$.
-
-%The mechanism described above generates random projections by implicitly creating a random projection matrix from a set of $\{-1,+1\}$.  
-%This idea of creating implicit random projection matrix is motivated by the research on stable random projections 
-%\cite{LiH06,LiCRS10}, Count sketch \cite{charikar04},  feature hashing \cite{weinbergerK09} and online Locality Sensitive Hashing (\lsh) \cite{vandurme-lall:2010:Short}. The idea of generating random projections from the set $\{-1,+1\}$ was originally proposed by 
-%Achlioptas \cite{Achlioptas03}.
-%
-%%For fast approximate search, I propose a simple, which involves two pre-processing steps:
-%
-%Next I create a binary matrix $B$ using matrix $A$ by taking sign of each of the entries of the matrix $A$. 
-%If $A(i,j)\geq0$, then $B(i,j)=1$; else $B(i,j)=0$. This binarization creates 
-% Locality Sensitive Hash (\lsh ) function that preserves the cosine similarity between every pair of word vectors. This idea was first proposed by Charikar \cite{Charikar02sim} and used in NLP for large-scale noun clustering \cite{ravichandran05}. However, in large-scale noun clustering research, they had to store the random projection matrix of size $D \times k$; where $D$ denotes the number of all unique contexts (which is generally large and $D>> Z$) and this research does not explicitly require storing a random projection matrix.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 %\begin{table}

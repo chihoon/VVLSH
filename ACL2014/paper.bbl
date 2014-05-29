@@ -20,6 +20,22 @@ Moses~S. Charikar.
 \newblock In {\em Proceedings of the thiry-fourth annual ACM symposium on
   Theory of computing}, STOC.
 
+\bibitem[\protect\citename{Ganitkevitch \bgroup et al.\egroup
+  }2013]{ganitkevitch13Paraphrase}
+Juri Ganitkevitch, Benjamin Van~Durme, and Chris Callison-Burch.
+\newblock 2013.
+\newblock Ppdb: The paraphrase database.
+\newblock In {\em North American Chapter of the Association for Computational
+  Linguistics (NAACL)}.
+
+\bibitem[\protect\citename{Goyal \bgroup et al.\egroup }2012]{goyal12Flag}
+Amit Goyal, Hal {Daum\'e III}, and Raul Guerra.
+\newblock 2012.
+\newblock Fast large-scale approximate graph construction for {NLP}.
+\newblock In {\em Proceedings of the 2012 Joint Conference on Empirical Methods
+  in Natural Language Processing and and Computational Natural Language
+  Learning}.
+
 \bibitem[\protect\citename{Indyk and Motwani}1998]{Indyk98STOC}
 Piotr Indyk and Rajeev Motwani.
 \newblock 1998.
@@ -35,6 +51,19 @@ Alpa Jain, Umut Ozertem, and Emre Velipasaoglu.
 \newblock In {\em Proceedings of the 34th International ACM SIGIR Conference on
   Research and Development in Information Retrieval}. ACM.
 
+\bibitem[\protect\citename{Jansen and {Van Durme}}2011]{JansenASRU11}
+Aren Jansen and Benjamin {Van Durme}.
+\newblock 2011.
+\newblock Efficient spoken term discovery using randomized algorithms.
+\newblock In {\em Proceedings of the Automatic Speech Recognition and
+  Understanding(ASRU)}.
+
+\bibitem[\protect\citename{Jansen and {Van Durme}}2012]{JansenIS12}
+Aren Jansen and Benjamin {Van Durme}.
+\newblock 2012.
+\newblock Indexing raw acoustic features for scalable zero resource search.
+\newblock In {\em Proceedings of the InterSpeech}.
+
 \bibitem[\protect\citename{Jones \bgroup et al.\egroup }2006]{Jones06WWW}
 Rosie Jones, Benjamin Rey, Omid Madani, and Wiley Greiner.
 \newblock 2006.
@@ -42,12 +71,27 @@ Rosie Jones, Benjamin Rey, Omid Madani, and Wiley Greiner.
 \newblock In {\em Proceedings of the 15th International Conference on World
   Wide Web (WWW)}. ACM.
 
+\bibitem[\protect\citename{Lv \bgroup et al.\egroup }2007]{LvVLDB07}
+Qin Lv, William Josephson, Zhe Wang, Moses Charikar, and Kai Li.
+\newblock 2007.
+\newblock Multi-probe lsh: efficient indexing for high-dimensional similarity
+  search.
+\newblock In {\em Proceedings of the 33rd international conference on Very
+  large data bases (VLDB)}.
+
 \bibitem[\protect\citename{Pass \bgroup et al.\egroup }2006]{Pass06}
 Greg Pass, Abdur Chowdhury, and Cayley Torgeson.
 \newblock 2006.
 \newblock A picture of search.
 \newblock In {\em InfoScale '06: Proceedings of the 1st international
   conference on Scalable information systems}. ACM Press.
+
+\bibitem[\protect\citename{Ravichandran \bgroup et al.\egroup
+  }2005]{ravichandran05}
+Deepak Ravichandran, Patrick Pantel, and Eduard Hovy.
+\newblock 2005.
+\newblock Randomized algorithms and {NLP}: using locality sensitive hash
+  function for high speed noun clustering.
 
 \bibitem[\protect\citename{Song \bgroup et al.\egroup }2011]{Song11SIGIR}
 Yang Song, Dengyong Zhou, and Li-wei He.

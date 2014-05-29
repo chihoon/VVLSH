@@ -1,0 +1,34 @@
+
+ \section{Introduction}
+Many real-world problems on the Web like spelling correction \cite{}, 
+finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, finding near-duplicate queries \cite{}, 
+and diversifying search results \cite{Song11SIGIR} 
+can benefit from query logs from a commercial search engine. 
+We can take advantage of large-scale query logs 
+by computing pairwise similarity between all queries. Each query point also has an associated feature vector, that is
+very high dimensional and sparse $\--$ these are the set of webpages (urls) that
+get clicked for this query term.
+
+However, computing pairwise similarity between 
+all queries on a commercial large-scale query logs (consisting of hundreds of millions of  queries) 
+is a computationally time intensive task. 
+To solve this problem, we exploit research advances in Locality Sensitive Hashing 
+\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  
+to propose an efficient approximate similarity Hadoop framework.  
+
+
+\begin{itemize}
+\item We present a distributed system that can approximately compute pairwise similarity 
+between all queries on a commercial large-scale query logs in a time efficient manner. 
+Can we claim something more specific wrt time (e.g. 0(N logN))?
+\item Vanilla LSH 
+\item We propose two novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}: Random Flipping and Query-Driven Flipping. 
+\item  We show that the applicability of our system on two real-world applications like finding related queries (Increasing  direct display coverage is related to finding related queries) and ??.
+\end{itemize}
+
+%We are interested in the following setting: given a large set of 
+%points $q_1,q_2,\dots,q_n$, each of them is a search-query. 
+
+Spelling {grouping mis-spellings in same group}
+Similar entities {LOTR,}
+Finding related queries

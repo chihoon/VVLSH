@@ -1,10 +1,73 @@
 
-\section{System}
+\section{Problem Statement}
 We are interested in finding out, using a batch process, a \emph{small} set of
 neighbor candidates for each query such that: 1) the similarity of any
 point to a neighbor candidate returned is large and within a user-specified 
 similarity threshold ($\tau$). 2) We return an approximate set of neighbor 
 candidates with a $100\%$ precision and a large recall. 
+
+A naive exact brute force algorithm to solve the above problem: 
+1) Compute similarity between each query and all queries in the dataset. 
+2) Return all the queries as neighbors, which have similarity affinity within a similarity threshold ($\tau$). 
+
+This algorithm is exact as it has both $100\%$ precision and recall. 
+However, the algorithm is naive as it is not scalable for hundreds of millions of queries. 
+The reason being conducting pairwise computations between all the queries in the dataset involves 
+quadratic number of comparisons in the query dataset size. 
+For hundreds of millions of queries, it means doing petabytes of comparisons; 
+that is be computationally challenging or infeasible even in a distributed setting (such as Hadoop).   
+
+The motivated behind this research is to find nearest neighbors by doing a 
+\emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
+In addition to \emph{small} number of comparisons, we also want to 
+return a set of neighbor candidates with a $100\%$ precision and a large recall. 
+The method we propose meet all these criterions. We do this by exploiting 
+existing research in \lshf (a.k.a., \lsh) and propose their novel variants. 
+In particular, we develop the framework of  \lsh algorithms on a distributed 
+system (e.g. Hadoop) to take advantage of its computing efficiency.
+
+
+We can not tolerate false positives. 
+We can afford false negatives as there are many relevant queries; not retrieving all of them can be sufficient for a specific problem. 
+
+\section{Approach}
+\label{sec:approach}
+We describe a distributed Hadoop framework based on \lshf (\lsh). 
+First, we present vanilla \lsh algorithm based on the seminal research of Andoni and Indyk  \shortcite{Andoni08CACM}. To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
+
+This algorithm improves the existing research in \lsh and \plebf \cite{Indyk98STOC,Charikar02STOC}. 
+\plebf was applied for noun clustering \cite{ravichandran05} and speech \cite {JansenASRU11,JansenIS12}. 
+Recent prior work on new variants of \plebf  \cite{goyal12Flag} for distributional similarity is a special case of Andoni and Indyk's \lsh algorithm. 
+
+Next, we present four new variants of vanilla \lsh algorithm motivated by the research on Multi-Probe LSH \cite{LvVLDB07}. 
+A signiﬁcant drawback of vanilla \lsh is the requirement for a large number of hash tables in order to achieve good recall 
+in finding nearest neighbors. The goal of  \mblshf is to get signiﬁcantly better recall than the vanilla \lsh by using 
+the same number of hash tables. The main idea behind \mblshf is to look up multiple buckets within a table that have a high probability 
+of containing the nearest neighbors of a query. We present a high-level idea behind the \mblshf algorithm; 
+for more details, the reader is referred to \cite{LvVLDB07}.
+
+
+\subsection{Vanilla \lsh}
+\label{sec:vlsh}
+The \lsh algorithm relies on the existence of an \lsh family. Let $H$ be a family of hash functions mapping 
+ $\mathbb{R}^D$ to some universe S. For any two points $p$, $q$; we chose $h\in H$ uniformly at random; 
+ and analyze the probability that $h(p) = h(q)$.  The family $H$ is called a \lsh family if 
+ it satisfies the following conditions:
+
+\begin{enumerate}
+\item $d(p,q) \leq R$, then $Pr[h(p)=h(q)] \geq P_1$ 
+\item $d(p,q) \geq cR$, then $Pr[h(p)=h(q)] \leq P_2$
+\end{enumerate}
+
+A family is generally interesting when  $P_1>P_2$. However, the difference between $P_1$ and $P_2$ can be very small. 
+Given a family $H$ of hash functions with parameters ($R, cR, P_1,P_2$), 
+\lsh algorithm is devised by amplifying the grap between the two probabilities $P_1$ and $P_2$. 
+The pseudo code for vanilla \lsh is shown in Algorithm \ref{alg:vanilla-LSH}. 
+
+\mbox{Hadoop Vanilla \lsh} \\
+\mbox{\small {\underline {MAP:}}} \\
+  \FOR j:=1 \TO L \STEP 1 \\
+	     $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{k,j}(q)))$ \\
 
 To solve the above problem, we propose a distributed Hadoop framework based on Locality Sensitive Hashing. 
 Our framework has three main steps: 
@@ -13,6 +76,15 @@ ii) Use the $256$ bit signature for each query to generate $L$ tables for each t
 Next, generate query pairs which fall in the same table.
 iii) Compute cosine similarity between query points which fall in the same table and return the query pairs  
 with similarity $\geq\tau$.  
+
+To solve the above problem, we propose a distributed Hadoop framework based on Locality Sensitive Hashing. 
+Our framework has three main steps: 
+i) Generate $256$ bit signature for each query.  
+ii) Use the $256$ bit signature for each query to generate $L$ tables for each table with $K$ bit signature. 
+Next, generate query pairs which fall in the same table.
+iii) Compute cosine similarity between query points which fall in the same table and return the query pairs  
+with similarity $\geq\tau$.  
+
 
 
 To minimize the number of hash functions computations (time intensive to read all features and 
@@ -53,10 +125,10 @@ Comparisons & Avg \# of pairwise comparisons per query  \\
 \end{table}
 
 
-\section{Multi Probe LSH}
+\subsection{Multi Probe \lsh}
 
-One strategy that we have experimented with is the following variant of Multi-probe LSH:  first we compute the initial LSH of a query q, which gives the $L$ bucket ids. We then create alternate bucket ids by taking each of the $L$ bucket ids and then creating alternate candidate buckets by flipping a set of coordinates in the LSH of just the query or both the query and the database of queries. We have experimented with two different methods to choose which coordinate to flip: randomly choosing a specified number of coordinates or choosing the set of coordinates based on the distance of q from the random hyperplane that was used in to create this coordinate.  
-\subsection{\rflip LSH}
+One strategy that we have experimented with is the following variant of Multi-probe \lsh:  first we compute the initial \lsh of a query q, which gives the $L$ bucket ids. We then create alternate bucket ids by taking each of the $L$ bucket ids and then creating alternate candidate buckets by flipping a set of coordinates in the \lsh of just the query or both the query and the database of queries. We have experimented with two different methods to choose which coordinate to flip: randomly choosing a specified number of coordinates or choosing the set of coordinates based on the distance of q from the random hyperplane that was used in to create this coordinate.  
+{\rflip \lsh}
 Random Flips
 
 We experimented with flipping the bits in just the query and both the query and the database of all queries.  
@@ -65,12 +137,12 @@ We experimented with flipping the bits in just the query and both the query and 
 
 Advantages of Flipping bits compared to increasing L:
 1. Increasing $L$ means generating more random projection bits that is both time and memory intensive.   
-%Note, we are already using the trick mentioned in Original LSH to decrease
+%Note, we are already using the trick mentioned in Original \lsh to decrease
 %the number of tables. Our implementation requires O(sqrt(L)) tables.
-2. Probing in more tables for vanilla LSH, hence we need to read data from the disk (more disk read operations.). While Flipping bits, data is
+2. Probing in more tables for vanilla \lsh, hence we need to read data from the disk (more disk read operations.). While Flipping bits, data is
 already in memory, and the given data needs to be flipped.
 3. Disadvantage of flipping is we need to store random projection distances to perform flipping (which takes space).
 
 
-\subsection{\dflip LSH}
+\dflip \lsh
 Based on random projection distance 

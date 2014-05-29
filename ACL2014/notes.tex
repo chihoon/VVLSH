@@ -1,0 +1,33 @@
+
+Most of the work done in LSH in NLP community uses LSH for dimensionality reduction. 
+
+\section{Contributions}
+\begin{itemize}
+\item We present a distributed system that can approximately compute pairwise similarity 
+between all queries on a commercial large-scale query logs in a time efficient manner. 
+Can we claim something more specific wrt time (e.g. 0(N logN))?
+\item Vanilla LSH 
+\item We propose two novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}: Random Flipping and Query-Driven Flipping. 
+\item  We show that the applicability of our system on two real-world applications like finding related queries (Increasing  direct display coverage is related to finding related queries) and ??.
+\end{itemize}
+
+
+\section{Observations}
+\begin{itemize}
+\item How to vary $K$ and $L$? The selection of $K$ and $L$ is data dependent. 
+If we increase $K$ (increasing the precision to reduce false positives), we also need to 
+increase $L$ to get good recall (increasing the recall to reduce false negatives). 
+These parameters can be tuned for a specific dataset/application by randomly sampling small set of queries.\footnote{In this paper, we randomly selected 2000 queries to tune $K$ and $L$ parameters.}
+\item 
+
+\end{itemize} 
+
+Advantages of Flipping bits compared to increasing L:
+1. Increasing $L$ means generating more random projection bits that is both time and memory intensive.   
+%Note, we are already using the trick mentioned in Original LSH to decrease
+%the number of tables. Our implementation requires O(sqrt(L)) tables.
+2. Probing in more tables for vanilla LSH, hence we need to read data from the disk (more disk read operations.). While Flipping bits, data is
+already in memory, and the given data needs to be flipped.
+3. Disadvantage of flipping is we need to store random projection distances to perform flipping (which takes space).
+
+
