@@ -6,7 +6,7 @@ large-scale query logs sampled from a commercial search engine.
 
 \subsection{Data}
 The public dataset that we demonstrate result on is adapted from the query logs of AOL (\aol dataset) search engine \cite{Pass06}. 
-Moreover, we show results on large-scale query logs (billion queries) sampled from a commercial search engine. The \dataA  
+Moreover, we show results on large-scale query logs (hundreds of millions of queries) sampled from a commercial search engine. The \dataA  
 denotes $1$\% sampled query logs from a commercial search engine, \dataB ($10$\%), and  \dataC ($100$\%). 
 Each query point has an associated feature vector, that is high dimensional and sparse. 
 Feature vector contains the  webpages (urls) that are weighted based on click through rate on the urls for the query term.  
@@ -45,25 +45,31 @@ The goal of this paper is to maximize recall and minimize comparisons.
 \subsection{Evaluating Vanilla LSH} 
 \label{subsec:eval:vanillaLSH}
 In the first experiment, we vary $L=\{1,10,28,55\}$ with fixed $K=16$. 
-$L$ denotes the number of tables and $K$ denotes the length of the index of the table. 
+$L$ denotes the number of hash tables and $K$ denotes the length of the index of the buckets in the table. 
 If we increase $K$ (increasing the precision to reduce false positives), we also need to 
 increase $L$ to get good recall (increasing the recall to reduce false negatives). 
 Table \ref{tab:varyL} shows that increasing $L$ leads to better recall, 
 however at the expense of more comparisons. In addition, having large $L$ 
-means generating large number of random projection bits that is 
+means generating large number of random projection bits and hash tables that is 
 both time and memory intensive. Hence, we fix $L=10$, 
 which leads to reasonable recall with fewer comparisons. 
 
 In the second experiment, we vary $K=\{4,8,16\}$ with fixed $L=10$. 
 As expected, Table \ref{tab:varyK} shows that increasing $K$ reduces the number of 
-comparisons and worse recall. This is intuitive as we reduce the value of $K$, it leads to 
-brute force linear search. Hence, we fix $K=16$ to have fewer number of comparisons.   
+comparisons and worse recall. This is intuitive as  
+the larger value of $K$ leads to larger 
+gap between probabilites of collision between close queries 
+and far queries (see Section \ref{sec:vlsh}). 
+Hence, we fix $K=16$ to have fewer number of comparisons.   
 
 In the third experiment, we fix $L=10$ and $K=16$ and increase the size of training data. 
 Table \ref{tab:varyData} demonstrates that as we increase the training data size, 
-the number of comparisons also increase. This result indicates that $K$ and $L$  
-needs to be tuned with respect to a specific dataset. $K$ and $L$ can be tuned by 
-randomly sampling small set of queries.\footnote{In this paper, we randomly select 2000 queries to tune $K$ and $L$ parameters.}
+the number of comparisons also increase. This result indicates that $K$   
+needs to be tuned with respect to a specific dataset, 
+as large $K$ will reduce the probability of dis-similar 
+queries falling within the same bucket. 
+$K$ and $L$ can be tuned by 
+randomly sampling small set of queries.\footnote{In this paper, we randomly select 2000 queries to tune parameter $K$.}
 
 In the fourth experiment, Table \ref{tab:bestLSH} shows the best $K$ and $L$ parameter settings on different 
 sized datasets.\footnote{Recall on \dataC cannot be computed, as it was computationally intensive to find exact similar neighbors.} 
@@ -113,6 +119,7 @@ Data & Comparisons & Recall \\
 \aol & 57  & .63 \\
 \dataA  &  1,052 & .67 \\
 \dataB    & 10,515 & .64 \\
+\dataC    & - & - \\
 \hline 
  \end{tabular}
 \caption{\footnotesize{Fixed $K=16$  and $L=10$ on different sized datasets with $\tau=0.7$.}}
@@ -145,7 +152,8 @@ In the third experiment, we show the results of both variants of distance based 
 
 In the fourth experiment, Table \ref{tab:lists} shows the qualitative results for some arbitrary queries. These results are found by applying our system (\dflipb with parameters $L=10$, $K=24$, and $F=2$ ) on \dataC. The first two columns in Table \ref{tab:lists} show that the returned approximate similar neighbors can be useful in finding related queries \cite{Jones06WWW,Jain11SIGIR}. The third column shows an example, where we can find several popular spell errors. The last column shows different variants of a query, where user intends to find out the ``weather in trumbull ct''. Modern search engines provide a direct display with respect to ``weather'' related queries. Hence, if we don't have enough evidence about a specific query being related to ``weather'', we can use queries approximately similar to it to infer that if this query is about ``weather'' or not.  
 
-paraphrasing \cite{ganitkevitch13Paraphrase}
+% paraphrasing \cite{ganitkevitch13Paraphrase}
+% maybe include deduplication results
 
 \begin{table}
 \centering
