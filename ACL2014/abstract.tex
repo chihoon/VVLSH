@@ -1,20 +1,17 @@
 
 
 \begin{abstract}
-Millions of users visit commercial search engines and  ``query'' their interests.
-To provide users with high quality of services, 
-search engines such as Bing, Google, and Yahoo require
-intelligent analysis to realize users' implicit intents, in particular taking
-advantage of very large scaled query logs.  One of the key
-interesting tasks involved in learning users' implicit intents often involves 
-computing pairwise similarity between all queries.
-Due to the large scaled volume that is based on streaming querying, 
-computing pairwise similarity is a computationally time intensive task. 
-To challenge the aforementioned problem, we exploit  several
-Locality Sensitive Hashing (a.k.a, LSH) methods and their novel variants. 
-In particular, we develop the framework of LSHs on a distributed system (e.g. Hadoop) to take
-advantage of its computing efficiency.
-
-
+Many Web, Mobile, and NLP applications 
+rely on finding nearest neighbors 
+for a given query from a commercial large-scale query logs . 
+Due to the large scale volume of queries, 
+computing nearest neighbors from all queries using brute force linear 
+search is a computationally time intensive task. 
+To challenge the aforementioned problem, we exploit existing 
+\lshf (a.k.a, \lsh) methods and propose 
+their novel variants in distributed setting (e.g. Hadoop). 
+Our experimental results show that couple of our 
+new variants of \lsh get signiﬁcantly better recall than vanilla \lsh by 
+using the same number of hash tables. 
 \end{abstract}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  28 MAY 2014 23:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 MAY 2014 16:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -300,17 +300,18 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 LaTeX Warning: No \author given.
 
-(./abstract.tex) (./intro.tex
+(./abstract.tex
+Missing character: There is no Ô in font ptmr7t!
+Missing character: There is no ¨ in font ptmr7t!
+Missing character: There is no Å in font ptmr7t!
+) (./intro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 21.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 21.
-) (./system.tex
+Underfull \hbox (badness 1975) in paragraph at lines 17--21
+[]\OT1/ptm/m/n/10.95 In this re-search, we will take ad-van-tage of
+ []
+
 [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -320,30 +321,77 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
+)
+(./system.tex
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
+Missing character: There is no Ô in font ptmr7t!
+Missing character: There is no ¨ in font ptmr7t!
+Missing character: There is no Å in font ptmr7t!
+ [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 50.
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 51.
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
-
+Underfull \hbox (badness 10000) in paragraph at lines 76--79
+[]\OT1/ptm/m/n/10.95 In ad-di-tion to the \OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/
+10.95 al-go-rithm be-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 4168) in paragraph at lines 76--79
+\OT1/ptm/m/n/10.95 pre-cise, it needs to have large re-call. In-
+ []
+
+
+Underfull \hbox (badness 7238) in paragraph at lines 76--79
+\OT1/ptm/m/n/10.95 stead of gen-er-at-ing one set of hash ta-bles
+ []
+
+
+Underfull \hbox (badness 2990) in paragraph at lines 76--79
+\OT1/ptm/m/n/10.95 with in-dex $\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/c
+mm/m/it/10.95 q\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.9
+5 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m
+/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h
+[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 ))$\OT1/ptm/m/n/1
+0.95 ,
+ []
+
+
+Underfull \hbox (badness 3189) in paragraph at lines 76--79
+\OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/10.95 al-go-rithm gen-er-ates $\OML/cmm/m/
+it/10.95 L$ \OT1/ptm/m/n/10.95 ta-bles, $\OML/cmm/m/it/10.95 g[]\OT1/cmr/m/n/10
+.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 ) =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
-[2]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 88.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 88.
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--94
+
+ []
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 113.
-) (./experiments.tex [3]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 137.
+[3]) (./experiments.tex [4]
 Underfull \hbox (badness 1092) in paragraph at lines 68--73
 []\OT1/ptm/m/n/10.95 In the fourth ex-per-i-ment, Ta-ble 6[] shows the
  []
 
-[4]
+
+Underfull \vbox (badness 5189) has occurred while \output is active []
+
+ [5]
 Overfull \hbox (27.30844pt too wide) in paragraph at lines 195--208
  [][] 
  []
@@ -353,49 +401,50 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 ) (./applications.tex) (./relatedwork.tex) (./discussion.tex) (./paper.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
-Underfull \hbox (badness 1314) in paragraph at lines 25--30
+
+Underfull \hbox (badness 1314) in paragraph at lines 32--37
 []\OT1/ptm/m/n/10 Juri Gan-itke-vitch, Ben-jamin Van Durme, and Chris
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 25--30
+Underfull \hbox (badness 1603) in paragraph at lines 32--37
 \OT1/ptm/m/n/10 Callison-Burch.  2013.  Ppdb: The para-phrase
  []
 
-
-Underfull \hbox (badness 3724) in paragraph at lines 104--109
+[6]
+Underfull \hbox (badness 3724) in paragraph at lines 128--133
 \OT1/ptm/m/n/10 Query sug-ges-tion by con-struct-ing term-transition
  []
 
-) [6] (./paper.aux) ) 
+) [7] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3200 strings out of 493315
- 38794 string characters out of 6137904
- 114727 words of memory out of 5000000
- 6542 multiletter control sequences out of 15000+600000
- 49384 words of font info for 124 fonts, out of 8000000 for 9000
+ 3206 strings out of 493315
+ 38882 string characters out of 6137904
+ 114792 words of memory out of 5000000
+ 6548 multiletter control sequences out of 15000+600000
+ 50030 words of font info for 125 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,12n,29p,1042b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,29p,1042b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8
-r.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10
-.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
-al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2
-013/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (6 pages, 167581 bytes).
+r.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
+.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pf
+b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-d
+ist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 182276 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 89 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -15,7 +15,7 @@ However, the algorithm is naive as it is not scalable for hundreds of millions o
 The reason being conducting pairwise computations between all the queries in the dataset involves 
 quadratic number of comparisons in the query dataset size. 
 For hundreds of millions of queries, it means doing petabytes of comparisons; 
-that is be computationally challenging or infeasible even in a distributed setting (such as Hadoop).   
+that is  computationally challenging or infeasible even in a distributed setting (such as Hadoop).   
 
 The motivated behind this research is to find nearest neighbors by doing a 
 \emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
@@ -41,7 +41,8 @@ Recent prior work on new variants of \plebf  \cite{goyal12Flag} for distribution
 
 Next, we present four new variants of vanilla \lsh algorithm motivated by the research on Multi-Probe LSH \cite{LvVLDB07}. 
 A signiﬁcant drawback of vanilla \lsh is the requirement for a large number of hash tables in order to achieve good recall 
-in finding nearest neighbors. The goal of  \mblshf is to get signiﬁcantly better recall than the vanilla \lsh by using 
+in finding nearest neighbors. 
+The goal of  \mblshf is to get signiﬁcantly better recall than the vanilla \lsh by using 
 the same number of hash tables. The main idea behind \mblshf is to look up multiple buckets within a table that have a high probability 
 of containing the nearest neighbors of a query. We present a high-level idea behind the \mblshf algorithm; 
 for more details, the reader is referred to \cite{LvVLDB07}.
@@ -59,9 +60,25 @@ The \lsh algorithm relies on the existence of an \lsh family. Let $H$ be a famil
 \item $d(p,q) \geq cR$, then $Pr[h(p)=h(q)] \leq P_2$
 \end{enumerate}
 
-A family is generally interesting when  $P_1>P_2$. However, the difference between $P_1$ and $P_2$ can be very small. 
+A family is generally interesting when  $P_1>P_2$. 
+However, the difference between $P_1$ and $P_2$ can be very small. 
 Given a family $H$ of hash functions with parameters ($R, cR, P_1,P_2$), 
-\lsh algorithm is devised by amplifying the grap between the two probabilities $P_1$ and $P_2$. 
+\lsh algorithm is devised by amplifying the gap between 
+the two probabilities $P_1$ and $P_2$ by concatenating several functions. 
+In particular, \lsh algorithm concatenates $K$ hash functions: 
+$g(q)=(h_1(q),h_2(q),\dots,h_k(q))$. The larger value of $K$ leads to larger 
+gap between probabilites of collision between close queries and far queries; 
+the probabilities are $P_1^{K}$ and $P_2^{K}$ respectively. 
+The advantage of this amplication is that now the algorithm is more precise meaning 
+the probabilty of similar queries falling in same bucket is big; 
+and dis-similar queries falling in same bucket is small.  
+
+In addition to the \lsh algorithm being precise, it needs to have large recall. 
+Instead of generating one set of hash tables with index $g(q)=(h_1(q),h_2(q),\dots,h_k(q))$, 
+\lsh algorithm generates $L$ tables, $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{k,j}(q)))$; $\forall 1 \leq j \leq  L$. 
+
+%Recall = $1-(1-P_1^{K})^{L}$
+
 The pseudo code written in distributed framework (Hadoop) for vanilla \lsh is shown below: 
 
 %in Algorithm \ref{alg:vanilla-LSH}. 
@@ -82,7 +99,16 @@ The pseudo code written in distributed framework (Hadoop) for vanilla \lsh is sh
 \end{itemize}
 \end{itemize}
 
-
+In this paper, we are interested in cosine similarity, and use the \lsh family defined by Charikar \shortcite{Charikar02STOC}. 
+For two queries; $p,q \in \mathbb{R}^D$, the cosine similarity is $\left( \frac{p.q}{ \| p \| \| q \| }\right)$. 
+The \lsh functions for cosine similarity is defined using sign($\alpha.p$); where $\alpha \in \mathbb{R}^D$ is a random vector. 
+Negative sign is represented as zero and positive sign as one; hence indexes of buckets in hash tables are $K$-sized bit signatures.  
+To generate $\alpha$, we exploit the prior work on 
+generating random projections \cite{Achlioptas03,LiH06} and 
+use hash functions trick to implictly map features ($\mathbb{R}^D$) to a set of \{-1,+1\}.
+\footnote{Note, we respresent our queries ($p$ and $q$) using only non-zero features.}  
+This hashing trick is important and useful as we do not need to explictly store the 
+huge random projection matrix of size $D \times K \times L$.  
 
 
 %To solve the above problem, we propose a distributed Hadoop framework based on Locality Sensitive Hashing. 
@@ -92,8 +118,6 @@ The pseudo code written in distributed framework (Hadoop) for vanilla \lsh is sh
 %Next, generate query pairs which fall in the same table.
 %iii) Compute cosine similarity between query points which fall in the same table and return the query pairs  
 %with similarity $\geq\tau$.  
-
-
 
 
 To minimize the number of hash functions computations (time intensive to read all features and 

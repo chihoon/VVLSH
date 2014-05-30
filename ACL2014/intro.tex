@@ -1,34 +1,56 @@
 
  \section{Introduction}
-Many real-world problems on the Web like spelling correction \cite{}, 
-finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, finding near-duplicate queries \cite{}, 
-and diversifying search results \cite{Song11SIGIR} 
-can benefit from query logs from a commercial search engine. 
-We can take advantage of large-scale query logs 
-by computing pairwise similarity between all queries. Each query point also has an associated feature vector, that is
-very high dimensional and sparse $\--$ these are the set of webpages (urls) that
-get clicked for this query term.
+Millions of users visit commercial search engines and ``query'' 
+their interests. To provide users with high quality of services, 
+search engines such as Bing, Google, and Yahoo require
+intelligent analysis to realize users' implicit intents, in particular taking
+advantage of very large scaled query logs.  One of the key
+interesting tasks involved in learning users' implicit intents often involves 
+computing nearest neighbors (queries) for a user given query from all queries. 
+Computing nearest neighbors is useful for 
+many search-related problems on the Web and the Mobile such as 
+finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, 
+finding near-duplicate queries \cite{}, spelling correction \cite{},  
+, paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
+and diversifying search results \cite{Song11SIGIR}.  
 
-However, computing pairwise similarity between 
-all queries on a commercial large-scale query logs (consisting of hundreds of millions of  queries) 
-is a computationally time intensive task. 
-To solve this problem, we exploit research advances in Locality Sensitive Hashing 
-\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  
-to propose an efficient approximate similarity Hadoop framework.  
+In this research,  we will take advantage of large-scale query logs 
+by finding nearest neighbors (queries) for a user given query from all 
+queries from a big query logs. Each query point also has an associated feature vector, that is
+very high dimensional and sparse $\--$ these are the set of webpages (urls) that get clicked for this query term.
+
+However, computing nearest neighbors (queries) for a user given query 
+from a commercial large-scale query logs (consisting of hundreds of millions of  queries) is not scalable. 
+The reason being conducting pairwise computations between a given query and all the queries in the dataset involves 
+linear number of comparisons in the query dataset size. For finding neighbors for hundreds of millions of queries, 
+it means doing petabytes of comparisons; that is computationally challenging or infeasible even in a distributed setting (such as Hadoop). 
+In our experiments, our naive Hadoop implementation could not compute neighbors of 
+2000 randomly sampled queries over the commercial query-logs 
+consisting of hundreds of millions of queries.  
+
+The motivated behind this research is to find nearest neighbors by doing a 
+\emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
+In addition to \emph{small} number of comparisons, we also want to 
+return a set of neighbor candidates with a $100\%$ precision and a large recall. 
+The method we propose meet all these criterions. We do this by exploiting 
+existing research in Locality Sensitive Hashing 
+\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM} and propose their 
+novel variants. In particular, we develop the framework of  \lsh algorithms on a distributed 
+system (e.g. Hadoop) to take advantage of its computing efficiency.
 
 
-\begin{itemize}
-\item We present a distributed system that can approximately compute pairwise similarity 
-between all queries on a commercial large-scale query logs in a time efficient manner. 
-Can we claim something more specific wrt time (e.g. 0(N logN))?
-\item Vanilla LSH 
-\item We propose two novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}: Random Flipping and Query-Driven Flipping. 
+Our work includes following contributions: 
+\begin{enumerate}
+\item We present a distributed system (Hadoop) that can approximately find nearest neighbors for a given query from a commercial large-scale query logs in sublinear time. % Can we claim something more specific wrt time (e.g. 0(N logN))?
+\item We present vanilla \lsh algorithm based on the seminal research of Andoni and Indyk  \shortcite{Andoni08CACM}. To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
+\item We propose four novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}.  We show that two of our variants get signiﬁcantly better recall than the vanilla \lsh by using the same number of hash tables. The main idea behind these variants is to intelligently look up multiple buckets within a table that have a high probability of containing the nearest neighbors of a query.  
+%: Random Flipping and Query-Driven Flipping. 
 \item  We show that the applicability of our system on two real-world applications like finding related queries (Increasing  direct display coverage is related to finding related queries) and ??.
-\end{itemize}
+\end{enumerate}
 
 %We are interested in the following setting: given a large set of 
 %points $q_1,q_2,\dots,q_n$, each of them is a search-query. 
 
-Spelling {grouping mis-spellings in same group}
-Similar entities {LOTR,}
-Finding related queries
+%Spelling {grouping mis-spellings in same group}
+%Similar entities {LOTR,}
+%Finding related queries

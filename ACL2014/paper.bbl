@@ -1,5 +1,12 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citename{Achlioptas}2003]{Achlioptas03}
+Dimitris Achlioptas.
+\newblock 2003.
+\newblock Database-friendly random projections: Johnson-lindenstrauss with
+  binary coins.
+\newblock {\em J. Comput. Syst. Sci.}, 66(4):671--687.
+
 \bibitem[\protect\citename{Andoni and Indyk}2006]{Andoni06FOCS}
 Alexandr Andoni and Piotr Indyk.
 \newblock 2006.
@@ -71,6 +78,13 @@ Rosie Jones, Benjamin Rey, Omid Madani, and Wiley Greiner.
 \newblock In {\em Proceedings of the 15th International Conference on World
   Wide Web (WWW)}. ACM.
 
+\bibitem[\protect\citename{Li \bgroup et al.\egroup }2006]{LiH06}
+Ping Li, Trevor~J. Hastie, and Kenneth~W. Church.
+\newblock 2006.
+\newblock Very sparse random projections.
+\newblock In {\em Proceedings of the 12th ACM SIGKDD international conference
+  on Knowledge discovery and data mining}, KDD '06, pages 287--296. ACM.
+
 \bibitem[\protect\citename{Lv \bgroup et al.\egroup }2007]{LvVLDB07}
 Qin Lv, William Josephson, Zhe Wang, Moses Charikar, and Kai Li.
 \newblock 2007.
@@ -85,6 +99,16 @@ Greg Pass, Abdur Chowdhury, and Cayley Torgeson.
 \newblock A picture of search.
 \newblock In {\em InfoScale '06: Proceedings of the 1st international
   conference on Scalable information systems}. ACM Press.
+
+\bibitem[\protect\citename{Petrovic \bgroup et al.\egroup
+  }2012]{petrovicNAACL12}
+Sasa Petrovic, Miles Osborne, and Victor Lavrenko.
+\newblock 2012.
+\newblock Using paraphrases for improving first story detection in news and
+  twitter.
+\newblock In {\em Proceedings of the 2012 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}.
 
 \bibitem[\protect\citename{Ravichandran \bgroup et al.\egroup
   }2005]{ravichandran05}
