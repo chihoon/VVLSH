@@ -40,9 +40,9 @@ This algorithm improves the existing research in \lsh and \plebf \cite{Indyk98ST
 Recent prior work on new variants of \plebf  \cite{goyal12Flag} for distributional similarity is a special case of Andoni and Indyk's \lsh algorithm. 
 
 Next, we present four new variants of vanilla \lsh algorithm motivated by the research on Multi-Probe LSH \cite{LvVLDB07}. 
-A signiﬁcant drawback of vanilla \lsh is the requirement for a large number of hash tables in order to achieve good recall 
+A significant drawback of vanilla \lsh is the requirement for a large number of hash tables in order to achieve good recall 
 in finding nearest neighbors. 
-The goal of  \mblshf is to get signiﬁcantly better recall than the vanilla \lsh by using 
+The goal of  \mblshf is to get significantly better recall than the vanilla \lsh by using 
 the same number of hash tables. The main idea behind \mblshf is to look up multiple buckets within a table that have a high probability 
 of containing the nearest neighbors of a query. We present a high-level idea behind the \mblshf algorithm; 
 for more details, the reader is referred to \cite{LvVLDB07}.
@@ -69,8 +69,8 @@ In particular, \lsh algorithm concatenates $K$ hash functions:
 $g(q)=(h_1(q),h_2(q),\dots,h_k(q))$. The larger value of $K$ leads to larger 
 gap between probabilites of collision between close queries and far queries; 
 the probabilities are $P_1^{K}$ and $P_2^{K}$ respectively. 
-The advantage of this amplication is that now the algorithm is more precise meaning 
-the probabilty of similar queries falling in same bucket is big; 
+The advantage of this amplification is that now the algorithm is more precise meaning 
+the probability of similar queries falling in same bucket is big; 
 and dis-similar queries falling in same bucket is small.  
 
 In addition to the \lsh algorithm being precise, it needs to have large recall. 
@@ -105,9 +105,9 @@ The \lsh functions for cosine similarity is defined using sign($\alpha.p$); wher
 Negative sign is represented as zero and positive sign as one; hence indexes of buckets in hash tables are $K$-sized bit signatures.  
 To generate $\alpha$, we exploit the prior work on 
 generating random projections \cite{Achlioptas03,LiH06} and 
-use hash functions trick to implictly map features ($\mathbb{R}^D$) to a set of \{-1,+1\}.
-\footnote{Note, we respresent our queries ($p$ and $q$) using only non-zero features.}  
-This hashing trick is important and useful as we do not need to explictly store the 
+use hash functions trick to implicitly map features ($\mathbb{R}^D$) to a set of \{-1,+1\}.
+\footnote{Note, we represent our queries ($p$ and $q$) using only non-zero features.}  
+This hashing trick is important and useful as we do not need to explicitly store the 
 huge random projection matrix of size $D \times K \times L$.  
 
 

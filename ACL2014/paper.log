@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 MAY 2014 16:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  29 MAY 2014 17:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -300,11 +300,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 LaTeX Warning: No \author given.
 
-(./abstract.tex
-Missing character: There is no Ô in font ptmr7t!
-Missing character: There is no ¨ in font ptmr7t!
-Missing character: There is no Å in font ptmr7t!
-) (./intro.tex
+(./abstract.tex) (./intro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 
@@ -317,19 +313,8 @@ Underfull \hbox (badness 1975) in paragraph at lines 17--21
 
 
 
-]
-Missing character: There is no Ô in font ptmr7t!
-Missing character: There is no ¨ in font ptmr7t!
-Missing character: There is no Å in font ptmr7t!
-)
-(./system.tex
-Missing character: There is no Ô in font ptmr7t!
-Missing character: There is no ¨ in font ptmr7t!
-Missing character: There is no Å in font ptmr7t!
-Missing character: There is no Ô in font ptmr7t!
-Missing character: There is no ¨ in font ptmr7t!
-Missing character: There is no Å in font ptmr7t!
- [2]
+])
+(./system.tex [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 51.
 
@@ -441,7 +426,7 @@ ive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
 texlive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/20
 13/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 182276 bytes).
+Output written on paper.pdf (7 pages, 182321 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  64 compressed objects within 1 object stream
