@@ -4,7 +4,7 @@ Millions of users visit commercial search engines and ``query''
 their interests. To provide users with high quality of services, 
 search engines such as Bing, Google, and Yahoo require
 intelligent analysis to realize users' implicit intents, in particular taking
-advantage of very large scaled query logs.  One of the key
+advantage of large scaled query logs.  One of the key
 interesting tasks involved in learning users' implicit intents often involves 
 computing nearest neighbors (queries) for a user given query from all queries. 
 Computing nearest neighbors is useful for 
@@ -16,8 +16,8 @@ and diversifying search results \cite{Song11SIGIR}.
 
 In this research,  we will take advantage of large-scale query logs 
 by finding nearest neighbors (queries) for a user given query from all 
-queries from a big query logs. Each query point also has an associated feature vector, that is
-very high dimensional and sparse $\--$ these are the set of webpages (urls) that get clicked for this query term.
+queries from a big query logs. Each query term also has an associated feature vector, that is
+ high dimensional and sparse $\--$ these are the set of webpages (urls) that get clicked for this query term.
 
 However, computing nearest neighbors (queries) for a user given query 
 from a commercial large-scale query logs (consisting of hundreds of millions of  queries) is not scalable. 
@@ -28,10 +28,13 @@ In our experiments, our naive Hadoop implementation could not compute neighbors 
 2000 randomly sampled queries over the commercial query-logs 
 consisting of hundreds of millions of queries.  
 
-The motivated behind this research is to find nearest neighbors by doing a 
+The motivation behind this research is to find nearest neighbors by doing a 
 \emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
 In addition to \emph{small} number of comparisons, we also want to 
 return a set of neighbor candidates with a $100\%$ precision and a large recall. 
+We can not tolerate false positives. We can afford false negatives as there 
+are many relevant queries; not retrieving all of them can be sufficient for a specific problem. 
+
 The method we propose meet all these criterions. We do this by exploiting 
 existing research in Locality Sensitive Hashing 
 \cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM} and propose their 
@@ -43,7 +46,7 @@ Our work includes following contributions:
 \begin{enumerate}
 \item We present a distributed system (Hadoop) that can approximately find nearest neighbors for a given query from a commercial large-scale query logs in sublinear time. % Can we claim something more specific wrt time (e.g. 0(N logN))?
 \item We present vanilla \lsh algorithm based on the seminal research of Andoni and Indyk  \shortcite{Andoni08CACM}. To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
-\item We propose four novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}.  We show that two of our variants get significantly better recall than the vanilla \lsh by using the same number of hash tables. The main idea behind these variants is to intelligently look up multiple buckets within a table that have a high probability of containing the nearest neighbors of a query.  
+\item We propose four novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}.  We show that two of our variants achieve significantly better recall than the vanilla \lsh by using the same number of hash tables. The main idea behind these variants is to intelligently look up multiple buckets within a table that have a high probability of containing the nearest neighbors of a query.  
 %: Random Flipping and Query-Driven Flipping. 
 \item  We show that the applicability of our system on two real-world applications like finding related queries (Increasing  direct display coverage is related to finding related queries) and ??.
 \end{enumerate}

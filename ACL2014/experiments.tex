@@ -44,25 +44,88 @@ The goal of this paper is to maximize recall and minimize comparisons.
 
 \subsection{Evaluating Vanilla LSH} 
 \label{subsec:eval:vanillaLSH}
-In the first experiment, we vary $L=\{1,10,28,55\}$ with fixed $K=16$. 
+
+
+
+\begin{table}
+\centering
+\begin{tabular}{|c|rc|rc|}
+\hline
+\multirow{2}{*}{$\tau$} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
+ & Comparisons & Recall & Comparisons & Recall  \\
+\hline
+0.7 & \multirow{3}{*} {57}  & .63  & \multirow{3}{*} {1052} & .67 \\
+0.8 &   & .84  &  & .81 \\
+0.9 &   & .98  &  & .96 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Varying $\tau$ with fixed $K=16$ and $L=10$ on \aol and \dataA.}}
+\label{tab:varyTau}
+\end{table}
+
+In the first experiment, we vary the similarity threshold parameter $\tau={0.7,0.8,0.9}$ 
+with fixed $K=16$ and $L=10$ on \aol and \dataA datasets. 
+Table \ref{tab:varyTau} shows that as expected finding near-duplicates ($0.9$) 
+is easier than nearest neighbors ($0.7$). For, rest of this paper, 
+we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors. 
+
+
+In the second experiment, we vary $L=\{1,10,28,55\}$ with fixed $K=16$ on \aol and \dataA datasets. 
 $L$ denotes the number of hash tables and $K$ denotes the length of the index of the buckets in the table. 
 If we increase $K$ (increasing the precision to reduce false positives), we also need to 
 increase $L$ to get good recall (increasing the recall to reduce false negatives). 
 Table \ref{tab:varyL} shows that increasing $L$ leads to better recall, 
-however at the expense of more comparisons. In addition, having large $L$ 
+however at the expense of more comparisons on both the datasets. 
+In addition, having large $L$ 
 means generating large number of random projection bits and hash tables that is 
 both time and memory intensive. Hence, we fix $L=10$, 
 which leads to reasonable recall with fewer comparisons. 
 
-In the second experiment, we vary $K=\{4,8,16\}$ with fixed $L=10$. 
+\begin{table}
+\centering
+\begin{tabular}{|c|rc|rc|}
+\hline
+\multirow{2}{*}{L} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
+ & Comparisons & Recall & Comparisons & Recall  \\
+\hline
+1 & 7  & .28 & 106 & .36 \\
+ \rowcolor[gray]{0.9} 10  &  57 & .63 & 1052 & .67 \\
+28 &  152 & .77 & 2908 & .78 \\
+55 &  297 & .89 & 5648 & .84 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Varying $L$ with fixed $K=16$ on \aol and \dataA with $\tau=0.7$.}}
+\label{tab:varyL}
+\end{table}
+
+In the third experiment, we vary $K=\{4,8,16\}$ with fixed $L=10$ on \aol and \dataA datasets. 
 As expected, Table \ref{tab:varyK} shows that increasing $K$ reduces the number of 
-comparisons and worse recall. This is intuitive as  
+comparisons and worse recall on both the datasets. This is intuitive as  
 the larger value of $K$ leads to larger 
 gap between probabilites of collision between close queries 
 and far queries (see Section \ref{sec:vlsh}). 
 Hence, we fix $K=16$ to have fewer number of comparisons.   
 
-In the third experiment, we fix $L=10$ and $K=16$ and increase the size of training data. 
+
+\begin{table}
+\centering
+%\begin{tabular}{|c|r|c|}
+\begin{tabular}{|c|rc|rc|}
+\hline
+%$K$ & Comparisons & Recall \\
+\multirow{2}{*}{K} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
+ & Comparisons & Recall & Comparisons & Recall  \\
+\hline
+4  &  112,347 & .98 & 2,29,2670 & .96 \\
+8 &  11,008 & .90 & 221,132 & .88 \\
+\rowcolor[gray]{0.9}16 &  57 & .63 & 1,052 & .67 \\
+\hline 
+ \end{tabular}
+\caption{\footnotesize{Varying $K$ with fixed $L=10$ on \aol with $\tau=0.7$.}}
+\label{tab:varyK}
+\end{table}
+
+In the fourth experiment, we fix $L=10$ and $K=16$ and increase the size of training data. 
 Table \ref{tab:varyData} demonstrates that as we increase the training data size, 
 the number of comparisons also increase. This result indicates that $K$   
 needs to be tuned with respect to a specific dataset, 
@@ -71,43 +134,13 @@ queries falling within the same bucket.
 $K$ and $L$ can be tuned by 
 randomly sampling small set of queries.\footnote{In this paper, we randomly select 2000 queries to tune parameter $K$.}
 
-In the fourth experiment, Table \ref{tab:bestLSH} shows the best $K$ and $L$ parameter settings on different 
+In the fifth experiment, Table \ref{tab:bestLSH} shows the best $K$ and $L$ parameter settings on different 
 sized datasets.\footnote{Recall on \dataC cannot be computed, as it was computationally intensive to find exact similar neighbors.} 
 On our biggest dataset of 600 million queries, we set $K=24$, $L=10$. These parameter settings require only 
 $464$ comparisons to find approximate nearest neighbors compared to exact cosine similarity that involves 
 brute force search over all 600 million queries in the dataset.  
 
-\begin{table}
-\centering
-\begin{tabular}{|c|r|c|}
-\hline
-$L$ & Comparisons & Recall \\
-\hline
-1 & 7  & .28 \\
- \rowcolor[gray]{0.9} 10  &  57 & .63 \\
-28 &  152 & .77 \\
-55 &  297 & .89 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{Varying $L$ with fixed $K=16$ on \aol with $\tau=0.7$.}}
-\label{tab:varyL}
-\end{table}
 
-
-\begin{table}
-\centering
-\begin{tabular}{|c|r|c|}
-\hline
-$K$ & Comparisons & Recall \\
-\hline
-4  &  112,347 & .98 \\
-8 &  11,008 & .90 \\
-\rowcolor[gray]{0.9}16 &  57 & .63 \\
-\hline 
- \end{tabular}
-\caption{\footnotesize{Varying $K$ with fixed $L=10$ on \aol with $\tau=0.7$.}}
-\label{tab:varyK}
-\end{table}
 
 
 \begin{table}
@@ -119,7 +152,7 @@ Data & Comparisons & Recall \\
 \aol & 57  & .63 \\
 \dataA  &  1,052 & .67 \\
 \dataB    & 10,515 & .64 \\
-\dataC    & - & - \\
+\dataC    & 105,126 & - \\
 \hline 
  \end{tabular}
 \caption{\footnotesize{Fixed $K=16$  and $L=10$ on different sized datasets with $\tau=0.7$.}}
