@@ -8,7 +8,7 @@ The problem we formulate here is given a set of queries $Q$ and similarity thres
 we are interested in developing a batch process to return a \emph{small}
 set $T$ of candidate neighbors from \corpus for each query $q \in Q$ such that the followings
 are satisfied: 1) $T = \{ l \mid s(l, q) \geq \tau,  l \in C  \}$, where  $s(q_1, q_2)$ is a function to
-compute a similarity score between query $q_1$ and $q_2$
+compute a similarity score between query feature vector $q_1$ and $q_2$
 ; 2) $T$ achieves $100\%$ precision with ``large'' recall. 
 That is, our aim is to achieve a large recall, while using
 a scalable efficient algorithm.
