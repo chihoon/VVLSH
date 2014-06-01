@@ -131,4 +131,13 @@ Yang Song, Dengyong Zhou, and Li-wei He.
 \newblock In {\em Proceedings of the Fifth ACM International Conference on Web
   Search and Data Mining (WSDM)}. ACM.
 
+\bibitem[\protect\citename{Weinberger \bgroup et al.\egroup
+  }2009]{weinberger09hashing}
+Kilian Weinberger, Anirban Dasgupta, John Langford, Alex Smola, and Josh
+  Attenberg.
+\newblock 2009.
+\newblock Feature hashing for large scale multitask learning.
+\newblock In {\em Proceedings of the 26th Annual International Conference on
+  Machine Learning}, ICML '09, pages 1113--1120, New York, NY, USA. ACM.
+
 \end{thebibliography}

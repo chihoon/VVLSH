@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.9)  2 JUN 2014 00:22
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.9)  2 JUN 2014 00:54
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -312,63 +312,43 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10.95> not available
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 166.
 
-LaTeX Warning: Reference `algo:lsh' on page 3 undefined on input line 125.
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 164.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 164.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 166.
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
 []\OT1/ptm/m/n/10.95 Select $\OML/cmm/m/it/10.95 L$ \OT1/ptm/m/n/10.95 func-tio
 ns $\OML/cmm/m/it/10.95 g[]$\OT1/ptm/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
 \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
 .95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/
 m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h[]\OT1/cmr/m/n/10.9
-5 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 )))$\OT1/ptm/m/n/10.95 ,
+5 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 ))$\OT1/ptm/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
-\OT1/ptm/m/n/10.95 where
+Underfull \hbox (badness 1275) in paragraph at lines 166--166
+\OT1/ptm/m/n/10.95 where $\OMS/cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 h[]\OT1/cmr/
+m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; i \OM
+S/cmsy/m/n/10.95 2 \OT1/cmr/m/n/10.95 [1\OML/cmm/m/it/10.95 ; K\OT1/cmr/m/n/10.
+95 ]\OML/cmm/m/it/10.95 ; j \OMS/cmsy/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
-\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10
-.95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr
-/m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
-95 q\OT1/cmr/m/n/10.95 )))$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
-[]\OT1/ptm/b/n/10.95 Query: \OT1/ptm/m/n/10.95 In-put is queries ($\OML/cmm/m/i
-t/10.95 q \OT1/cmr/m/n/10.95 =
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 164--164
-\OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.
-95 ; [] ; M$\OT1/ptm/m/n/10.95 ); $\OML/cmm/m/it/10.95 M$ \OT1/ptm/m/n/10.95 is
- the num-ber of
- []
-
-
-Underfull \hbox (badness 2165) in paragraph at lines 164--164
+Underfull \hbox (badness 2165) in paragraph at lines 166--166
 \OT1/ptm/m/n/10.95 trieved queries. Re-turn all
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 188.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 191.
 [3] [4]) (./experiments.tex
 Overfull \hbox (19.17703pt too wide) in paragraph at lines 52--62
  [][] 
@@ -429,37 +409,30 @@ Underfull \hbox (badness 3724) in paragraph at lines 128--133
 
 [8]) [9
 
-] (./paper.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2977 strings out of 495061
- 34673 string characters out of 1182622
- 104834 words of memory out of 3000000
- 6050 multiletter control sequences out of 15000+50000
+ 2978 strings out of 495061
+ 34693 string characters out of 1182622
+ 104870 words of memory out of 3000000
+ 6051 multiletter control sequences out of 15000+50000
  50030 words of font info for 125 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  36i,13n,29p,1026b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
-sr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texli
-ve/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/t
-imes/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 201615 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols
+/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 201919 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -3,49 +3,49 @@ The top-level auxiliary file: paper.aux
 The style file: acl.bst
 Database file #1: lsh.bib
 Warning--string name "acl05" is undefined
---line 212 of file lsh.bib
+--line 230 of file lsh.bib
 Warning--I didn't find a database entry for ""
 Warning--empty journal in Andoni06FOCS
 Warning--empty booktitle in ravichandran05
-You've used 18 entries,
+You've used 19 entries,
             2490 wiz_defined-function locations,
-            657 strings with 8290 characters,
-and the built_in function-call counts, 6760 in all, are:
-= -- 676
-> -- 292
-< -- 1
-+ -- 97
-- -- 96
-* -- 456
-:= -- 1100
-add.period$ -- 76
-call.type$ -- 18
-change.case$ -- 120
-chr.to.int$ -- 18
-cite$ -- 20
-duplicate$ -- 321
-empty$ -- 565
-format.name$ -- 119
-if$ -- 1431
+            665 strings with 8568 characters,
+and the built_in function-call counts, 7427 in all, are:
+= -- 751
+> -- 320
+< -- 2
++ -- 107
+- -- 106
+* -- 505
+:= -- 1196
+add.period$ -- 81
+call.type$ -- 19
+change.case$ -- 129
+chr.to.int$ -- 19
+cite$ -- 21
+duplicate$ -- 350
+empty$ -- 611
+format.name$ -- 130
+if$ -- 1581
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 109
-num.names$ -- 54
-pop$ -- 168
+missing$ -- 19
+newline$ -- 115
+num.names$ -- 57
+pop$ -- 177
 preamble$ -- 1
-purify$ -- 138
+purify$ -- 148
 quote$ -- 0
-skip$ -- 213
+skip$ -- 239
 stack$ -- 0
-substring$ -- 144
-swap$ -- 58
-text.length$ -- 1
+substring$ -- 189
+swap$ -- 71
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 144
+type$ -- 152
 warning$ -- 2
-while$ -- 40
-width$ -- 20
-write$ -- 243
+while$ -- 45
+width$ -- 21
+write$ -- 260
 (There were 4 warnings)

@@ -109,7 +109,7 @@ range of each $g_j$) are $K$ bit vectors.
 In order to create a random vector $\alpha$, we exploit the intuition in
 \cite{Achlioptas03,LiH06} and sample each coordinate of $\alpha$ from $\{-1, +1\}$ with equal probability.
 Practically, each coordinate of $\alpha$ is generated using a hash function that maps that coordinate
-to $\{-1, +1\}$ (this is termed ``hashing trick'' in~\cite{}). 
+to $\{-1, +1\}$ (this is termed ``hashing trick'' in~\cite{weinberger09hashing}). 
 %\footnote{Note, we represent our queries ($p$ and $q$) using only non-zero features.}  
 This hashing trick is important and useful as we do not need to explicitly store the 
 huge random projection matrix of size $D \times K \times L$.  
@@ -122,7 +122,7 @@ huge random projection matrix of size $D \times K \times L$.
 %iii) Compute cosine similarity between query terms which fall in the same table and return the query pairs  
 %with similarity $\geq\tau$.  
 %
-Figure~\ref{algo:lsh} describes the algorithm for both creating the data structure, as well as for
+Figure~\ref{alg:lsh} describes the algorithm for both creating the data structure, as well as for
 querying it. In preprocessing step, the algorithm takes as input $N$ queries along with the associated feature vectors. 
 In our setting, each query is represented using an extremely sparse and high dimensional feature vector
 that is constructed as follows: for query $q$, we take all the webpages (urls) that any user has clicked on 
@@ -133,25 +133,27 @@ Since the width of the index of each bucket $K$, each hash table contains at mos
 with each hash table containing at most $2^K$ buckets.
 Each query term is then placed in their respective buckets for each of the $L$ hash tables.
 
-In querying step, for input $M$ test queries, we retrieve all the query 
-terms which appear in the buckets associated with $M$ test queries. 
-Next, compute cosine similarity between each of the retrieved terms 
-and the input test queries. Return all those queries as neighbors 
+In order to retrieve near neighbors, for each of the $M$ test queries, we first 
+retrieve all the query terms which appear in the buckets associated with each of the $M$ test queries. 
+Next, we compute cosine similarity between each of the retrieved terms 
+and the input test queries and return all those queries as neighbors 
 which are within a similarity threshold ($\tau$). 
 
-In this research, we have implemented the above algorithm within the distributed setting (Hadoop).   
-In our experiments, we show that the algorithm scales to hundreds of millions of queries (see Section \ref{subsec:eval:vanillaLSH}).  
+In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop). 
+In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implmentation scales to hundreds of millions of queries.  
 
 \begin{figure}
 \fbox{
 \begin{minipage}{2.5in}
-{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors 
+{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors.
 \begin{itemize}
-\item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$, where $h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$ are chosen at random from the \lsh family.
-\item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. All queries with similar $g_j$ functions ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
+\item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q))$, where 
+$\{h_{i,j}(q), i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
+\item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. 
+All queries with similar $g_j$ functions ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
 \end{itemize}
 
-{\bf Query:} Input is queries ($q=1,2,\dots,M$); $M$ is the number of test queries
+{\bf Query:} $M$ test queries. Let $q$ denote a test query. 
 \begin{itemize}
 \item For each $j=1,2,\dots,L$
 \begin{itemize}
@@ -163,6 +165,7 @@ In our experiments, we show that the algorithm scales to hundreds of millions of
 \end{minipage}
 }
 \caption{\lshf Algorithm}
+\label{alg:lsh}
 \end{figure}
 
 \subsection{Reusing Hash Functions}
