@@ -1,21 +1,27 @@
 
 \section{Problem Statement}
-We are interested in finding out, using a batch process, a \emph{small} set of
-neighbor candidates for each query such that: 1) the similarity of any 
-query term to a neighbor candidate returned is large and within a user-specified 
-similarity threshold ($\tau$). 2) We return an approximate set of neighbor 
-candidates with a $100\%$ precision and a large recall. 
+We start with a corpus of user queries being represented as vectors
+over some domain (e.g. URLs); similarity between queries is to be measured using cosine between the corresponding
+vectors. We are also given a set of queries $Q$. 
+We are interested in developing a batch process to return a \emph{small}
+set of candidate neighbors for each query $q \in Q$ such that the following
+are satisfied: 1) the similarity of any returned candidate to the query $q$ is larger than a user-specified 
+similarity threshold $\tau$; 2) the set of candidates returned has a large recall. 
+Note that, although we return an approximate set of near neighbors, our requirement forces us to 
+return a candidate set that has $100\%$ precision. Our aim is to achieve a large recall, while using
+a scalable efficient algorithm.
 
-A naive exact brute force algorithm to solve the above problem: 
-1) Compute similarity between each query and all queries in the dataset. 
-2) Return all the queries as neighbors, which have similarity affinity within a similarity threshold ($\tau$). 
+The exact brute force algorithm to solve the above problem would be to compute
+similarities between each $q\in Q$ and all queries in the corpus, and return 
+all pairs that have similarities higher than the threshold $\tau$. Computing similarities
+for all pairs is computationally infeasible on a single computer even if the size of $Q$ is of the order of few thousands
+and the corpus size is hundreds of millions. Even in a distributed setting such as Hadoop, the 
+resulting communication needed between machines makes this strategy impractical. 
 
-This algorithm is exact as it has both $100\%$ precision and recall. 
-However, the algorithm is naive as it is not scalable for hundreds of millions of queries. 
-The reason being conducting pairwise computations between all the queries in the dataset involves 
-quadratic number of comparisons in the query dataset size. 
-For hundreds of millions of queries, it means doing petabytes of comparisons; 
-that is  computationally challenging or infeasible even in a distributed setting (such as Hadoop).   
+Our aim is to empirically study a set of locality sensitive hashing techniques
+that enable us to return a set of candidate neighbors while performing
+a much smaller (theoretically \emph{sublinear}) set of comparisons. 
+
 
 The motivated behind this research is to find nearest neighbors by doing a 
 \emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
