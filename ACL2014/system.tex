@@ -140,7 +140,7 @@ and the input test queries and return all those queries as neighbors
 which are within a similarity threshold ($\tau$). 
 
 In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop). 
-In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implmentation scales to hundreds of millions of queries.  
+In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implementation scales to hundreds of millions of queries.  
 
 \begin{figure}
 \fbox{
@@ -148,7 +148,7 @@ In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implmentati
 {\bf Preprocessing:} Input is $N$ queries with their respective feature vectors.
 \begin{itemize}
 \item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q))$, where 
-$\{h_{i,j}(q), i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
+$\{h_{i,j}, i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
 \item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. 
 All queries with similar $g_j$ functions ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
 \end{itemize}
@@ -208,7 +208,7 @@ Comparisons & Avg \# of pairwise comparisons per query  \\
 \hline 
 \end{tabular}
 \caption{\footnotesize{Major Notations}}
-}
+
 \label{tab:notation}
 \end{table}
 
