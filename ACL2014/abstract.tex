@@ -1,17 +1,31 @@
 
 
 \begin{abstract}
-Many Web, Mobile, and NLP applications 
-rely on finding nearest neighbors 
-for a given query from a commercial large-scale query logs . 
-Due to the large scale volume of user queries, 
-computing nearest neighbors from all queries using brute force linear 
-search is a computationally time intensive task. 
-To challenge the aforementioned problem, we exploit existing 
+Many applications from various domains such as World Wide Web, Mobile, and NLP
+rely on finding nearest neighbors given a data instance.
+Due to the very large scale
+(e.g., users' queries from commercial search engines),
+computing nearest neighbors is often required to
+understand users' intents. However, it is a non-trivial
+task as the computational complexity grow significantly with the number of queries.
+To challenge the aforementioned problem, we exploit 
 \lshf (a.k.a, \lsh) methods and propose 
-their novel variants in distributed setting (e.g. Hadoop). 
-Our experimental results show that two of our 
-new variants of \lsh get significantly better recall than vanilla \lsh by 
-using the same number of hash tables. 
+novel varaints in a distributed computing environment (e.g. Hadoop). 
+The experimental results demonstrate our 
+proposed variants of \lsh achieve the robust performance with better recall compared with Vanilla \lsh even
+when using the same space determined by the number of hash tables .
+
+%Many Web, Mobile, and NLP applications 
+%rely on finding nearest neighbors 
+%for a given query from a commercial large-scale query logs . 
+%Due to the large scale volume of user queries, 
+%computing nearest neighbors from all queries using brute force linear 
+%search is a computationally time intensive task. 
+%To challenge the aforementioned problem, we exploit existing 
+%\lshf (a.k.a, \lsh) methods and propose 
+%their novel variants in distributed setting (e.g. Hadoop). 
+%Our experimental results show that two of our 
+%new variants of \lsh get significantly better recall than vanilla \lsh by 
+%using the same number of hash tables. 
 \end{abstract}
 

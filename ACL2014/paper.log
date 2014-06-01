@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  30 MAY 2014 20:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  31 MAY 2014 16:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -300,29 +300,22 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 LaTeX Warning: No \author given.
 
-(./abstract.tex
-Underfull \hbox (badness 1466) in paragraph at lines 4--16
-\OT1/ptm/m/n/10 ex-ist-ing Lo-cal-ity Sen-si-tive Hash-ing (a.k.a,
- []
-
-) (./intro.tex
+(./abstract.tex) (./intro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 
-Underfull \hbox (badness 1975) in paragraph at lines 17--21
-[]\OT1/ptm/m/n/10.95 In this re-search, we will take ad-van-tage of
- []
+Underfull \vbox (badness 4673) has occurred while \output is active []
 
-[1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 
-])
-(./system.tex
+]) (./system.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 50.
- [2]
+
+[2]
 Underfull \hbox (badness 10000) in paragraph at lines 79--82
 []\OT1/ptm/m/n/10.95 In ad-di-tion to the \OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/
 10.95 al-go-rithm be-ing
@@ -506,7 +499,7 @@ ive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
 texlive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/20
 13/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 186341 bytes).
+Output written on paper.pdf (8 pages, 186665 bytes).
 PDF statistics:
  92 PDF objects out of 1000 (max. 8388607)
  66 compressed objects within 1 object stream
