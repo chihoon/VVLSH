@@ -178,9 +178,10 @@ To minimize the number of hash functions computations,
 we use a trick from Andoni and Indyk \shortcite{Andoni08CACM} 
 in which hash functions are reused to generate $L$ tables. $K$ is assumed to be even and $R \approx	\sqrt L$. 
 We generate $f(q)=(h_1(q),h_2(q),\dots,h_{K/2}(q)))$ of length $k/2$. 
-Next, we define $g(q)=(f_a,f_b)$, where $1\leq a < b \leq R$. This scheme generates $L= \frac{R (R -1)}{2}$. 
+Next, we define $g(q)=(f_a,f_b)$, where $1\leq a < b \leq R$. Using such pairing, we
+can thus generate $L= \frac{R (R -1)}{2}$ hash indices. 
 This scheme requires O($K  \sqrt L$) hash functions, instead of O($KL$).    
-For rest of this paper, we use the above trick to generate $L$ hash tables with $K$-widith bit bucket-ids. 
+For rest of this paper, we use the above trick to generate $L$ hash tables with bucket indices of width $K$ bits.  
 \begin{table}
 \centering
 {
@@ -214,34 +215,42 @@ Comparisons & Avg \# of pairwise comparisons per query  \\
 
 \subsection{Multi Probe \lsh}
 \label{sec:mblsh}
-As we discussed in Section \ref{subsec:resuseHash} that generating hash functions can be computationally expensive.  
-That is exactly one of the significant drawbacks of vanilla \lsh as it requires a large number of hash tables (large $L$) 
-in order to achieve good recall in finding nearest neighbors.
-Here, We describe four new variants of vanilla \lsh algorithm motivated by the research on \mblshf \cite{LvVLDB07}. 
-The goal of  \mblshf is to get significantly better recall than the vanilla \lsh by using 
-the same number of hash tables. The main concept behind \mblshf is to look 
-up multiple buckets within a table that have a high probability of containing the nearest neighbors of a query. 
-Note, eventhough vanila \lsh and \mblshf both have same number of hash tables ($L$); 
-\mblshf requires more number of probes as it searches in multiple buckets within a table. 
+As we discussed in Section \ref{subsec:resuseHash}, generating hash functions can be computationally expensive.
+Since the memory required by the algorithm also scales linearly with $L$, the number of hash tables, it is desirable to have a small 
+number of tables to reduce the memory footprint. The memory footprint of vanilla LSH is what makes it impractical for real applications. 
+Here, we first describe four new variants of the vanilla \lsh algorithm motivated by the intuition in
+\mblshf~\cite{LvVLDB07}. The aim of \mblshf is to obtain significantly higher recall than the vanilla \lsh while using
+the same number of hash tables. In order to achieve this, the main intuition utilized in \mblshf is that
+in addition to looking at the hash bucket that a test query $q$ falls in, it is also possible to look at the neigboring buckets
+in order to find its near neigbour candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
+Hamming distance from the bucket in which $q$ falls. The empirically show that these neighboring buckets contain the near neighbors with
+very high probability. 
+Note that, for the same number of hash tables \mblshf will require more number of probes since it searches for multiple buckets within a table. 
 The main advantage of searching in multiple buckets over generating more number of tables 
 is that it takes more memory and time to generate more tables in pre-processing. 
 
 
-The original \mblshf algorithm is developed for Euclidean distance. 
-If interested in details about \mblshf algorithm for Euclidean distance, the reader is referred to \cite{LvVLDB07}. 
-Here, we propose four variants of \mblshf for cosine similarity:
+The original \mblshf algorithm is developed for Euclidean distance, the details
+are described in~\cite{LvVLDB07}. However, the Euclidean distance implementation does not immediately translate to our setting of cosine similarity. 
+For example, in generating other the list of other buckets to look into,~\cite{LvVLDB07} utilizes the distance of the hash value 
+to the boundary of the other bucket--- this
+makes sense only when the hash value is a real number and not a $0/1$ bit, as it is for us. 
+However, utilizing the same intuition, we present four variants  
+of \mblshf for cosine similarity:
 \begin{itemize}
-\item {\bf \rflipq:} The first variant is our baseline: first we compute the initial \lsh of a query q, which gives the $L$ bucket ids.  
+\item {\bf \rflipq:} The first variant is our baseline. In this, we first compute the initial \lsh of a test query $q$, which gives the $L$ bucket ids.  
 Next, we create alternate bucket ids by taking each of the $L$ bucket ids and then creating alternate candidate buckets by flipping a 
-set of coordinates randomly in the \lsh of just the query.  
-\item {\bf \rflipb:} The second variant is another baseline similar to the previous one. Instead of just flipping the bits for only the query, 
-here we flip bits for both the query and all the queries in the database. 
-\item {\bf \dflipq:} The third variant is intelligent version of first variant. Instead of randomly flipping some coordinates, 
-we devisely select a set of coordinates based on the distance of query term from the random hyperplane (hash function) 
+set of coordinates randomly in the \lsh of the test query $q$.  
+\item {\bf \rflipb:} The second variant is another baseline similar to the previous one. Instead of just flipping the bits for only the test query, 
+here we flip bits for both the test query and all the queries in the database. 
+\item {\bf \dflipq:} The third variant is a more intelligent version of first variant. Instead of randomly flipping some coordinates
+of the test query $q$, 
+we select a set of coordinates based on the distance of $q$ from the random hyperplane (hash function) 
 that was used in to create this coordinate. 
-The distance of query term from the random hyperplane is the absolute value which we get before applying the sign function on it (see Section \ref{subsec:vlsh:cosine}). 
+The distance of the test query $q$ from the random hyperplane is the absolute value which we get before applying the sign function on it 
+(see Section \ref{subsec:vlsh:cosine}), i.e. is $ \mathrm{abs}(\alpha \cdot q)$ if the random hyperplane is $\alpha$. 
 \item {\bf \dflipb:} The fourth version is similar to third one, however 
-here we flip bits for both the query and the queries in the database (intelligent version of second baseline). 
+here we flip bits for both the test query and for the queries in the database (i.e. this is the intelligent version of the second baseline). 
 \end{itemize}
 
 
