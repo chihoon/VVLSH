@@ -21,16 +21,23 @@ resulting communication needed between machines makes this strategy impractical.
 Our aim is to empirically study a set of locality sensitive hashing techniques
 that enable us to return a set of candidate neighbors while performing
 a much smaller (theoretically \emph{sublinear}) set of comparisons. 
+In order to tackle this scalability problem, we explore the 
+combination of distributed computation using a map-reduce platform (Hadoop) as well as
+locality sensitive hashing (\lsh) algorithms. 
+We explore a few commonly known variants of \lsh and suggest a few novel variants
+that are suitable to the map-reduce platform. 
+The methods that we propose meets the practical requirements of a real life 
+search engine backend, and demonstrates how to use locality sensitive hashing
+on a distributed platform. 
 
-
-The motivated behind this research is to find nearest neighbors by doing a 
-\emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
-In addition to \emph{small} number of comparisons, we also want to 
-return a set of neighbor candidates with a $100\%$ precision and a large recall. 
-The method we propose meet all these criterions. We do this by exploiting 
-existing research in \lshf (a.k.a., \lsh) and propose their novel variants. 
-In particular, we develop the framework of  \lsh algorithms on a distributed 
-system (e.g. Hadoop) to take advantage of its computing efficiency.
+% The motivated behind this research is to find nearest neighbors by doing a 
+% \emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
+% In addition to \emph{small} number of comparisons, we also want to 
+% return a set of neighbor candidates with a $100\%$ precision and a large recall. 
+% The method we propose meet all these criterions. We do this by exploiting 
+% existing research in \lshf (a.k.a., \lsh) and propose their novel variants. 
+% In particular, we develop the framework of  \lsh algorithms on a distributed 
+% system (e.g. Hadoop) to take advantage of its computing efficiency.
 
 
 
