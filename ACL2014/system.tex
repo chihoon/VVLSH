@@ -150,7 +150,7 @@ In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implementat
 \item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q))$, where 
 $\{h_{i,j}, i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
 \item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. 
-All queries with similar $g_j$ functions ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
+All queries with the same $g_j$ value ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
 \end{itemize}
 
 {\bf Query:} $M$ test queries. Let $q$ denote a test query. 
