@@ -91,43 +91,47 @@ the corresponding probabilities being $P_1^{K}$ and $P_2^{K}$ respectively.
 This amplification ensures a high precision of the algorithm by  
 making the probability of dissimilar queries having the same hash value very small.
 
-In addition to the \lsh algorithm being precise, it needs to have large recall. 
-Instead of generating one set of hash table with index $g(q)=(h_1(q),h_2(q),\dots,h_K(q))$, 
-\lsh algorithm generates $L$ tables, $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$; $\forall 1 \leq j \leq  L$. 
+In order to increase the recall of the \lsh algorithm, the algorithm of Andoni et al. then uses
+$L$ hash tables, each constructed using a different $g_j(\cdot)$ function, where each 
+$g_j(\cdot)$ is defined as $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$; $\forall 1 \leq j \leq  L$. 
+
 
 %Recall = $1-(1-P_1^{K})^{L}$
 
 \subsection{\lsh for Cosine Similarity}
 \label{subsec:vlsh:cosine}
 In this paper, we are interested in cosine similarity, and use the \lsh family defined by Charikar \shortcite{Charikar02STOC}. 
-For two queries; $p,q \in \mathbb{R}^D$, the cosine similarity is $\left( \frac{p.q}{ \| p \| \| q \| }\right)$. 
-The \lsh functions for cosine similarity is defined using sign($\alpha.p$); where $\alpha \in \mathbb{R}^D$ is a random vector. 
-Negative sign is represented as zero and positive sign as one; hence indexes of buckets in hash tables are $K$-sized bit signatures.  
-To generate $\alpha$, we exploit the prior work on 
-generating random projections \cite{Achlioptas03,LiH06} and 
-use hash functions trick to implicitly map features ($\mathbb{R}^D$) to a set of \{-1,+1\}.
-\footnote{Note, we represent our queries ($p$ and $q$) using only non-zero features.}  
+For two queries; $p,q \in \mathbb{R}^D$, the cosine similarity between them is $\left( \frac{p.q}{ \| p \| \| q \| }\right)$. 
+The \lsh functions for cosine similarity is defined as follows: if $\alpha \in \mathbb{R}^D$ is a random vector, 
+then a corresponding hash function $h_{\alpha}$ can be defined as $h_{\alpha}(p) = \mathrm{sign}(\alpha \cdot p)$.
+Typically, a negative sign is represented as $0$ and positive sign as $1$, and indices of buckets in the hash tables (i.e. the
+range of each $g_j$) are $K$ bit vectors. 
+In order to create a random vector $\alpha$, we exploit the intuition in
+\cite{Achlioptas03,LiH06} and sample each coordinate of $\alpha$ from $\{-1, +1\}$ with equal probability.
+Practically, each coordinate of $\alpha$ is generated using a hash function that maps that coordinate
+to $\{-1, +1\}$ (this is termed ``hashing trick'' in~\cite{}). 
+%\footnote{Note, we represent our queries ($p$ and $q$) using only non-zero features.}  
 This hashing trick is important and useful as we do not need to explicitly store the 
 huge random projection matrix of size $D \times K \times L$.  
 
 %To solve the above problem, we propose a distributed Hadoop framework based on Locality Sensitive Hashing. 
-%Our framework has three main steps: 
+%Our framework has three main steps
 %i) Generate $256$ bit signature for each query.  
 %ii) Use the $256$ bit signature for each query to generate $L$ tables for each table with $K$ bit signature. 
 %Next, generate query pairs which fall in the same table.
 %iii) Compute cosine similarity between query terms which fall in the same table and return the query pairs  
 %with similarity $\geq\tau$.  
-
-Vanilla \lsh has two main steps: preprocessing the data and querying the database.  
-The pseudo code written for vanilla \lsh is summarized in . 
-
-In preprocessing step, the algorithm takes input as $N$ queries with an associated feature vectors. In our setting, 
-feature vector is very high dimensional and sparse; that is the clicked webpages (urls) for a given query term. 
-During preprocessing, first we generate $L\times K$ hash functions. 
-Next, we hash all queries using these hash functions to build $L$ hash tables 
-with each hash table containing at most $2^K$ buckets. 
-There are at most $2^K$ buckets because index of each bucket: $g_j$ is $K$-widith bit index. 
-Each query term is placed in their respective buckets for all  $L$ hash tables.
+%
+Figure~\ref{algo:lsh} describes the algorithm for both creating the data structure, as well as for
+querying it. In preprocessing step, the algorithm takes as input $N$ queries along with the associated feature vectors. 
+In our setting, each query is represented using an extremely sparse and high dimensional feature vector
+that is constructed as follows: for query $q$, we take all the webpages (urls) that any user has clicked on 
+when querying for $q$. Using this representation, we then generate the 
+$L$ different hash values for each query $q$, where each such hash value is again 
+the concatenation of $K$ hash functions. These $L$ hash values per query are then used to create $L$ hash tables.
+Since the width of the index of each bucket $K$, each hash table contains at most $2^K$ buckets. 
+with each hash table containing at most $2^K$ buckets.
+Each query term is then placed in their respective buckets for each of the $L$ hash tables.
 
 In querying step, for input $M$ test queries, we retrieve all the query 
 terms which appear in the buckets associated with $M$ test queries. 
@@ -138,26 +142,28 @@ which are within a similarity threshold ($\tau$).
 In this research, we have implemented the above algorithm within the distributed setting (Hadoop).   
 In our experiments, we show that the algorithm scales to hundreds of millions of queries (see Section \ref{subsec:eval:vanillaLSH}).  
 
-%in Algorithm \ref{alg:vanilla-LSH}.
-
+\begin{figure}
 \fbox{
 \begin{minipage}{2.5in}
-{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors \\
+{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors 
 \begin{itemize}
 \item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$, where $h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$ are chosen at random from the \lsh family.
 \item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. All queries with similar $g_j$ functions ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
 \end{itemize}
 
-{\bf Query:} Input is queries ($q=1,2,\dots,M$); $M$ is the number of test queries \\
+{\bf Query:} Input is queries ($q=1,2,\dots,M$); $M$ is the number of test queries
 \begin{itemize}
 \item For each $j=1,2,\dots,L$
 \begin{itemize}
 \item Retrieve all the queries from the bucket with $g_j(q)$ function as the index of the bucket 
 \item Compute cosine similarity between query q and all the retrieved queries. Return all the queries which have similarity affinity within a similarity threshold ($\tau$). 
 \end{itemize}
+
 \end{itemize}
 \end{minipage}
 }
+\caption{\lshf Algorithm}
+\end{figure}
 
 \subsection{Reusing Hash Functions}
 \label{subsec:resuseHash}
