@@ -43,18 +43,19 @@ on a distributed platform.
 
 \section{Approach}
 \label{sec:approach}
-We describe a distributed Hadoop framework based on \lshf (\lsh). 
-First, we present vanilla \lsh algorithm based on the seminal research of Andoni and Indyk  \shortcite{Andoni08CACM}. To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
+We describe a distributed \lshf framework based on map-reduce. 
+First, we present vanilla \lsh algorithm based on the seminal work of Andoni and Indyk  \shortcite{Andoni08CACM}. 
+To best of our knowledge, this is the first paper that applies this variant of locality sensitive hashing algorithms to NLP applications. 
 
-This algorithm improves the existing research in \lsh and \plebf \cite{Indyk98STOC,Charikar02STOC}. 
-\plebf was applied for noun clustering \cite{ravichandran05} and speech tasks \cite {JansenASRU11,JansenIS12}. 
-Recent prior work on new variants of \plebf  \cite{goyal12Flag} for distributional similarity is a special case of Andoni and Indyk's \lsh algorithm. 
+The algorithm in \cite{Andoni08CACM} improves the existing research in \lsh and \plebf (PLEB) \cite{Indyk98STOC,Charikar02STOC}. 
+PLEB was applied for noun clustering \cite{ravichandran05} and speech tasks \cite {JansenASRU11,JansenIS12}. 
+Recent prior work on new variants of PLEB \cite{goyal12Flag} for distributional similarity can be seen as 
+implementing a special case of Andoni and Indyk's \lsh algorithm. 
 
-Next, we present four new variants of vanilla \lsh algorithm motivated by the research on Multi-Probe LSH \cite{LvVLDB07}. 
-A significant drawback of vanilla \lsh is the requirement for a large number of hash tables in order to achieve good recall 
-in finding nearest neighbors. 
-The goal of  \mblshf is to get significantly better recall than the vanilla \lsh by using 
-the same number of hash tables. 
+We first present four new variants of vanilla \lsh algorithm motivated by the technique of Multi-Probe LSH \cite{LvVLDB07}. 
+A significant drawback of vanilla \lsh is that it requires a large number of hash tables in order to achieve good recall 
+in finding nearest neighbors, making the algorithm memory intensive. The goal of  \mblshf 
+is to get significantly better recall than the vanilla \lsh by using the same number of hash tables.
 %The main idea behind \mblshf is to look up multiple buckets within a table that have a high probability 
 %of containing the nearest neighbors of a query. We present a high-level idea behind the \mblshf algorithm; 
 %for more details, the reader is referred to \cite{LvVLDB07}.
@@ -62,32 +63,33 @@ the same number of hash tables.
 
 \subsection{Vanilla \lsh}
 \label{sec:vlsh}
-The \lsh algorithm relies on the existence of an \lsh family. Let $H$ be a family of hash functions mapping 
+The \lsh algorithm relies on the existence of an family of locality sensitive hash functions. 
+Let $H$ be a family of hash functions mapping 
  $\mathbb{R}^D$ to some universe S. For any two query terms $p$, $q$; we chose $h\in H$ uniformly at random; 
- and analyze the probability that $h(p) = h(q)$.  The family $H$ is called a \lsh family if 
+ and analyze the probability that $h(p) = h(q)$.  
+ Suppose $d$ is a distance function (cosine distance for us), 
+$R > 0$ be a distance threshold $R>0$ and $c>1$ be an approximation factor.   
+Let $P_1, P_2 \in (0, 1)$ be two probability thresholds.  
+The family $H$ of hash functions is called a $(R, cR, P_1, P_2)$ locality sensitive family if 
  it satisfies the following conditions:
-
 \begin{enumerate}
-\item $d(p,q) \leq R$, then $Pr[h(p)=h(q)] \geq P_1$ 
-\item $d(p,q) \geq cR$, then $Pr[h(p)=h(q)] \leq P_2$
+\item If $d(p,q) \leq R$, then $Pr[h(p)=h(q)] \geq P_1$, 
+\item and if $d(p,q) \geq cR$, then $Pr[h(p)=h(q)] \leq P_2$
 \end{enumerate}
-
-In above conditions, $d$ is a distance function\footnote{In this paper, we use cosine distance.}, 
-a distance threshold $R>0$ and an approximation factor $c>1$.   
-
-A family is generally interesting when  $P_1>P_2$. 
+An \lsh family is generally interesting when  $P_1>P_2$. 
 However, the difference between $P_1$ and $P_2$ can be very small. 
-Given a family $H$ of hash functions with parameters ($R, cR, P_1,P_2$), 
-\lsh algorithm is devised by amplifying the gap between 
+Given a family $H$ of hash functions with parameters $(R, cR, P_1,P_2)$, 
+the \lsh algorithm is devised by amplifying the gap between 
 the two probabilities $P_1$ and $P_2$ by concatenating several functions. 
-In particular, \lsh algorithm concatenates $K$ hash functions: 
+In particular, \lsh algorithm concatenates $K$ hash functions
+to create a new hash function $g(\cdot)$ as:
 $g(q)=(h_1(q),h_2(q),\dots,h_K(q))$. 
-The larger value of $K$ leads to larger 
-gap between probabilites of collision between close queries and far queries; 
-the probabilities are $P_1^{K}$ and $P_2^{K}$ respectively. 
-The advantage of this amplification is that now the algorithm is more precise meaning 
-the probability of similar queries falling in same bucket is big; 
-and dis-similar queries falling in same bucket is small.  
+A larger value of $K$ leads to larger 
+gap between probabilites of collision between close neighbors (i.e. distance less than $R$) and neighbors that are far (i.e. 
+distance more than $cR$); 
+the corresponding probabilities being $P_1^{K}$ and $P_2^{K}$ respectively. 
+This amplification ensures a high precision of the algorithm by  
+making the probability of dissimilar queries having the same hash value very small.
 
 In addition to the \lsh algorithm being precise, it needs to have large recall. 
 Instead of generating one set of hash table with index $g(q)=(h_1(q),h_2(q),\dots,h_K(q))$, 

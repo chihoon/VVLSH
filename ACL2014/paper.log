@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.9)  1 JUN 2014 20:33
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.9)  1 JUN 2014 22:19
 entering extended mode
  %&-line parsing enabled.
 **paper.tex
@@ -302,26 +302,33 @@ Underfull \vbox (badness 4673) has occurred while \output is active []
 
 
 ]) (./system.tex
+Underfull \hbox (badness 1019) in paragraph at lines 55--62
+\OT1/ptm/m/n/10.95 al-go-rithm mo-ti-vated by the tech-nique of Multi-
+ []
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 64.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
+Underfull \hbox (badness 10000) in paragraph at lines 94--97
 []\OT1/ptm/m/n/10.95 In ad-di-tion to the \OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/
 10.95 al-go-rithm be-ing
  []
 
 
-Underfull \hbox (badness 4168) in paragraph at lines 92--95
+Underfull \hbox (badness 4168) in paragraph at lines 94--97
 \OT1/ptm/m/n/10.95 pre-cise, it needs to have large re-call. In-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--95
+Underfull \hbox (badness 10000) in paragraph at lines 94--97
 \OT1/ptm/m/n/10.95 stead of gen-er-at-ing one set of hash ta-ble
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 92--95
+Underfull \hbox (badness 2134) in paragraph at lines 94--97
 \OT1/ptm/m/n/10.95 with in-dex $\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/c
 mm/m/it/10.95 q\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.9
 5 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m
@@ -331,32 +338,32 @@ mm/m/it/10.95 q\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.9
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 92--95
+Underfull \hbox (badness 3189) in paragraph at lines 94--97
 \OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/10.95 al-go-rithm gen-er-ates $\OML/cmm/m/
 it/10.95 L$ \OT1/ptm/m/n/10.95 ta-bles, $\OML/cmm/m/it/10.95 g[]\OT1/cmr/m/n/10
 .95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10.95 ) =
  []
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 106.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 108.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 108.
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 []\OT1/ptm/m/n/10.95 Select $\OML/cmm/m/it/10.95 L$ \OT1/ptm/m/n/10.95 func-tio
 ns $\OML/cmm/m/it/10.95 g[]$\OT1/ptm/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
 .95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/
 m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h[]\OT1/cmr/m/n/10.9
@@ -364,12 +371,12 @@ m/it/10.95 q\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h[]\OT1/cmr/m/n/10.9
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 \OT1/ptm/m/n/10.95 where
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 \OML/cmm/m/it/10.95 h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr/m/n/10
 .95 )\OML/cmm/m/it/10.95 ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 q\OT1/cmr
 /m/n/10.95 )\OML/cmm/m/it/10.95 ; [] ; h[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
@@ -377,25 +384,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 158--158
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 []\OT1/ptm/b/n/10.95 Query: \OT1/ptm/m/n/10.95 In-put is queries ($\OML/cmm/m/i
 t/10.95 q \OT1/cmr/m/n/10.95 =
  []
 
 
-Underfull \hbox (badness 4981) in paragraph at lines 158--158
+Underfull \hbox (badness 4981) in paragraph at lines 160--160
 \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.
 95 ; [] ; M$\OT1/ptm/m/n/10.95 ); $\OML/cmm/m/it/10.95 M$ \OT1/ptm/m/n/10.95 is
  the num-ber of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 158--158
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 
  []
 
 
-Underfull \hbox (badness 2165) in paragraph at lines 158--158
+Underfull \hbox (badness 2165) in paragraph at lines 160--160
 \OT1/ptm/m/n/10.95 trieved queries. Re-turn all
  []
 
@@ -404,7 +411,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 180.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 182.
 
 Underfull \vbox (badness 2221) has occurred while \output is active []
 
@@ -464,34 +471,30 @@ Underfull \hbox (badness 3724) in paragraph at lines 128--133
 \OT1/ptm/m/n/10 Query sug-ges-tion by con-struct-ing term-transition
  []
 
-) [8] (./paper.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+) [8] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
  2977 strings out of 495061
  34683 string characters out of 1182622
- 103834 words of memory out of 3000000
+ 104834 words of memory out of 3000000
  6050 multiletter control sequences out of 15000+50000
  50030 words of font info for 125 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  36i,13n,29p,1026b,277s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/
-cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb></u
-sr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texli
-ve/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/t
-imes/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 199073 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></us
+r/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-texliv
+e/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (8 pages, 199453 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
