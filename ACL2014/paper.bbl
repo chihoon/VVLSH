@@ -7,6 +7,14 @@ Dimitris Achlioptas.
   binary coins.
 \newblock {\em J. Comput. Syst. Sci.}, 66(4):671--687.
 
+\bibitem[\protect\citename{Ahmad and Kondrak}2005]{ahmadEMNLP05}
+Farooq Ahmad and Grzegorz Kondrak.
+\newblock 2005.
+\newblock Learning a spelling error model from search query logs.
+\newblock In {\em Proceedings of Human Language Technology Conference and
+  Conference on Empirical Methods in Natural Language Processing}. Association
+  for Computational Linguistics.
+
 \bibitem[\protect\citename{Andoni and Indyk}2006]{Andoni06FOCS}
 Alexandr Andoni and Piotr Indyk.
 \newblock 2006.
@@ -78,12 +86,27 @@ Rosie Jones, Benjamin Rey, Omid Madani, and Wiley Greiner.
 \newblock In {\em Proceedings of the 15th International Conference on World
   Wide Web (WWW)}. ACM.
 
+\bibitem[\protect\citename{Lee \bgroup et al.\egroup }2011]{leeCIKM11}
+{Chi Hoon} Lee, Alpa Jain, and Larry Lai.
+\newblock 2011.
+\newblock Assisting web search users by destination reachability.
+\newblock In {\em Proceedings of the ACM International Conference on
+  Information and Knowledge Management}.
+
 \bibitem[\protect\citename{Li \bgroup et al.\egroup }2006]{LiH06}
 Ping Li, Trevor~J. Hastie, and Kenneth~W. Church.
 \newblock 2006.
 \newblock Very sparse random projections.
 \newblock In {\em Proceedings of the 12th ACM SIGKDD international conference
   on Knowledge discovery and data mining}, KDD '06, pages 287--296. ACM.
+
+\bibitem[\protect\citename{Li \bgroup et al.\egroup }2012]{liSIGIR12}
+Yanen Li, Huizhong Duan, and ChengXiang Zhai.
+\newblock 2012.
+\newblock A generalized hidden markov model with discriminative training for
+  query spelling correction.
+\newblock In {\em Proceedings of the 35th International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}.
 
 \bibitem[\protect\citename{Lv \bgroup et al.\egroup }2007]{LvVLDB07}
 Qin Lv, William Josephson, Zhe Wang, Moses Charikar, and Kai Li.
@@ -116,6 +139,8 @@ Deepak Ravichandran, Patrick Pantel, and Eduard Hovy.
 \newblock 2005.
 \newblock Randomized algorithms and {NLP}: using locality sensitive hash
   function for high speed noun clustering.
+\newblock In {\em Proceedings of the 43rd Annual Meeting of the Association for
+  Computational Linguistics}.
 
 \bibitem[\protect\citename{Song \bgroup et al.\egroup }2011]{Song11SIGIR}
 Yang Song, Dengyong Zhou, and Li-wei He.

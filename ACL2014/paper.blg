@@ -1,51 +1,48 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: acl.bst
 Database file #1: lsh.bib
-Warning--string name "acl05" is undefined
---line 230 of file lsh.bib
-Warning--I didn't find a database entry for ""
 Warning--empty journal in Andoni06FOCS
-Warning--empty booktitle in ravichandran05
-You've used 19 entries,
+You've used 22 entries,
             2490 wiz_defined-function locations,
-            665 strings with 8568 characters,
-and the built_in function-call counts, 7427 in all, are:
-= -- 751
-> -- 320
+            683 strings with 9403 characters,
+and the built_in function-call counts, 8540 in all, are:
+= -- 861
+> -- 369
 < -- 2
-+ -- 107
-- -- 106
-* -- 505
-:= -- 1196
-add.period$ -- 81
-call.type$ -- 19
-change.case$ -- 129
-chr.to.int$ -- 19
-cite$ -- 21
-duplicate$ -- 350
-empty$ -- 611
-format.name$ -- 130
-if$ -- 1581
++ -- 124
+- -- 122
+* -- 577
+:= -- 1375
+add.period$ -- 95
+call.type$ -- 22
+change.case$ -- 149
+chr.to.int$ -- 22
+cite$ -- 23
+duplicate$ -- 405
+empty$ -- 709
+format.name$ -- 150
+if$ -- 1819
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 19
-newline$ -- 115
-num.names$ -- 57
-pop$ -- 177
+missing$ -- 22
+newline$ -- 134
+num.names$ -- 66
+pop$ -- 207
 preamble$ -- 1
-purify$ -- 148
+purify$ -- 171
 quote$ -- 0
-skip$ -- 239
+skip$ -- 272
 stack$ -- 0
-substring$ -- 189
-swap$ -- 71
+substring$ -- 205
+swap$ -- 81
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 152
-warning$ -- 2
-while$ -- 45
-width$ -- 21
-write$ -- 260
-(There were 4 warnings)
+type$ -- 176
+warning$ -- 1
+while$ -- 51
+width$ -- 24
+write$ -- 302
+(There was 1 warning)
