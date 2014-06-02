@@ -133,8 +133,7 @@ that is constructed as follows: for query $q$, we take all the webpages (urls) t
 when querying for $q$. Using this representation, we then generate the 
 $L$ different hash values for each query $q$, where each such hash value is again 
 the concatenation of $K$ hash functions. These $L$ hash values per query are then used to create $L$ hash tables.
-Since the width of the index of each bucket $K$, each hash table contains at most $2^K$ buckets. 
-with each hash table containing at most $2^K$ buckets.
+Since the width of the index of each bucket is $K$, each hash table contains at most $2^K$ buckets. 
 Each query term is then placed in their respective buckets for each of the $L$ hash tables.
 
 In order to retrieve near neighbors, for each of the $M$ test queries, we first 
@@ -229,7 +228,7 @@ in addition to looking at the hash bucket that a test query $q$ falls in, it is 
 in order to find its near neigbour candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
 Hamming distance from the bucket in which $q$ falls. They then empirically show that these neighboring buckets contain 
 the near neighbors with very high probability. 
-Although \mblshf is achieves a higher recall for the same number of hash tables, it will also require more number of 
+Although \mblshf is achieves a higher recall for the same number of hash tables, it will also require more 
 probes since it searches for multiple buckets within a table. 
 The main advantage of searching in multiple buckets over generating more number of tables 
 is that it takes more memory and time to generate more tables in pre-processing. 
