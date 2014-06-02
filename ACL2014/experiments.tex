@@ -18,8 +18,8 @@ Table \ref{tab:data} summarizes the statistics of our query-log datasets.
 
 \paragraph{Test Data}: We conduct all the experiments using $2000$ random queries sampled from the query logs as the test set of queries. 
 For evaluation, we compute the true similar candidates for all the $2000$ test queries by calculating cosine similarity 
-between each test query and all the queries in the rest of the dataset. In this paper, we set the similarity threshold  $\tau=0.7$, 
-which means that the algorithm needs to retrieve candidates that have cosine similarity larger than or equal to $0.7$.
+between each test query and all the queries in the rest of the dataset. For most of the experiments, we set the similarity threshold  $\tau=0.7$, 
+meaning that the algorithm needs to retrieve candidates that have cosine similarity larger than or equal to $0.7$.
 
 \begin{table}
 \centering
@@ -65,23 +65,23 @@ The goal of this paper is to maximize recall and minimize the number of comparis
 \label{tab:varyTau}
 \end{table}
 
-In the first experiment, we vary the similarity threshold parameter $\tau={0.7,0.8,0.9}$ 
-with fixed $K=16$ and $L=10$ on \aol and \dataA datasets. 
-Table \ref{tab:varyTau} shows that as expected finding near-duplicates ($0.9$) 
-is easier than nearest neighbors ($0.7$). For, rest of this paper, 
-we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors. 
+In the first experiment, we vary the similarity threshold parameter $\tau$ to be in $\{0.7,0.8,0.9\}$ 
+while fixing $K=16$ and $L=10$ for the \aol and \dataA datasets. 
+Table~\ref{tab:varyTau} shows that as expected, finding near-duplicates, when $\tau=0.9$, 
+is easier than finding nearest neighbors when $\tau=0.7$. For, rest of this paper, 
+we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors for our test queries. 
 
-
-In the second experiment, we vary $L=\{1,10,28,55\}$ with fixed $K=16$ on \aol and \dataA datasets. 
-$L$ denotes the number of hash tables and $K$ denotes the length of the index of the buckets in the table. 
-If we increase $K$ (increasing the precision to reduce false positives), we also need to 
-increase $L$ to get good recall (increasing the recall to reduce false negatives). 
+In the second experiment, we vary $L$ to be in $\{1,10,28,55\}$ while fixing $K=16$ on the \aol and \dataA datasets. 
+Recal that $L$ denotes the number of hash tables and $K$ the length of the index of the buckets in the table. 
+Increasing $K$ results in increase of the precision by reducing the false positive candidates, but 
+the $L$ also need to be correspondingly increased in order the maintain a good recall
+(i.e. reduce false negatives). 
 Table \ref{tab:varyL} shows that increasing $L$ leads to better recall, 
-however at the expense of more comparisons on both the datasets. 
-In addition, having large $L$ 
-means generating large number of random projection bits and hash tables that is 
+but at the expense of performing more comparisons on both the datasets. 
+In addition, having a large $L$ 
+means generating large number of random projection bits and hash tables which is 
 both time and memory intensive. Hence, we fix $L=10$, 
-which leads to reasonable recall with fewer comparisons. 
+which leads to a reasonable recall with a tolerable number of comparisons. 
 
 \begin{table}
 \centering
@@ -99,14 +99,13 @@ which leads to reasonable recall with fewer comparisons.
 \caption{\footnotesize{Varying $L$ with fixed $K=16$ on \aol and \dataA with $\tau=0.7$.}}
 \label{tab:varyL}
 \end{table}
-
-In the third experiment, we vary $K=\{4,8,16\}$ with fixed $L=10$ on \aol and \dataA datasets. 
+In the third experiment, we vary $K$ to be in $\{4,8,16\}$ while fixing $L=10$ on \aol and \dataA datasets. 
 As expected, Table \ref{tab:varyK} shows that increasing $K$ reduces the number of 
-comparisons and worse recall on both the datasets. This is intuitive as  
+comparisons and worsens recall on both the datasets. This is intuitive as  
 the larger value of $K$ leads to larger 
 gap between probabilites of collision between close queries 
 and far queries (see Section \ref{sec:vlsh}). 
-Hence, we fix $K=16$ to have fewer number of comparisons.   
+Hence, we fix $K=16$ to have few number of comparisons.   
 
 
 \begin{table}
@@ -127,20 +126,20 @@ Hence, we fix $K=16$ to have fewer number of comparisons.
 \label{tab:varyK}
 \end{table}
 
-In the fourth experiment, we fix $L=10$ and $K=16$ and increase the size of training data. 
-Table \ref{tab:varyData} demonstrates that as we increase the training data size, 
-the number of comparisons also increase. This result indicates that $K$   
-needs to be tuned with respect to a specific dataset, 
-as large $K$ will reduce the probability of dis-similar 
+In the fourth experiment, we fix $L=10$ and $K=16$, values that were found to be reasonable using the previous experiments, 
+and then increase the size of training data. 
+Table~\ref{tab:varyData} demonstrates that as we increase the training data size, 
+the number of comparisons done by the algorithm also increase. 
+This result indicates that $K$ needs to be tuned with respect to a specific dataset, 
+as a larger $K$ will reduce the probability of dissimilar 
 queries falling within the same bucket. 
-$K$ and $L$ can be tuned by 
-randomly sampling small set of queries.\footnote{In this paper, we randomly select 2000 queries to tune parameter $K$.}
+$K$ and $L$ can be tuned by randomly sampling small set of queries. In this paper, we randomly select $2000$ queries to tune parameter $K$.
 
-In the fifth experiment, Table \ref{tab:bestLSH} shows the best $K$ and $L$ parameter settings on different 
-sized datasets.\footnote{Recall on \dataC cannot be computed, as it was computationally intensive to find exact similar neighbors.} 
-On our biggest dataset of 600 million queries, we set $K=24$, $L=10$. These parameter settings require only 
+Table \ref{tab:bestLSH}, containing the result of our fifth experiment, shows the best $K$ and $L$ parameter settings on datasets with different 
+sizes.\footnote{Recall on \dataC the precision/recall cannot be computed, as it was computationally intensive to find exact similar neighbors.} 
+On our biggest dataset of $600$ million queries, we set $K=24$ and $L=10$. These parameter settings require on an average only 
 $464$ comparisons to find approximate nearest neighbors compared to exact cosine similarity that involves 
-brute force search over all 600 million queries in the dataset.  
+brute force search over all $600$ million queries in the dataset.  
 
 
 
@@ -179,13 +178,30 @@ Data & Comparisons & Recall \\
 
 \subsection{Evaluating Multi-Probe LSH}
 \label{subsec:eval:multiProbeLSH}
-In the first experiment, we compare flipping the bits in query only. We evaluate two approaches: \rflipq and \dflipq. We can make several observations from Table \ref{tab:query:aol}: 1) As expected, increasing the number of flips improve recall at expense of more comparisons for both \dflipq and \rflipq. 2) Our results show that \dflipq has significantly better recall than \rflipq with similar number of comparisons. In second row of the table with $F=2$, \dflipq has nine points better recall than \rflipq.  
+In the first experiment, we compare flipping the bits in query only. 
+We evaluate two approaches: \rflipq and \dflipq. We can make several observations from Table \ref{tab:query:aol}: 1) As expected, increasing the number of flips improve recall at expense of more comparisons for both \dflipq and \rflipq. 2) Our results show that \dflipq has significantly better recall than \rflipq with similar number of comparisons.
+In second row of the table with $F=2$, \dflipq has nine points better recall than \rflipq.  
 
-In the second experiment, we compare flipping the bits in both query and the dataset. We can make similar observations from Table \ref{tab:both:aol} as made in the first experiment. In the second row of the Table with $F=2$, \dflipb has thirteen points better recall than \rflipb with similar number of comparisons. Comparing across second row of  Table \ref{tab:query:aol} and \ref{tab:both:aol} shows that flipping the bits in both query and the dataset has better recall at the expense of more comparisons. This is expected as flipping both means that we can find queries at distance two (one flip in query, one flip in dataset), hence more queries in each table when we do probe. Note, we also compared distance based flipping with random flipping on different sized data-sets, and found distance based flipping is always significantly better in terms of recall as compared to random flipping. 
+In the second experiment, we compare flipping the bits in both query and the dataset. 
+We can make similar observations from Table \ref{tab:both:aol} as made in the first experiment. 
+In the second row of the Table with $F=2$, \dflipb has thirteen points better recall than \rflipb with similar number of comparisons. 
+Comparing across second row of  Table \ref{tab:query:aol} and \ref{tab:both:aol} shows that flipping the bits in both query and the dataset has better 
+recall at the expense of more comparisons. This is expected as flipping both means that we can find queries at distance two (one flip in query, one flip in dataset), 
+hence more queries in each table when we do probe. Note, we also compared distance based flipping with random flipping on different sized data-sets, 
+and found distance based flipping is always significantly better in terms of recall as compared to random flipping. 
 
-In the third experiment, we show the results of both variants of distance based Multi Probe that is \dflipq and \dflipb on different sized datasets. Table \ref{tab:dataset:final} shows the results with parameter $L=10$, $F=2$, and data-size dependent $K$ (same settings of $K$ for different sized datasets is used as in the last experiment of Section \ref{subsec:eval:vanillaLSH}). As observed in the last experiment, flipping bits in both query and the dataset is significantly better in terms of recall (eight points on \dataA and \dataB) with more number of comparisons. 
+In the third experiment, we show the results of both variants of distance based Multi Probe that is \dflipq and \dflipb on different sized datasets. 
+Table \ref{tab:dataset:final} shows the results with parameter $L=10$, $F=2$, and data-size dependent $K$ (same settings of $K$ for different sized datasets
+is used as in the last experiment of Section \ref{subsec:eval:vanillaLSH}). As observed in the last experiment, flipping bits in both query and the dataset
+is significantly better in terms of recall (eight points on \dataA and \dataB) with more number of comparisons. 
 
-In the fourth experiment, Table \ref{tab:lists} shows the qualitative results for some arbitrary queries. These results are found by applying our system (\dflipb with parameters $L=10$, $K=24$, and $F=2$ ) on \dataC. The first two columns in Table \ref{tab:lists} show that the returned approximate similar neighbors can be useful in finding related queries \cite{Jones06WWW,Jain11SIGIR}. The third column shows an example, where we can find several popular spell errors. The last column shows different variants of a query, where user intends to find out the ``weather in trumbull ct''. Modern search engines provide a direct display with respect to ``weather'' related queries. Hence, if we don't have enough evidence about a specific query being related to ``weather'', we can use queries approximately similar to it to infer that if this query is about ``weather'' or not.  
+In the fourth experiment, Table \ref{tab:lists} shows the qualitative results for some arbitrary queries. These results are found by applying our
+system (\dflipb with parameters $L=10$, $K=24$, and $F=2$ ) on \dataC. The first two columns in Table \ref{tab:lists} show that the returned approximate 
+similar neighbors can be useful in finding related queries \cite{Jones06WWW,Jain11SIGIR}. The third column shows an example, where we can find several popular spell errors. 
+The last column shows different variants of a query, where user intends to find out the ``weather in trumbull ct''. 
+Modern search engines provide a direct display with respect to ``weather'' related queries. 
+Hence, if we don't have enough evidence about a specific query being related to ``weather'', we can use queries approximately similar to it to infer that 
+if this query is about ``weather'' or not.  
 
 % paraphrasing \cite{ganitkevitch13Paraphrase}
 % maybe include deduplication results
