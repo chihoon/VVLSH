@@ -1,19 +1,25 @@
 
 
 \begin{abstract}
-Many applications from various domains such as World Wide Web, Mobile, and NLP
-rely on finding nearest neighbors given a data instance.
-Due to the very large scale
+Many applications from various domains such as web search, mobile
+browsing, and NLP rely on finding the nearest neighbors of a given
+text string from a large database.
+Due to the very large scale of data involved 
 (e.g., users' queries from commercial search engines),
-computing nearest neighbors is often required to
-understand users' intents. However, it is a non-trivial
+computing nearest neighbors is the best way to 
+%often required to
+understand users' intents. 
+However, it is a non-trivial
 task as the computational complexity grow significantly with the number of queries.
-To challenge the aforementioned problem, we exploit 
+To address this challenge, we exploit 
 \lshf (a.k.a, \lsh) methods and propose 
-novel varaints in a distributed computing environment (e.g. Hadoop). 
+novel varaints in a distributed computing environment (specifically, Hadoop). 
+We identify several optimizations which improve performance, suitable
+for deployment in very large scale settings. 
 The experimental results demonstrate our 
-proposed variants of \lsh achieve the robust performance with better recall compared with Vanilla \lsh even
-when using the same space determined by the number of hash tables .
+proposed variants of \lsh achieve the robust performance with better
+recall compared with ``vanilla'' \lsh,  even
+when using the same space determined by the number of hash tables.
 
 %Many Web, Mobile, and NLP applications 
 %rely on finding nearest neighbors 
