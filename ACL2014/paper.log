@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.11)  2 JUN 2014 18:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.11)  2 JUN 2014 19:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -344,45 +344,45 @@ Underfull \hbox (badness 2165) in paragraph at lines 170--170
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 196.
 [4]) (./experiments.tex
-Underfull \vbox (badness 1565) has occurred while \output is active []
+Underfull \vbox (badness 3907) has occurred while \output is active []
 
  [5]
-Overfull \hbox (4.29468pt too wide) in paragraph at lines 52--62
+Overfull \hbox (4.29468pt too wide) in paragraph at lines 54--64
  [][] 
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 66--71
+Underfull \hbox (badness 1389) in paragraph at lines 68--73
 \OT1/cmr/m/n/10.95 16$ \OT1/ptm/m/n/10.95 and $\OML/cmm/m/it/10.95 L \OT1/cmr/m
 /n/10.95 = 10$ \OT1/ptm/m/n/10.95 on AOL-logs and Qlogs001
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 73--83
+Underfull \hbox (badness 3746) in paragraph at lines 75--85
 []\OT1/ptm/m/n/10.95 In the sec-ond ex-per-i-ment, we vary $\OML/cmm/m/it/10.95
  L \OT1/cmr/m/n/10.95 =
  []
 
 
-Overfull \hbox (1.55719pt too wide) in paragraph at lines 86--97
+Overfull \hbox (1.55719pt too wide) in paragraph at lines 88--99
  [][] 
  []
 
 
-Overfull \hbox (1.55719pt too wide) in paragraph at lines 113--124
+Overfull \hbox (1.55719pt too wide) in paragraph at lines 115--126
  [][] 
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 137--142
+Underfull \hbox (badness 1297) in paragraph at lines 139--144
 \OML/cmm/m/it/10.95 K$ \OT1/ptm/m/n/10.95 and $\OML/cmm/m/it/10.95 L$ \OT1/ptm/
 m/n/10.95 pa-ram-e-ter set-tings on dif-fer-ent sized
  []
 
 [6]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
-) (./applications.tex [7]) (./relatedwork.tex) (./discussion.tex)
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 262.
+) (./applications.tex) (./relatedwork.tex [7]) (./discussion.tex)
 (./paper.bbl
 Underfull \hbox (badness 1314) in paragraph at lines 32--37
 []\OT1/ptm/m/n/10 Juri Gan-itke-vitch, Ben-jamin Van Durme, and Chris
@@ -406,10 +406,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 3213 strings out of 493308
- 38974 string characters out of 6137822
- 116168 words of memory out of 5000000
- 6562 multiletter control sequences out of 15000+600000
+ 3218 strings out of 493308
+ 39052 string characters out of 6137822
+ 117168 words of memory out of 5000000
+ 6567 multiletter control sequences out of 15000+600000
  50030 words of font info for 125 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,13n,29p,1042b,293s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -429,7 +429,7 @@ st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013/texmf-dist
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 191983 bytes).
+Output written on paper.pdf (9 pages, 191768 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream

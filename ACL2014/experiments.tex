@@ -1,23 +1,25 @@
 
 \section{Experiments}
-We evaluate our  distributed large-scale approximate similarity framework by conducting 
-several experiments on a publicly available query logs and 
-large-scale query logs sampled from a commercial search engine. 
+We evaluate our  distributed large-scale approximate near neighbor framework by conducting 
+several experiments on publicly available query logs as well as a 
+large-scale query log collected from a commercial search engine. 
 
 \subsection{Data}
-The public dataset that we demonstrate result on is adapted from the query logs of AOL (\aol dataset) search engine \cite{Pass06}. 
-Moreover, we show results on large-scale query logs (hundreds of millions of queries) sampled from a commercial search engine. The \dataA  
-denotes $1$\% sampled query logs from a commercial search engine, \dataB ($10$\%), and  \dataC ($100$\%). 
-Each query point has an associated feature vector, that is high dimensional and sparse. 
-Feature vector contains the  webpages (urls) that are weighted based on click through rate on the urls for the query term.  
-As a pre-processing step, we remove all those queries that have less than or equal to five clicked urls. 
-Table \ref{tab:data} summarizes the statistics of our several query-logs datasets. Our biggest dataset has $N=600$ million unique queries 
-with billions of unique urls as features. 
+The public dataset that we demonstrate results on is adapted from the query logs of the AOL search engine \cite{Pass06}  (\aol dataset). 
+Moreover, we show results on a large query log (hundreds of millions of queries) sampled from a commercial search engine. 
+We started by collecting a dataset over multiple days, and containing $N=600$ million unique queries: this does not represent
+an exhaustive set of queries posed to the search engine. We then created multiple datasets from this corpus by subsampling it at various rates.
+\dataA represents a $1\%$ sample of queries from the above corpus, \dataB represents a $10\%$ sample and \dataC represents the entire corpus. 
+For each query, a high dimensional and sparse, feature vector was created over the domain of urls (the size of the domain is a few billion).   
+The feature vector of a query $q$ contains the  webpages (urls) that have received a user click for this search query $q$. The weight of 
+an url feature for a query $q$ depends on the click through rate of this url for the query $q$.  
+As a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
+Table \ref{tab:data} summarizes the statistics of our query-log datasets. 
 
-{\bf Test Data:} We conduct all the experiments on 2000 random queries sampled from the query logs. 
-For evaluation, we compute the true similar candidates for all 2000 test queries by calculating cosine similarity 
-between 2000 test queries and all the queries in the dataset. In this paper, we set similarity threshold  $\tau=0.7$ 
-that means the algorithm need to retrieve candidates that have cosine similarity larger than or equal to $\tau$.
+\paragraph{Test Data}: We conduct all the experiments using $2000$ random queries sampled from the query logs as the test set of queries. 
+For evaluation, we compute the true similar candidates for all the $2000$ test queries by calculating cosine similarity 
+between each test query and all the queries in the rest of the dataset. In this paper, we set the similarity threshold  $\tau=0.7$, 
+which means that the algorithm needs to retrieve candidates that have cosine similarity larger than or equal to $0.7$.
 
 \begin{table}
 \centering
@@ -36,11 +38,11 @@ Data & $N$ & $D$  \\
 \end{table}
 
 \subsection{Evaluation Metrics}
-We use two metrics for evaluation: Recall and Comparisons. 
-Recall is the fraction of \emph{true} similar candidates (found in exact cosine similarity returned candidates) 
-retrieved by approximate LSH algorithms.  
-Comparisons is the average number of pairwise comparisons per query. 
-The goal of this paper is to maximize recall and minimize comparisons.
+We use two metrics for evaluation: recall and number of comparisons. 
+Recall of an LSH algorithm is the fraction of \emph{true} similar candidates (found using candidates returned by computing exact cosine similarity) 
+that is retrieved by the LSH algorithm.  
+The number of comparisons performed by an algorithm is computed as the average number of pairwise comparisons that is done per test query. 
+The goal of this paper is to maximize recall and minimize the number of comparisons.
 
 \subsection{Evaluating Vanilla LSH} 
 \label{subsec:eval:vanillaLSH}
