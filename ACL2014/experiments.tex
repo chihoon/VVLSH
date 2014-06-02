@@ -51,8 +51,8 @@ The goal of this paper is to maximize recall and minimize comparisons.
 \centering
 \begin{tabular}{|c|rc|rc|}
 \hline
-\multirow{2}{*}{$\tau$} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
- & Comparisons & Recall & Comparisons & Recall  \\
+\multirow{2}{*}{$\tau$}  & \multicolumn{2}{c}{\small \aol} & \multicolumn{2}{c}{\small \dataA} \\
+ & {\small Comparisons} & {\small Recall} & {\small Comparisons} & {\small Recall}  \\
 \hline
 0.7 & \multirow{3}{*} {57}  & .63  & \multirow{3}{*} {1052} & .67 \\
 0.8 &   & .84  &  & .81 \\
@@ -85,8 +85,8 @@ which leads to reasonable recall with fewer comparisons.
 \centering
 \begin{tabular}{|c|rc|rc|}
 \hline
-\multirow{2}{*}{L} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
- & Comparisons & Recall & Comparisons & Recall  \\
+\multirow{2}{*}{L} & \multicolumn{2}{c}{\small \aol} & \multicolumn{2}{c}{\small \dataA} \\
+ & {\small Comparisons} & {\small Recall} & {\small Comparisons} & {\small Recall}  \\
 \hline
 1 & 7  & .28 & 106 & .36 \\
  \rowcolor[gray]{0.9} 10  &  57 & .63 & 1052 & .67 \\
@@ -113,8 +113,8 @@ Hence, we fix $K=16$ to have fewer number of comparisons.
 \begin{tabular}{|c|rc|rc|}
 \hline
 %$K$ & Comparisons & Recall \\
-\multirow{2}{*}{K} & \multicolumn{2}{c}{\aol} & \multicolumn{2}{c}{\dataA} \\
- & Comparisons & Recall & Comparisons & Recall  \\
+\multirow{2}{*}{K} & \multicolumn{2}{c}{\small \aol} & \multicolumn{2}{c}{\small \dataA} \\
+ &{\small Comparisons} & {\small Recall} & {\small Comparisons} & {\small Recall}   \\
 \hline
 4  &  112,347 & .98 & 2,29,2670 & .96 \\
 8 &  11,008 & .90 & 221,132 & .88 \\
@@ -163,7 +163,7 @@ Data & Comparisons & Recall \\
 \centering
 \begin{tabular}{|c|r|c|}
 \hline
-Data & Comparisons & Recall \\
+{\small Data} & {\small Comparisons} & {\small Recall} \\
 \hline
 \aol  ($K=16$) & 57  & .63 \\
 \dataA ($K=16$)  &  1,052 & .67 \\
@@ -237,12 +237,12 @@ $F$ & Comparisons & Recall  & Comparisons & Recall \\
 \hline
 Method & \multicolumn{2}{c}{\dflipq} & \multicolumn{2}{c}{\dflipb}   \\
 \hline
-$Data$ & Comparisons & Recall  & Comparisons & Recall \\
+{\small Data} & {\small Comps.} & {\small Recall}  & {\small Comps.} & {\small Recall} \\
 \hline
-\aol ($K=16$) & 155 & .75 & 405 & .86 \\
-\dataA ($K=16$) & 2980 & .76  & 7904  & .84   \\
-\dataB ($K=20$) & 1954  & .64 & 5242  & .72     \\
-\dataC ($K=24$) & 1280  & -  & 3427 & -      \\
+{\small \aol ($K=16$)} & 155 & .75 & 405 & .86 \\
+{\small \dataA ($K=16$)} & 2980 & .76  & 7904  & .84   \\
+{\small \dataB ($K=20$)} & 1954  & .64 & 5242  & .72     \\
+{\small \dataC ($K=24$)} & 1280  & -  & 3427 & -      \\
 \hline 
  \end{tabular}
  }
