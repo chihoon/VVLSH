@@ -50,23 +50,40 @@ comparisons that confirm that queries are indeed far from it.
 % from our experiments  using 2000 random queries to attempt to retrieve neighbors from the query logs consisting of hundreds of millions of queries. In other words, even though the big \textit{O} notation is denoted as linear, \textit{2000*N} comparisons are not feasible when \textit{N} reaches to hundreds of millions.
 
 In order to address the computational challenge, this paper aims to find nearest neighbors by doing a 
-\emph{small} number of comparisons -- that is, sublinear in dataset size -- instead of brute force linear search. 
+\emph{small} number of comparisons---that is, sublinear in the dataset size---instead of brute force linear search. 
 In addition to \emph{small} number of comparisons, we aim to 
 retrieve neighboring candidates with  $100\%$ precision and high recall.
 It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) is penalized more severely than false negative (ratio of missing ``true'' neighbors).
 
-The methods we propose in this paper meet all these criterions by extending existing research in \lshf 
-\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  to novel variants. 
-In particular, we develop the framework of  the variants on a distributed 
-system, Hadoop by taking advantage of its distributed computing power.
+In the case of seeking exact matches for queries, effective solutions
+are based on storing values in a hash table and mapping in via hash
+functions. 
+The approximate generalization of this approach is the framework of
+\lshf, where queries are more likely to collide
+under the hash function if they are more alike, and less likely to collide
+if they are less alike. 
+The methods we propose in this paper meet our criteria by extending \lshf 
+\cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  in novel ways. 
+In particular, we apply the framework within a distributed 
+system, Hadoop, and take advantage of its distributed computing power.
 
-Our work includes following contributions: 
+Our work makes the following contributions: 
 \begin{enumerate}
-\item We present vanilla \lsh algorithm based on the seminal research of Andoni and Indyk  \shortcite{Andoni08CACM}. To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
-\item We propose four novel variants of vanilla LSH motivated by the research on Multi-Probe LSH \cite{LvVLDB07}.  We show that two of our variants achieve significantly better recall than the vanilla \lsh by using the same number of hash tables. The main idea behind these variants is to intelligently look up multiple buckets within a table that have a high probability of containing the nearest neighbors of a query.  
+\item We begin with a ``vanilla'' \lsh algorithm based on the seminal
+  research of Andoni and Indyk  \shortcite{Andoni08CACM}.
+ To best of our knowledge, this is the first paper that applies this algorithm to NLP applications. 
+\item We propose four novel variants of vanilla LSH motivated by the
+  research on Multi-Probe LSH \cite{LvVLDB07}.  We show that two of
+  our variants achieve significantly better recall than the vanilla
+  \lsh by using the same number of hash tables. The main idea behind
+  these variants is to intelligently probe multiple ``nearby'' buckets within a table that have a high probability of containing the nearest neighbors of a query.  
 \item We present a framework on Hadoop that efficiently finds nearest neighbors for a given query from a commercial large-scale query logs in sublinear time. % Can we claim something more specific wrt time (e.g. 0(N logN))?
 %: Random Flipping and Query-Driven Flipping. 
-\item  We show that the applicability of our system on two real-world applications such as finding related queries and removing duplicated queries.
+\item  We show that the applicability of our system on two real-world
+  applications: finding related queries and removing (near) duplicate
+  queries.
+The system outperforms competitor methods, and is currently being
+implemented for production use within a large search provider. 
 %(Increasing  direct display coverage is related to finding related queries) and ??.
 \end{enumerate}
 
