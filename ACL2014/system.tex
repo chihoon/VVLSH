@@ -227,9 +227,10 @@ Here, we first describe four new variants of the vanilla \lsh algorithm motivate
 the same number of hash tables. In order to achieve this, the main intuition utilized in \mblshf is that
 in addition to looking at the hash bucket that a test query $q$ falls in, it is also possible to look at the neigboring buckets
 in order to find its near neigbour candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
-Hamming distance from the bucket in which $q$ falls. The empirically show that these neighboring buckets contain the near neighbors with
-very high probability. 
-Note that, for the same number of hash tables \mblshf will require more number of probes since it searches for multiple buckets within a table. 
+Hamming distance from the bucket in which $q$ falls. They then empirically show that these neighboring buckets contain 
+the near neighbors with very high probability. 
+Although \mblshf is achieves a higher recall for the same number of hash tables, it will also require more number of 
+probes since it searches for multiple buckets within a table. 
 The main advantage of searching in multiple buckets over generating more number of tables 
 is that it takes more memory and time to generate more tables in pre-processing. 
 
