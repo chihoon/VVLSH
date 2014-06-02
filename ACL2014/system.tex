@@ -223,7 +223,7 @@ As we discussed in Section \ref{subsec:resuseHash}, generating hash functions ca
 Since the memory required by the algorithm also scales linearly with $L$, the number of hash tables, it is desirable to have a small 
 number of tables to reduce the memory footprint. The memory footprint of vanilla LSH is what makes it impractical for real applications. 
 Here, we first describe four new variants of the vanilla \lsh algorithm motivated by the intuition in
-\mblshf~\cite{LvVLDB07}. The aim of \mblshf is to obtain significantly higher recall than the vanilla \lsh while using
+\mblshf~\cite{LvVLDB07}. \mblshf obtains significantly higher recall than the vanilla \lsh while using
 the same number of hash tables. In order to achieve this, the main intuition utilized in \mblshf is that
 in addition to looking at the hash bucket that a test query $q$ falls in, it is also possible to look at the neigboring buckets
 in order to find its near neigbour candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
