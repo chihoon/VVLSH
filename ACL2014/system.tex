@@ -1,22 +1,24 @@
+\newcommand{\corpus}{$C$\xspace}
 
 \section{Problem Statement}
-We start with a corpus of user queries being represented as vectors
-over some domain (e.g. URLs); similarity between queries is to be measured using cosine between the corresponding
-vectors. We are also given a set of queries $Q$. 
-We are interested in developing a batch process to return a \emph{small}
-set of candidate neighbors for each query $q \in Q$ such that the following
-are satisfied: 1) the similarity of any returned candidate to the query $q$ is larger than a user-specified 
-similarity threshold $\tau$; 2) the set of candidates returned has a large recall. 
-Note that, although we return an approximate set of near neighbors, our requirement forces us to 
-return a candidate set that has $100\%$ precision. Our aim is to achieve a large recall, while using
+We start with user query logs \corpus having query vectors collected from 
+a commercial search engines over some domain (e.g. URLs); similarity between queries is to be measured using cosine between the corresponding
+vectors. 
+The problem we formulate here is given a set of queries $Q$ and similarity threshold $\tau$,
+we are interested in developing a batch process to return a \emph{small}
+set $T$ of candidate neighbors from \corpus for each query $q \in Q$ such that the followings
+are satisfied: 1) $T = \{ l \mid s(l, q) \geq \tau,  l \in C  \}$, where  $s(q_1, q_2)$ is a function to
+compute a similarity score between query feature vector $q_1$ and $q_2$
+; 2) $T$ achieves $100\%$ precision with ``large'' recall. 
+That is, our aim is to achieve a large recall, while using
 a scalable efficient algorithm.
 
 The exact brute force algorithm to solve the above problem would be to compute
-similarities between each $q\in Q$ and all queries in the corpus, and return 
+similarities between each $q\in Q$ and all queries in \corpus, and return 
 all pairs that have similarities higher than the threshold $\tau$. Computing similarities
 for all pairs is computationally infeasible on a single computer even if the size of $Q$ is of the order of few thousands
-and the corpus size is hundreds of millions. Even in a distributed setting such as Hadoop, the 
-resulting communication needed between machines makes this strategy impractical. 
+and the size of \corpus is hundreds of millions. Even in a distributed setting such as Hadoop, the 
+resulting communication needed between machines makes this strategy impractical.  This in turn highlights ``linear'' computational complexity is not always acceptable to a certain problem domains.
 
 Our aim is to empirically study a set of locality sensitive hashing techniques
 that enable us to return a set of candidate neighbors while performing
@@ -24,11 +26,13 @@ a much smaller (theoretically \emph{sublinear}) set of comparisons.
 In order to tackle this scalability problem, we explore the 
 combination of distributed computation using a map-reduce platform (Hadoop) as well as
 locality sensitive hashing (\lsh) algorithms. 
-We explore a few commonly known variants of \lsh and suggest a few novel variants
+We explore a few commonly known variants of \lsh and suggest several novel variants
 that are suitable to the map-reduce platform. 
 The methods that we propose meets the practical requirements of a real life 
 search engine backend, and demonstrates how to use locality sensitive hashing
 on a distributed platform. 
+
+
 
 % The motivated behind this research is to find nearest neighbors by doing a 
 % \emph{small} number of comparisons (sublinear in dataset size), instead of brute force linear search. 
@@ -208,7 +212,7 @@ Comparisons & Avg \# of pairwise comparisons per query  \\
 \hline 
 \end{tabular}
 \caption{\footnotesize{Major Notations}}
-
+}
 \label{tab:notation}
 \end{table}
 
