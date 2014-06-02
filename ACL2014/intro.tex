@@ -1,35 +1,59 @@
 
  \section{Introduction}
-Millions of users visit commercial search engines and ``query'' 
-their interests. To provide users with high quality of services, 
+Every day, 
+hundreds of millions of users visit commercial search engines to pose
+queries on topics of their interest.  
+Such queries are typically just a few key words intended to specify
+the topic that the user has in mind. 
+To provide users with a high quality service, 
 search engines such as Bing, Google, and Yahoo require
-intelligent analysis to realize users' implicit intents, in particular taking
-advantage of large scaled query logs.  One of the key
-interesting tasks involved in learning users' implicit intents often involves 
-computing nearest neighbors (queries) for a user given query. 
+intelligent analysis to realize users' implicit intents.
+The key resource that they have to help tease out what is meant is
+their large history of requests, in the form of large scale query logs.  
+A key primitive in 
+%One of the key interesting tasks involved in 
+learning users' implicit intents is the computation of 
+nearest neighbors (queries) for a user given query. 
 Computing nearest neighbors is useful for 
 many search-related problems on the Web and the Mobile such as 
 finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, 
 finding near-duplicate queries \cite{}, spelling correction \cite{},  
-, paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
+paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
 and diversifying search results \cite{Song11SIGIR}.  
 
-In this research, we focus on finding nearest neighbors for a given query
-from very large scaled query logs available from a commercial search engine. 
+In this paper, we focus on the problem of finding nearest neighbors
+for a given query from very large scale query logs available from a commercial search engine. 
 %In order to understand the implicit users' intent, each query is initially represented in a high dimensional feature space,
 %where each dimension corresponds to a clicked url.
+Given the importance of this question, it is important to design
+algorithms that can scale to many queries over huge logs, and allow
+online and offline computation. 
 However, computing nearest neighbors of a query 
-from large-scale query logs is a non-trivial task due to the computational complexity among hundreds of millions of  queries.
+%from large-scale query logs is a non-trivial task 
+can be very costly. 
+Naive solutions that involve a linear search of the set of possibilities
+are simply infeasible in these settings. 
+%due to the computational complexity among hundreds of millions of  queries.
 %The reason being conducting pairwise computations between a given query and all the queries in the dataset involves 
 %linear number of comparisons in the query dataset size. For finding neighbors for hundreds of millions of queries, 
 %it means doing petabytes of comparisons; that is computationally challenging or infeasible even in a distributed setting (such as Hadoop). 
-Note that even in a distributed computing environment such as Hadoop, the naive pairwise computation is not feasible from our experiments  using 2000 random queries to attempt to retrieve neighbors from the query logs consisting of hundreds of millions of queries. In other words, even though the big \textit{O} notation is denoted as linear, \textit{2000*N} comparisons are not feasible when \textit{N} reaches to hundreds of millions.
+Even though distributed computing environments such as Hadoop
+make it feasible to store and search large data sets in parallel, 
+%Note that even in a distributed computing environment such as Hadoop,
+%the
+the naive pairwise computation is still infeasible. 
+The reason is that the total amount of work performed is still huge,
+and simply throwing more resources at the problem is not effective. 
+Given a log of hundreds of millions queries, most are ``far'' from a
+query of interest, and we should aim to avoid doing many ``useless''
+comparisons that confirm that queries are indeed far from it. 
+% from our experiments  using 2000 random queries to attempt to retrieve neighbors from the query logs consisting of hundreds of millions of queries. In other words, even though the big \textit{O} notation is denoted as linear, \textit{2000*N} comparisons are not feasible when \textit{N} reaches to hundreds of millions.
 
-In order to address the computational challenge, this paper exploits to find nearest neighbors by doing a 
+In order to address the computational challenge, this paper aims to find nearest neighbors by doing a 
 \emph{small} number of comparisons -- that is, sublinear in dataset size -- instead of brute force linear search. 
 In addition to \emph{small} number of comparisons, we aim to 
-retrieve neighboring candidates with a $100\%$ precision and a large recall.
-It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) is to be penalized more severely than false negative (ratio of missing ``true'' neighbors).
+retrieve neighboring candidates with  $100\%$ precision and high recall.
+It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) is penalized more severely than false negative (ratio of missing ``true'' neighbors).
 
 The methods we propose in this paper meet all these criterions by extending existing research in \lshf 
 \cite{Indyk98STOC,Charikar02STOC,Andoni06FOCS,Andoni08CACM}  to novel variants. 
