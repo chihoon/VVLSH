@@ -15,10 +15,10 @@ Yet another application is removing duplicated instances in a result set.
 When a query set is retrieved from a repository and presented to users, it is important to remove similar queries as user experiences 
 would be distracted from ``duplicated results.'' 
 That is, given a set of query terms, we can apply  \dflipb algorithm to build a lookup table of near-duplicates 
-to find ``duplicated query terms'' efficiently. As ``duplicateness'' of among query terms typically requires ``higher'' degree of similarity (relatively easier problem) than ``relatedness'', we can tune parameters ($K, L, F$) based on a specific $\tau$ (e.g $\tau=0.9$) from training samples.  The fourth column in Table~\ref{tab:lists} illustrates several duplicate examples -- ``trumbull weather ct'' and ``weather in trumbull ct''.
+to find ``duplicated query terms'' efficiently. As ``duplicates'' among query terms typically requires ``higher'' degree of similarity (relatively easier problem) than ``relatedness'', we can tune parameters ($K, L, F$) based on a specific $\tau$ (e.g $\tau=0.9$) from training samples.  The fourth column in Table~\ref{tab:lists} illustrates several duplicate examples -- ``trumbull weather ct'' and ``weather in trumbull ct''.
 
 We first described the existing ``vanilla'' \lsh algorithm. It is the first paper according to 
 best of our knowledge that applies this algorithm to NLP applications. 
-Next, we poposed four novel variants of vanilla \lsh. Two of our variants achieve 
+Next, we proposed four novel variants of vanilla \lsh. Two of our variants achieve 
 significantly better recall than the vanilla LSH by using the same number of hash tables. 
 We present a framework on Hadoop that efficiently finds nearest neighbors for a given query from a commercial large-scale query logs (consisting of hundreds of millions of queries) in sublinear time.
