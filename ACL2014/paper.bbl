@@ -170,6 +170,21 @@ Peter~D. Turney and Patrick Pantel.
 \newblock From frequency to meaning: Vector space models of semantics.
 \newblock {\em JOURNAL OF ARTIFICIAL INTELLIGENCE RESEARCH}, 37:141.
 
+\bibitem[\protect\citename{Van~Durme and Lall}2010]{van2010online}
+Benjamin Van~Durme and Ashwin Lall.
+\newblock 2010.
+\newblock Online generation of locality sensitive hash signatures.
+\newblock In {\em Proceedings of the ACL 2010 Conference Short Papers}, pages
+  231--235. Association for Computational Linguistics.
+
+\bibitem[\protect\citename{Van~Durme and Lall}2011]{van2011efficient}
+Benjamin Van~Durme and Ashwin Lall.
+\newblock 2011.
+\newblock Efficient online locality sensitive hashing via reservoir counting.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics: Human Language Technologies: short papers-Volume
+  2}, pages 18--23. Association for Computational Linguistics.
+
 \bibitem[\protect\citename{Velikovich \bgroup et al.\egroup
   }2010]{velikovich10}
 Leonid Velikovich, Sasha Blair-Goldensohn, Kerry Hannan, and Ryan McDonald.
@@ -187,5 +202,11 @@ Kilian Weinberger, Anirban Dasgupta, John Langford, Alex Smola, and Josh
 \newblock Feature hashing for large scale multitask learning.
 \newblock In {\em Proceedings of the 26th Annual International Conference on
   Machine Learning}, ICML '09, pages 1113--1120, New York, NY, USA. ACM.
+
+\bibitem[\protect\citename{Zadeh and Goel}2013]{zadeh2013dimension}
+Reza~Bosagh Zadeh and Ashish Goel.
+\newblock 2013.
+\newblock Dimension independent similarity computation.
+\newblock {\em The Journal of Machine Learning Research}, 14(1):1605--1626.
 
 \end{thebibliography}
