@@ -26,7 +26,7 @@ In this paper, we focus on the problem of finding nearest neighbors
 for a given query from very large scale query logs available from a commercial search engine. 
 %In order to understand the implicit users' intent, each query is initially represented in a high dimensional feature space,
 %where each dimension corresponds to a clicked url.
-Given the importance of this question, it is important to design
+Given the importance of this question, it is critical to design
 algorithms that can scale to many queries over huge logs, and allow
 online and offline computation. 
 However, computing nearest neighbors of a query 
@@ -52,11 +52,12 @@ comparisons that confirm that queries are indeed far from it.
 
 In order to address the computational challenge, this paper aims to find nearest neighbors by doing a 
 \emph{small} number of comparisons---that is, sublinear in the dataset size---instead of brute force linear search. 
-In addition to \emph{small} number of comparisons, we aim to 
+In addition to a \emph{small} number of comparisons, we aim to 
 retrieve neighboring candidates with  $100\%$ precision and high recall.
-It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) is penalized more severely than false negative (ratio of missing ``true'' neighbors).
+It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) 
+is penalized more severely than false negative (ratio of missing ``true'' neighbors).
 
-In the case of seeking exact matches for queries, effective solutions
+When seeking exact matches for queries, effective solutions
 are based on storing values in a hash table and mapping in via hash
 functions. 
 The approximate generalization of this approach is the framework of
