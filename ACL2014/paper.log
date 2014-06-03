@@ -1,11 +1,12 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.11)  3 JUN 2014 11:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  3 JUN 2014 02:58
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/size11.clo
@@ -308,7 +309,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 
 
 ]
-Underfull \hbox (badness 1163) in paragraph at lines 74--77
+Underfull \hbox (badness 1163) in paragraph at lines 75--78
 []\OT1/ptm/m/n/10.95 We be-gin with a ``vanilla'' \OT1/ptm/m/sc/10.95 LSH \OT1/
 ptm/m/n/10.95 al-go-rithm
  []
@@ -367,44 +368,59 @@ Underfull \hbox (badness 7740) in paragraph at lines 158--158
 
 [3] [4]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 247.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 249.
+
+Underfull \hbox (badness 1796) in paragraph at lines 264--268
+\OT1/ptm/m/n/10.95 four vari-ants of \OT1/ptm/m/sc/10.95 LSH \OT1/ptm/m/n/10.95
+ in a map-reduce set-ting
+ []
+
 ) (./experiments.tex [5]
-Underfull \hbox (badness 10000) in paragraph at lines 36--42
+Underfull \hbox (badness 10000) in paragraph at lines 41--47
 [] []\OT1/ptm/b/n/10.95 Test Data[] \OT1/ptm/m/n/10.95 All the ex-per-i-ments a
 re per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--42
+Underfull \hbox (badness 10000) in paragraph at lines 41--47
 \OT1/ptm/m/n/10.95 formed us-ing queries $\OML/cmm/m/it/10.95 Q$ \OT1/ptm/m/n/1
 0.95 ran-domly sam-pled
  []
 
 
-Underfull \hbox (badness 2680) in paragraph at lines 36--42
+Underfull \hbox (badness 2680) in paragraph at lines 41--47
 \OT1/ptm/m/n/10.95 from the query logs as the test set of $\OT1/cmr/m/n/10.95 2
 000$
  []
 
 
-Overfull \hbox (4.29468pt too wide) in paragraph at lines 59--69
+Overfull \hbox (4.29468pt too wide) in paragraph at lines 64--74
  [][] 
  []
 
 
-Overfull \hbox (1.55719pt too wide) in paragraph at lines 93--104
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (1.55719pt too wide) in paragraph at lines 98--109
  [][] 
  []
 
 
-Overfull \hbox (1.55719pt too wide) in paragraph at lines 119--130
+Overfull \hbox (1.55719pt too wide) in paragraph at lines 124--135
  [][] 
  []
 
 [6]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
- [7]) (./relatedwork.tex [8]) (./discussion.tex) (./paper.bbl
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 265.
+[7]) (./relatedwork.tex [8]) (./discussion.tex) (./paper.bbl [9]
 Underfull \hbox (badness 1400) in paragraph at lines 11--17
 []\OT1/ptm/m/n/10 Eneko Agirre, En-rique Al-fon-seca, Keith Hall, Jana
  []
@@ -419,44 +435,42 @@ Underfull \hbox (badness 1603) in paragraph at lines 48--53
 \OT1/ptm/m/n/10 Callison-Burch.  2013.  Ppdb: The para-phrase
  []
 
-[9]
-Underfull \hbox (badness 3724) in paragraph at lines 161--166
+
+Underfull \hbox (badness 3724) in paragraph at lines 169--174
 \OT1/ptm/m/n/10 Query sug-ges-tion by con-struct-ing term-transition
  []
 
-) [10] (./paper.aux)
+[10]) [11
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3231 strings out of 493308
- 39242 string characters out of 6137822
- 118400 words of memory out of 5000000
- 6583 multiletter control sequences out of 15000+600000
+ 3232 strings out of 493315
+ 39254 string characters out of 6137904
+ 121130 words of memory out of 5000000
+ 6577 multiletter control sequences out of 15000+600000
  51068 words of font info for 127 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,12n,29p,761b,303s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive
-/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2
-013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
-3/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2013/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2013/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts
-/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw
-/times/utmri8a.pfb>
-Output written on paper.pdf (10 pages, 201550 bytes).
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.en
+c}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
+/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2013/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (11 pages, 202214 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

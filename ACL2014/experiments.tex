@@ -18,23 +18,28 @@ Data & $N$ & $D$  \\
 \dataC &  $617 \times 10^6$  & $ 2.4 \times 10^9$  \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Query-logs statistics}}
+\caption{\small{Query-logs statistics}}
 \label{tab:data}
 \end{table}
 
 \subsection{Data}
-The first data set is the one made avialble to the public from the AOL search engine \cite{Pass06} (denoted as \aol dataset). 
+The first data set is the one made available to the public from the AOL search engine \cite{Pass06} (denoted as \aol dataset). 
 In addition, a large query log 
 from a commercial search engine, denoted as Qlogs, is used for evaluations.
-As Qlogs typically reaches to hundres of millions of queries over multiple days (i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive set of queries posed to the search engine.}.) We then generated multiple datasets from Qlogs by sampling at various size rates. \dataA represents a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
+As Qlogs typically reaches to hundreds of millions of queries over multiple days 
+(i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive 
+set of queries posed to the search engine.}.) We then generated multiple 
+datasets from Qlogs by sampling at various size rates. \dataA represents 
+a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
 For each query $q$, a feature vector in a high dimensional feature space is defined as
-$\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$. Note that in our real implementation, $\qvec$ follows a spare representaion omitting dimensions with zero click through rate.
+$\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$. 
+Note that in our real implementation, $\qvec$ is represented as a spare feature vector with only non-zero click through rate features. 
 %For each query $q$, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion). Specifically, each dimension in the feature vector of $q$ corresponds to a weight of a webpage (urls) that have received a user click for $q$. The weight of an url for $q$ is defined as the click through rate of the url.  
-Note that in a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
+In a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
 Table \ref{tab:data} summarizes the statistics of our query-log datasets.
 
 \paragraph{Test Data} All the experiments are performed using queries $Q$ randomly sampled from the query logs as the test set of $2000$ queries. 
-That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similiarty, and $q' \in \{\textrm{\dataA}, \textrm{\dataB}, \textrm{\dataC}\}$. 
+That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similarity, and $q' \in \{\textrm{\dataA}, \textrm{\dataB}, \textrm{\dataC}\}$. 
 %For evaluation, we compute the true similar cafor all the $2000$ test queries by calculating cosine similarity 
 %between each test query and all the queries in the rest of the dataset. 
 For most of the experiments, we set the similarity threshold  $\tau=0.7$.
@@ -43,13 +48,13 @@ For most of the experiments, we set the similarity threshold  $\tau=0.7$.
 
 \paragraph{Evaluation Metrics}
 We use two metrics for evaluation: recall and number of comparisons. 
-Recall of an LSH algorithm is to measure how much the algorithm is able to retrieve \emph{true} similar candidates
+Recall of an \lsh algorithm is to measure how much the algorithm is able to retrieve \emph{true} similar candidates
 %, which tells how (found using candidates returned by computing exact cosine similarity) 
-that is retrieved by the LSH algorithm.  
+that is retrieved by the \lsh algorithm.  
 The number of comparisons performed by an algorithm is computed as the average number of pairwise comparisons that is done per test query. 
 The goal of this paper is to maximize recall and to minimize the number of comparisons.
 
-\subsection{Evaluating Vanilla LSH} 
+\subsection{Evaluating Vanilla \lsh} 
 \label{subsec:eval:vanillaLSH}
 
 
@@ -66,7 +71,7 @@ The goal of this paper is to maximize recall and to minimize the number of compa
 0.9 &   & .98  &  & .96 \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Varying $\tau$ with fixed $K=16$ and $L=10$ on \aol and \dataA.}}
+\caption{\small{Varying $\tau$ with fixed $K=16$ and $L=10$ on \aol and \dataA.}}
 \label{tab:varyTau}
 \end{table}
 
@@ -78,11 +83,11 @@ This is expected as finding near duplicates is easier than finding near neighbor
 
 In the second experiment, we vary $L$ to be in $\{1,10,28,55\}$ while fixing $K=16$ on the \aol and \dataA datasets. 
 Recall that $L$ denotes the number of hash tables and $K$ is the width of the index of the buckets in the table. 
-Increasing $K$ results in increase of the precision by reducing the false positive candidates, but 
-the $L$ also need to be correspondingly increased in order the maintain a good recall
+Increasing the $K$ results in increase of the precision by reducing the false positive candidates, but 
+$L$ also need to be correspondingly increased in order to maintain a good recall
 (i.e. reduce false negatives). 
 Table \ref{tab:varyL} shows that increasing $L$ leads to better recall, 
-but at the expense of performing more comparisons on both the datasets. 
+but at the expense of conducting more comparisons on both the datasets. 
 In addition, having a large $L$ 
 means generating large number of random projection bits and hash tables which is 
 both time and memory intensive. Hence, we fix $L=10$, 
@@ -101,7 +106,7 @@ which leads to a reasonable recall with a tolerable number of comparisons.
 55 &  297 & .89 & 5648 & .84 \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Varying $L$ with fixed $K=16$ on \aol and \dataA with $\tau=0.7$.}}
+\caption{\small{Varying $L$ with fixed $K=16$ on \aol and \dataA with $\tau=0.7$.}}
 \label{tab:varyL}
 \end{table}
 In the third experiment, we vary $K$ to be in $\{4,8,16\}$ while fixing $L=10$ on \aol and \dataA datasets. 
@@ -127,7 +132,7 @@ Hence, we fix $K=16$ to have few number of comparisons.
 \rowcolor[gray]{0.9}16 &  57 & .63 & 1,052 & .67 \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Varying $K$ with fixed $L=10$ on \aol with $\tau=0.7$.}}
+\caption{\small{Varying $K$ with fixed $L=10$ on \aol with $\tau=0.7$.}}
 \label{tab:varyK}
 \end{table}
 
@@ -149,7 +154,7 @@ brute force search over all $600$ million queries in the dataset.
 
 
 
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{|c|r|c|}
 \hline
@@ -161,11 +166,11 @@ Data & Comparisons & Recall \\
 \dataC    & 105,126 & - \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Fixed $K=16$  and $L=10$ on different sized datasets with $\tau=0.7$.}}
+\caption{\small{Fixed $K=16$  and $L=10$ on different sized datasets with $\tau=0.7$.}}
 \label{tab:varyData}
 \end{table}
 
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{|c|r|c|}
 \hline
@@ -177,12 +182,12 @@ Data & Comparisons & Recall \\
 \dataC ($K=24$)   & 464 & - \\
 \hline 
  \end{tabular}
-\caption{\footnotesize{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ on different sized datasets.}}
+\caption{\small{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ on different sized datasets.}}
 \label{tab:bestLSH}
 \end{table}
 
 
-\begin{table}
+\begin{table}[h]
 \centering
 {
 \small \addtolength{\tabcolsep}{-4.5pt}
@@ -200,7 +205,7 @@ $F$ & Comparisons & Recall  & Comparisons & Recall \\
 \hline 
  \end{tabular}
  }
-\caption{\footnotesize{Flipping the bits in the query only with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
+\caption{\small{Flipping the bits in the query only with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
 \label{tab:query:aol}
 \end{table}
 
@@ -223,7 +228,7 @@ $F$ & Comparisons & Recall  & Comparisons & Recall \\
 \hline 
  \end{tabular}
  }
-\caption{\footnotesize{Flipping the bits in both the query and the database with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
+\caption{\small{Flipping the bits in both the query and the database with $K=16$ and $L=10$ on \aol  with $\tau=0.7$.}}
 \label{tab:both:aol}
 \end{table}
 
@@ -245,7 +250,7 @@ Method & \multicolumn{2}{c|}{\dflipq} & \multicolumn{2}{c|}{\dflipb}   \\
 \hline 
  \end{tabular}
  }
-\caption{\footnotesize{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ and $F=2$ on different sized datasets with $\tau=0.7$.}}
+\caption{\small{Best parameter settings (Based on minimizing number of comparisons and maximizing recall) of $K$ with fixed $L=10$ and $F=2$ on different sized datasets with $\tau=0.7$.}}
 \label{tab:dataset:final}
 \end{table}
 
@@ -278,7 +283,7 @@ how many lb in a ton & coldwell banker door county wisconsin & michae;ls  & weat
 \end{table*}
 
 
-\subsection{Evaluating Multi-Probe LSH}
+\subsection{Evaluating Multi-Probe \lsh}
 \label{subsec:eval:multiProbeLSH}
 In the first experiment, we compare flipping the bits in query only. 
 We evaluate two approaches: \rflipq and \dflipq. We can make several observations from Table \ref{tab:query:aol}: 1) As expected, increasing the number of flips improve recall at expense of more comparisons for both \dflipq and \rflipq. 2) The last row of the Table \ref{tab:query:aol} shows that once we flip all the $K$ bits ($F=16$),  \dflipq and \rflipq converge to the same algorithm.  3) Our results show that \dflipq has significantly better recall than \rflipq with similar number of comparisons. In second row of the table with $F=2$, \dflipq has nine points better recall than \rflipq.  

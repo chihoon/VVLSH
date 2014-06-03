@@ -14,9 +14,8 @@ is faster than the original \lsh algorithm but that still requires large number 
 
 The next major difference between our research and existing work is that the 
 existing work deals with approximating cosine similarity by Hamming distance  
-\cite{ravichandran05,vandurme-lall:2010:Short,vandurme-lall:2011:Short,goyal12Flag}. 
-In that problem setting, the goal is to minimize both false positives and negatives. 
-In our work, we focus on minimizing false negatives with zero tolerance for false positives.
+\cite{ravichandran05,vandurme-lall:2010:Short,vandurme-lall:2011:Short,goyal12Flag,moranACL13}. Moran et al. \shortcite{moranACL13} recently proposed a data-driven non-uniform bit allocation across hyperplanes that uses less bits than many existing \lsh schemes to approximate cosine similarity by Hamming distance.     
+In all these existing problem settings, the goal is to minimize both false positives and negatives. However, we focus on minimizing false negatives with zero tolerance for false positives.
 
 \cite{zadeh2013dimension} developed a distributed version of the LSH algorithm, for 
 the Jaccard distance metric, that scales to very large text corpora by virtue of being implemented on a map-reduce, 

@@ -201,7 +201,9 @@ Next, we compute cosine similarity between each of the retrieved terms
 and the input test queries and return all those queries as neighbors 
 which are within a similarity threshold ($\tau$). 
 
-In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop).  
+In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop). 
+\lsh algorithm is incredibly easy to implement in map-reduce setting; hence due to limited space, 
+we do not include the unnecessary implementation details of this algorithm.  
 In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implementation scales to hundreds of millions of queries.  
 
 \subsection{Reusing Hash Functions}
@@ -258,6 +260,11 @@ The distance of the test query $q$ from the random hyperplane is the absolute va
 \item {\bf \dflipb:} The fourth version is similar to third one, however 
 here we flip bits for both the test query and for the queries in the database (i.e. this is the intelligent version of the second baseline). 
 \end{itemize}
+
+In this work, we have implemented all the above four variants of \lsh in a map-reduce setting (Hadoop). 
+It is incredibly easy to change the existing vanilla \lsh map-reduce implementation to implement 
+these four novel variants of \lsh.  
+In Section \ref{subsec:eval:multiProbeLSH}, we show that the map-reduce implementation of four novel variants of \lsh scales to hundreds of millions of queries.  
 
 
 %we have experimented with is the following variant of Multi-probe \lsh:  first we compute the initial \lsh of a query q, which gives the $L$ bucket ids. 

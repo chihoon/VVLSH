@@ -1,47 +1,48 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: acl.bst
 Database file #1: lsh.bib
 Warning--empty journal in Andoni06FOCS
-You've used 28 entries,
+You've used 29 entries,
             2490 wiz_defined-function locations,
-            715 strings with 10606 characters,
-and the built_in function-call counts, 10880 in all, are:
-= -- 1094
-> -- 477
+            720 strings with 10822 characters,
+and the built_in function-call counts, 11265 in all, are:
+= -- 1134
+> -- 495
 < -- 2
-+ -- 162
-- -- 158
-* -- 748
-:= -- 1757
-add.period$ -- 120
-call.type$ -- 28
-change.case$ -- 191
-chr.to.int$ -- 28
-cite$ -- 29
-duplicate$ -- 507
-empty$ -- 896
-format.name$ -- 196
-if$ -- 2303
++ -- 168
+- -- 164
+* -- 774
+:= -- 1820
+add.period$ -- 125
+call.type$ -- 29
+change.case$ -- 198
+chr.to.int$ -- 29
+cite$ -- 30
+duplicate$ -- 525
+empty$ -- 928
+format.name$ -- 203
+if$ -- 2386
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 170
-num.names$ -- 84
-pop$ -- 260
+missing$ -- 29
+newline$ -- 176
+num.names$ -- 87
+pop$ -- 270
 preamble$ -- 1
-purify$ -- 219
+purify$ -- 227
 quote$ -- 0
-skip$ -- 340
+skip$ -- 350
 stack$ -- 0
-substring$ -- 277
-swap$ -- 97
+substring$ -- 282
+swap$ -- 100
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 224
+type$ -- 232
 warning$ -- 1
-while$ -- 66
-width$ -- 31
-write$ -- 383
+while$ -- 68
+width$ -- 32
+write$ -- 397
 (There was 1 warning)

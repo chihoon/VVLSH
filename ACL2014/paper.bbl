@@ -124,6 +124,14 @@ Qin Lv, William Josephson, Zhe Wang, Moses Charikar, and Kai Li.
 \newblock In {\em Proceedings of the 33rd international conference on Very
   large data bases (VLDB)}.
 
+\bibitem[\protect\citename{Moran \bgroup et al.\egroup }2013]{moranACL13}
+Sean Moran, Victor Lavrenko, and Miles Osborne.
+\newblock 2013.
+\newblock Variable bit quantisation for lsh.
+\newblock In {\em Proceedings of the 51st Annual Meeting of the Association for
+  Computational Linguistics (Volume 2: Short Papers)}. Association for
+  Computational Linguistics.
+
 \bibitem[\protect\citename{Pass \bgroup et al.\egroup }2006]{Pass06}
 Greg Pass, Abdur Chowdhury, and Cayley Torgeson.
 \newblock 2006.

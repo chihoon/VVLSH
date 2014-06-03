@@ -16,7 +16,7 @@ When a query set is retrieved from a repository and presented to users, it is im
 from the set so that the user is not distracted by duplicated results. Given a set of
 we can apply  \dflipb algorithm to build a lookup table of near-duplicates 
 in order to find the ``duplicated query terms'' efficiently. 
-As ``duplicateness'' of among query terms typically requires ``higher'' degree of similarity 
+As ``near-duplicates''  among query terms typically requires ``higher'' degree of similarity 
 (relatively easier problem) than ``relatedness'', 
 we can tune parameters ($K, L, F$) based on a specific $\tau$ (e.g $\tau=0.9$) from training samples. 
 The fourth column in Table~\ref{tab:lists} illustrates several duplicate examples-- ``trumbull weather ct'' and ``weather in trumbull ct''.
@@ -29,5 +29,7 @@ We also proposed four novel variants of \lsh that are aimed to reduce the number
 of hash tables used. Two of our variants achieve 
 significantly better recall than the vanilla LSH by using the same number of hash tables. 
 We also present a framework on Hadoop that efficiently finds nearest neighbors for a given query from a commercial 
-large-scale query logs (consisting of hundreds of millions of queries) in sublinear time.
+large-scale query logs in sublinear time. On our entire corpus (\dataC) with hundreds of millions of queries, 
+\dflipb only requires 3,427 comparisons compared to hundreds of millions of comparisons by exact brute force algorithm.
+In future, we will extend our \lsh framework to several large-scale NLP and social media applications.  
 
