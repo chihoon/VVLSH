@@ -72,8 +72,8 @@ The goal of this paper is to maximize recall and to minimize the number of compa
 
 In the first experiment, we vary the similarity threshold parameter $\tau$ to be in $\{0.7,0.8,0.9\}$ 
 while fixing $K=16$ and $L=10$ for the \aol and \dataA datasets. 
-Table~\ref{tab:varyTau} shows that as expected, finding near-duplicates, when $\tau=0.9$, 
-is easier than finding nearest neighbors when $\tau=0.7$. For, rest of this paper, 
+From Table~\ref{tab:varyTau}, $\tau=0.9$ achieves higher recall than that of $\tau=0.7$.
+This is expected as finding near duplicates is easier than finding near neighbors. For, rest of this paper, 
 we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors for our test queries. 
 
 In the second experiment, we vary $L$ to be in $\{1,10,28,55\}$ while fixing $K=16$ on the \aol and \dataA datasets. 
