@@ -31,7 +31,7 @@ For each query $q$, a feature vector in a high dimensional feature space is defi
 $\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$.
 %For each query $q$, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion). Specifically, each dimension in the feature vector of $q$ corresponds to a weight of a webpage (urls) that have received a user click for $q$. The weight of an url for $q$ is defined as the click through rate of the url.  
 Note that in a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
-Table \ref{tab:data} summarizes the statistics of our query-log datasets. 
+Table \ref{tab:data} summarizes the statistics of our query-log datasets.
 
 \paragraph{Test Data} All the experiments are performed using queries $Q$ randomly sampled from the query logs as the test set of $2000$ queries. 
 That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similiarty, and $q' \in \{\dataA, \dataB, \dataC\}$. 
