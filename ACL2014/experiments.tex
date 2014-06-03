@@ -24,11 +24,10 @@ Data & $N$ & $D$  \\
 \subsection{Data}
 The first data set is the one made avialble to the public from the AOL search engine \cite{Pass06} (denoted as \aol dataset). 
 In addition, we perform evaluations using a large query log 
-%(hundreds of millions of queries) 
 from a commercial search engine, denoted as Qlogs. 
 As Qlogs typically reaches to hundres of millions of queries over multiple days (i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive set of queries posed to the search engine.}.) We then generated multiple datasets from Qlogs by sampling at various size rates. \dataA represents a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
-For each query, a high dimensional and sparse, feature vector was created over the domain of urls (the size of the domain is a few billion).   
-The feature vector of a query $q$ contains the  webpages (urls) that have received a user click for this search query $q$. The weight of 
+For each query, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion).   
+Specifically, each dimension in the feature vector of a query $q$ corresponds to a webpage (urls) that have received a user click for $q$. The weight of 
 an url feature for a query $q$ depends on the click through rate of this url for the query $q$.  
 As a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
 Table \ref{tab:data} summarizes the statistics of our query-log datasets. 
