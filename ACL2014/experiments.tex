@@ -1,8 +1,8 @@
 
 \section{Experiments}
-We evaluate our  distributed large-scale approximate near neighbor framework by conducting 
-several experiments on publicly available query logs as well as a 
-large-scale query log collected from a commercial search engine. 
+In this section, we illustrate experimental results to evaluate our distributed neighbor search framework.
+Our experiments are conducted on publicly available query logs collected from the AOL search engine~\cite{Pass06} as well as a 
+large-scale query log from a commercial search engine. 
 
 
 \begin{table}
@@ -22,13 +22,12 @@ Data & $N$ & $D$  \\
 \end{table}
 
 \subsection{Data}
-The public dataset that we demonstrate results on is adapted from the query logs of the AOL search engine \cite{Pass06}  (\aol dataset). 
-Moreover, we show results on a large query log (hundreds of millions of queries) sampled from a commercial search engine. 
-We started by collecting a dataset over multiple days, and containing $N=600$ million unique queries: this does not represent
-an exhaustive set of queries posed to the search engine. We then created multiple datasets from this corpus by subsampling it at various rates.
-\dataA represents a $1\%$ sample of queries from the above corpus, \dataB represents a $10\%$ sample and \dataC represents the entire corpus. 
-For each query, a high dimensional and sparse, feature vector was created over the domain of urls (the size of the domain is a few billion).   
-The feature vector of a query $q$ contains the  webpages (urls) that have received a user click for this search query $q$. The weight of 
+The first data set is the one made avialble to the public from the AOL search engine \cite{Pass06} (denoted as \aol dataset). 
+In addition, we perform evaluations using a large query log 
+from a commercial search engine, denoted as Qlogs. 
+As Qlogs typically reaches to hundres of millions of queries over multiple days (i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive set of queries posed to the search engine.}.) We then generated multiple datasets from Qlogs by sampling at various size rates. \dataA represents a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
+For each query, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion).   
+Specifically, each dimension in the feature vector of a query $q$ corresponds to a webpage (urls) that have received a user click for $q$. The weight of 
 an url feature for a query $q$ depends on the click through rate of this url for the query $q$.  
 As a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
 Table \ref{tab:data} summarizes the statistics of our query-log datasets. 
