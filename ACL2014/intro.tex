@@ -18,8 +18,9 @@ Computing nearest neighbors is useful for
 many search-related problems on the Web and the Mobile such as 
 finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, 
 finding near-duplicate queries \cite{leeCIKM11}, spelling correction \cite{ahmadEMNLP05,liSIGIR12},  
-paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
-and diversifying search results \cite{Song11SIGIR}.  
+and diversifying search results \cite{Song11SIGIR}; and many Natural Language Processing (NLP) tasks   
+such as paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
+distributional similarity \cite{ravichandran05,agirre09,turneyVector10}, and creating sentiment lexicons from large-scale Web data \cite{velikovich10}.   
 
 In this paper, we focus on the problem of finding nearest neighbors
 for a given query from very large scale query logs available from a commercial search engine. 
@@ -79,17 +80,15 @@ Our work makes the following contributions:
   these variants is to intelligently probe multiple ``nearby'' buckets within a table that have a high probability of containing the nearest neighbors of a query.  
 \item We present a framework on Hadoop that efficiently finds nearest neighbors for a given query from a commercial large-scale query logs in sublinear time. % Can we claim something more specific wrt time (e.g. 0(N logN))?
 %: Random Flipping and Query-Driven Flipping. 
-\item  We show that the applicability of our system on two real-world
+\item  We discuss the applicability of our framework on two real-world
   applications: finding related queries and removing (near) duplicate
-  queries.
-The system outperforms competitor methods, and is currently being
+  queries. The algorithms presented in this paper are currently being
 implemented for production use within a large search provider. 
 %(Increasing  direct display coverage is related to finding related queries) and ??.
 \end{enumerate}
 
 %We are interested in the following setting: given a large set of 
 %points $q_1,q_2,\dots,q_n$, each of them is a search-query. 
-
 %Spelling {grouping mis-spellings in same group}
 %Similar entities {LOTR,}
 %Finding related queries

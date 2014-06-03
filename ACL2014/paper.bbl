@@ -7,6 +7,14 @@ Dimitris Achlioptas.
   binary coins.
 \newblock {\em J. Comput. Syst. Sci.}, 66(4):671--687.
 
+\bibitem[\protect\citename{Agirre \bgroup et al.\egroup }2009]{agirre09}
+Eneko Agirre, Enrique Alfonseca, Keith Hall, Jana Kravalova, Marius Pa\c{s}ca,
+  and Aitor Soroa.
+\newblock 2009.
+\newblock A study on similarity and relatedness using distributional and
+  wordnet-based approaches.
+\newblock In {\em NAACL '09: Proceedings of HLT-NAACL}.
+
 \bibitem[\protect\citename{Ahmad and Kondrak}2005]{ahmadEMNLP05}
 Farooq Ahmad and Grzegorz Kondrak.
 \newblock 2005.
@@ -155,6 +163,21 @@ Yang Song, Dengyong Zhou, and Li-wei He.
 \newblock Query suggestion by constructing term-transition graphs.
 \newblock In {\em Proceedings of the Fifth ACM International Conference on Web
   Search and Data Mining (WSDM)}. ACM.
+
+\bibitem[\protect\citename{Turney and Pantel}2010]{turneyVector10}
+Peter~D. Turney and Patrick Pantel.
+\newblock 2010.
+\newblock From frequency to meaning: Vector space models of semantics.
+\newblock {\em JOURNAL OF ARTIFICIAL INTELLIGENCE RESEARCH}, 37:141.
+
+\bibitem[\protect\citename{Velikovich \bgroup et al.\egroup
+  }2010]{velikovich10}
+Leonid Velikovich, Sasha Blair-Goldensohn, Kerry Hannan, and Ryan McDonald.
+\newblock 2010.
+\newblock The viability of web-derived polarity lexicons.
+\newblock In {\em Human Language Technologies: The 2010 Annual Conference of
+  the North American Chapter of the Association for Computational Linguistics}.
+  Association for Computational Linguistics.
 
 \bibitem[\protect\citename{Weinberger \bgroup et al.\egroup
   }2009]{weinberger09hashing}

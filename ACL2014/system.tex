@@ -45,13 +45,13 @@ on a distributed platform.
 
 
 
-\section{Approach}
+\section{Proposed Approach}
 \label{sec:approach}
 We describe a distributed \lshf framework based on map-reduce. 
 First, we present vanilla \lsh algorithm based on the seminal work of Andoni and Indyk  \shortcite{Andoni08CACM}. 
 To best of our knowledge, this is the first paper that applies this variant of locality sensitive hashing algorithms to NLP applications. 
 
-The algorithm in \cite{Andoni08CACM} improves the existing research in \lsh and \plebf (PLEB) \cite{Indyk98STOC,Charikar02STOC}. 
+The algorithm in Andoni and Indyk \shortcite{Andoni08CACM} improves the existing research in \lsh and \plebf (PLEB) \cite{Indyk98STOC,Charikar02STOC}. 
 PLEB was applied for noun clustering \cite{ravichandran05} and speech tasks \cite {JansenASRU11,JansenIS12}. 
 Recent prior work on new variants of PLEB \cite{goyal12Flag} for distributional similarity can be seen as 
 implementing a special case of Andoni and Indyk's \lsh algorithm. 
@@ -98,9 +98,68 @@ making the probability of dissimilar queries having the same hash value very sma
 In order to increase the recall of the \lsh algorithm, the algorithm of Andoni et al. then uses
 $L$ hash tables, each constructed using a different $g_j(\cdot)$ function, where each 
 $g_j(\cdot)$ is defined as $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q)))$; $\forall 1 \leq j \leq  L$. 
+We list the major notations of \lsh in Table \ref{tab:notation}. 
+
+\begin{table}
+\centering
+{
+\small \addtolength{\tabcolsep}{-4.5pt}
+\begin{tabular}{ll}
+\hline
+\hline
+ \textbf{Symbol} &  \textbf{Description} \\
+\hline 
+$N$ & \# of query terms \\
+$D$ & \# of features i.e. all clicked unique urls \\
+\hline
+\multirow{3}{*}{$K$} & \# of hash functions concatenated together \\ 
+   & $g(q)=(h_1(q),h_2(q),\dots,h_k(q)))$ \\ 
+	 & to generate the index of a table \\
+\hline
+ \multirow{2}{*}{$L$} & \# of tables generated independently \\ 
+	  &  with $g_j(q)$ index, $\forall 1 \leq j \leq  L$  \\
+\hline
+$F$ & \# of bits flipped, $\forall 1 \leq j \leq  L$   \\
+$\tau$ & $\tau$ threshold \\
+Recall & fraction of similar candidates retrieved \\
+Comparisons & Avg \# of pairwise comparisons per query  \\
+\hline 
+\end{tabular}
+\caption{\footnotesize{Major Notations}}
+\label{tab:notation}
+}
+\end{table}
 
 
 %Recall = $1-(1-P_1^{K})^{L}$
+
+\begin{figure}[ht]
+\small
+\fbox{
+\begin{minipage}{2.5in}
+{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors.
+\begin{itemize}
+\item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q))$, where 
+$\{h_{i,j}, i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
+\item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. 
+All queries with the same $g_j$ value ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
+\end{itemize}
+
+{\bf Query:} $M$ test queries. Let $q$ denote a test query. 
+\begin{itemize}
+\item For each $j=1,2,\dots,L$
+\begin{itemize}
+\item Retrieve all the queries from the bucket with $g_j(q)$ function as the index of the bucket 
+\item Compute cosine similarity between query q and all the retrieved queries. Return all the queries which have similarity affinity within a similarity threshold ($\tau$). 
+\end{itemize}
+
+\end{itemize}
+\end{minipage}
+}
+\caption{\lshf Algorithm}
+\label{alg:lsh}
+\end{figure}
+
 
 \subsection{\lsh for Cosine Similarity}
 \label{subsec:vlsh:cosine}
@@ -133,7 +192,7 @@ that is constructed as follows: for query $q$, we take all the webpages (urls) t
 when querying for $q$. Using this representation, we then generate the 
 $L$ different hash values for each query $q$, where each such hash value is again 
 the concatenation of $K$ hash functions. These $L$ hash values per query are then used to create $L$ hash tables.
-Since the width of the index of each bucket is $K$, each hash table contains at most $2^K$ buckets. 
+Since the width of the index of each bucket is $K$ with each coordinate being $0/1$ bit, each hash table contains at most $2^K$ buckets. 
 Each query term is then placed in their respective buckets for each of the $L$ hash tables.
 
 In order to retrieve near neighbors, for each of the $M$ test queries, we first 
@@ -142,34 +201,8 @@ Next, we compute cosine similarity between each of the retrieved terms
 and the input test queries and return all those queries as neighbors 
 which are within a similarity threshold ($\tau$). 
 
-In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop). 
+In this work, we have implemented the above algorithm in a map-reduce setting (Hadoop).  
 In Section \ref{subsec:eval:vanillaLSH}, we show that the map-reduce implementation scales to hundreds of millions of queries.  
-
-\begin{figure}
-\fbox{
-\begin{minipage}{2.5in}
-{\bf Preprocessing:} Input is $N$ queries with their respective feature vectors.
-\begin{itemize}
-\item Select $L$ functions $g_j$, $j=1,2,\dots,L$, setting  $g_j(q)=(h_{1,j}(q),h_{2,j}(q),\dots,h_{K,j}(q))$, where 
-$\{h_{i,j}, i\in [1, K], j\in [1,L]\}$ are chosen at random from the \lsh family.
-\item Construct $L$ hash tables, $\forall 1 \leq j \leq  L$. 
-All queries with the same $g_j$ value ($\forall 1 \leq j \leq  L$) are placed in the same bucket.    
-\end{itemize}
-
-{\bf Query:} $M$ test queries. Let $q$ denote a test query. 
-\begin{itemize}
-\item For each $j=1,2,\dots,L$
-\begin{itemize}
-\item Retrieve all the queries from the bucket with $g_j(q)$ function as the index of the bucket 
-\item Compute cosine similarity between query q and all the retrieved queries. Return all the queries which have similarity affinity within a similarity threshold ($\tau$). 
-\end{itemize}
-
-\end{itemize}
-\end{minipage}
-}
-\caption{\lshf Algorithm}
-\label{alg:lsh}
-\end{figure}
 
 \subsection{Reusing Hash Functions}
 \label{subsec:resuseHash}
@@ -185,36 +218,6 @@ Next, we define $g(q)=(f_a,f_b)$, where $1\leq a < b \leq R$. Using such pairing
 can thus generate $L= \frac{R (R -1)}{2}$ hash indices. 
 This scheme requires O($K  \sqrt L$) hash functions, instead of O($KL$).    
 For rest of this paper, we use the above trick to generate $L$ hash tables with bucket indices of width $K$ bits.  
-\begin{table}
-\centering
-{
-\small \addtolength{\tabcolsep}{-4.5pt}
-\begin{tabular}{ll}
-\hline
-\hline
- \textbf{Symbol} &  \textbf{Description} \\
-\hline 
-$N$ & \# of query terms \\
-$D$ & \# of features i.e. all clicked unique urls \\
-\hline
-\multirow{3}{*}{$K$} & \# of hash functions concatenated together \\ 
-   & $g(q)=(h_1(q),h_2(q),\dots,h_k(q)))$ \\ 
-	 & to generate the index of a table \\
-\hline
- \multirow{2}{*}{$L$} & \# of tables generated independently \\ 
-	  &  with $g_j(q)$ index, $\forall 1 \leq j \leq  L$  \\
-\hline
-$F$ & \# of bits flipped, $\forall 1 \leq j \leq  L$   \\
-$\tau$ & $\tau$ threshold \\
-Recall & fraction of similar candidates retrieved \\
-Comparisons & Avg \# of pairwise comparisons per query  \\
-\hline 
-\end{tabular}
-\caption{\footnotesize{Major Notations}}
-}
-\label{tab:notation}
-\end{table}
-
 
 \subsection{Multi Probe \lsh}
 \label{sec:mblsh}
@@ -232,7 +235,6 @@ Although \mblshf is achieves a higher recall for the same number of hash tables,
 probes since it searches for multiple buckets within a table. 
 The main advantage of searching in multiple buckets over generating more number of tables 
 is that it takes more memory and time to generate more tables in pre-processing. 
-
 
 The original \mblshf algorithm is developed for Euclidean distance, the details
 are described in~\cite{LvVLDB07}. However, the Euclidean distance implementation does not immediately translate to our setting of cosine similarity. 

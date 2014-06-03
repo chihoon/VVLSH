@@ -1,11 +1,13 @@
 \section{Applications}
-In this section, we highlight several examples that take significant advantage of  the approximate \dflip algorithm presented in this paper.
+In this section, we highlight several examples that take significant advantage of  the approximate \dflipb algorithm presented in this paper.
 One of the interesting examples is to understand an intent of a user's query submitted to commercial search engines. Given a user's query,
-Google, Yahoo, and Bing often delivers direct display results that summarize expected contents of the query. 
+Bing, Google, and Yahoo often delivers direct display results that summarize expected contents of the query. 
 For instance, when a query ``f stock price'' is issued  to search engines, the quick summary of the stock quote with a chart is delivered 
 to the user as the part of the search engine result page. By providing this direct display results, the users are expected to consume the right contents
 in the first result reducing chances of unnecessary clicks. However, when query "f today closing price" is issued to search engines, the three major search engines 
 fail to deliver the same direct display experience to the user query, although its query intent is strongly related to ``f stock price''. 
 Therefore, by employing the \dflip, it is straightforward to build a synonym database, which helps to trigger the same direct display among related queries.
 The other example is to remove duplicated instances in a result set. 
-When a query set is retrieved from a repository and presented to users, it is important to remove similar queries as user experiences would be distracted from ``duplicated results.'' That is, given a set of query terms, we can apply  \dflip algorithm to build $L$ hash tables, where each hash table has $K$ width bit bucket-ids. This in turn allows to find ``duplicated query terms'' efficiently. As `duplicateness'' of among query terms typically requires ``higher'' degree of similarity than ``relatedness'', we can learn $\tau$ from training samples.  The fourth column in Table~\ref{tab:lists} illustrates several duplicate examples -- ``trumbull weather ct'' and ``weather in trumbull ct''.
+When a query set is retrieved from a repository and presented to users, it is important to remove similar queries as user experiences would be distracted from ``duplicated results.'' 
+That is, given a set of query terms, we can apply  \dflipb algorithm to build a lookup table of near-duplicates 
+to find ``duplicated query terms'' efficiently. As ``duplicateness'' of among query terms typically requires ``higher'' degree of similarity (relatively easier problem) than ``relatedness'', we can tune parameters ($K, L, F$) based on a specific $\tau$ (e.g $\tau=0.9$) from training samples.  The fourth column in Table~\ref{tab:lists} illustrates several duplicate examples -- ``trumbull weather ct'' and ``weather in trumbull ct''.
