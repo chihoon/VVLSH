@@ -1,15 +1,3 @@
-% File acl2010.tex
-%
-% Contact  jshin@csie.ncnu.edu.tw or pkoehn@inf.ed.ac.uk
-%%
-%% Based on the style files for ACL-IJCNLP-2009, which were, in turn,
-%% based on the \section{bb}
-%tyle files for EACL-2009 and IJCNLP-2008...
-
-%% Based on the style files for EACL 2006 by 
-%%e.agirre@ehu.es or Sergi.Balari@uab.es
-%% and that of ACL 08 by Joakim Nivre and Noah Smith
-
 \documentclass[11pt]{article}
 \usepackage{acl2012}
 \input{preamble}
@@ -36,337 +24,336 @@
 
 
 
-%\begin{table}
-%\centering
-%{
-%\small \addtolength{\tabcolsep}{-4.5pt}
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%$L$ & $\tau$ & Comparisons & Recall \\
-%\hline
-%\multirow{3}{*}{10}  & 0.7 & 57.2255 & 0.63 \\
-% & 0.8 & 57.2255 & 0.84 \\
-% & 0.9 & 57.2255 & 0.98 \\
-%\hline
-%\multirow{3}{*}{28} & 0.7 & 152.3315 & 0.77 \\
-% & 0.8 & 152.3315 & 0.90 \\
-% & 0.9 & 152.3315 & 0.99 \\
-%\hline
-%\multirow{3}{*}{55} & 0.7 & 296.6195 & 0.89 \\
-% & 0.8 & 296.6195 & 0.97 \\
-% & 0.9 & 296.6195 & 0.99 \\
-%\hline
-%\multirow{3}{*}{120} & 0.7 & 629.5505 & 0.93 \\
-% & 0.8 & 629.5505 & 0.98 \\
-% & 0.9 & 629.5505 & 0.99 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=16$ on \aol.}}
-%}
-%\label{tab:data-so}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 433.041 & 0.73 \\
-% & 0.8 & 433.041 & 0.88 \\
-% & 0.9 & 433.041 & 0.98 \\
-%\hline
-%\multirow{3}{*}{5} & 0.7 & 1556.5815 & 0.86 \\
-% & 0.8 & 1556.5815 & 0.95 \\
-% & 0.9 & 1556.5815 & 0.99 \\
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 4138.3675 & 0.94 \\
-% & 0.8 & 4138.3675 & 0.99 \\
-% & 0.9 & 4138.3675 & 1.00 \\
-%\hline 
-%\multicolumn{4}{c}{Flip query Bits only} \\
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\
-%\hline
-%\multirow{3}{*}{1}  & 0.7 & 108.3585 & 0.65 \\
-% & 0.8 & 108.3585 & 0.85 \\
-%  & 0.9 & 108.3585 & 0.98 \\
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 158.9565 & 0.66 \\
-% & 0.8 & 158.9565 & 0.85 \\
-% & 0.9 & 158.9565 & 0.98 \\
-%\hline
-%\multirow{3}{*}{5} & 0.7 & 310.7435 & 0.70 \\
-% & 0.8 & 310.7435 & 0.86 \\
-% & 0.9 & 310.7435 & 0.98 \\
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 556.796 & 0.75 \\
-% & 0.8 & 556.796 & 0.89 \\
-% & 0.9 & 556.796 & 0.99 \\
-%\hline
-%\multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
-% & 0.8 & 838.8535 & 0.92 \\
-%& 0.9 & 838.8535 & 0.99 \\
-%\hline
-%\end{tabular}
-%\caption{\footnotesize{$K=16$ on \aol. Random Flipping is tested here.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 405.239 & 0.86 \\
-% & 0.8 & 405.239 & 0.96 \\
-% & 0.9 & 405.239 & 0.99 \\
-%\hline
-%\multirow{3}{*}{5} & 0.7 & 1475.484 & 0.93 \\
-% & 0.8 & 1475.484 & 0.99 \\
-% & 0.9 & 1475.484 & 1.00 \\
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 4059.0105 & 0.96 \\
-% & 0.8 & 4059.0105 & 0.99 \\
-% & 0.9 & 4059.0105 & 1.00 \\
-%\hline
-%\multicolumn{4}{c}{Flip query Bits only} \\
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\
-%\hline
-%\multirow{3}{*}{1} & 0.7 & 106.2105 & 0.72 \\
-% & 0.8 & 106.2105 & 0.88 \\
-% & 0.9 & 106.2105 & 0.98 \\
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 155.354 & 0.75 \\
-% & 0.8 & 155.354 & 0.89 \\
-% & 0.9 & 155.354 & 0.98 \\
-%\hline
-% \multirow{3}{*}{5} & 0.7 & 303.0655 & 0.79 \\
-% & 0.8 & 303.0655 & 0.91 \\
-% & 0.9 & 303.0655 & 0.99 \\
-%\hline
-% \multirow{3}{*}{10} & 0.7 & 551.8475 & 0.81 \\
-% & 0.8 & 551.8475 & 0.92 \\
-% & 0.9 & 551.8475 & 0.99 \\
-%\hline
-% \multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
-% & 0.8 & 838.8535 & 0.92 \\
-% & 0.9 & 838.8535 & 0.99 \\
-%\hline
-%\end{tabular}
-%\caption{\footnotesize{$K=16$ on \aol. Query Driven Flipping is tested here.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%$L$ & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 1052.419 & 0.67 \\
-%& 0.8 & 1052.419 & 0.81 \\
-%& 0.9 & 1052.419 & 0.96 \\
-%\hline
-%\multirow{3}{*}{28} & 0.7 & 2908.1875 & 0.78 \\
-%& 0.8 & 2908.1875 & 0.90 \\
-%& 0.9 & 2908.1875 & 0.96 \\
-%\hline
-%\multirow{3}{*}{55} & 0.7 & 5648.186 & 0.84 \\
-%& 0.8 & 5648.186 & 0.92 \\
-%& 0.9 & 5648.186 & 0.97 \\
-%\hline
-%\multirow{3}{*}{120} & 0.7 & 12130.4065 & 0.91 \\
-%& 0.8 & 12130.4065 & 0.96 \\
-%& 0.9 & 12130.4065 & 0.99 \\
-%\hline
-%\multirow{3}{*}{253} & 0.7 & 25039.1265 & 0.95 \\
-%& 0.8 & 25039.1265 & 0.96 \\
-%& 0.9 & 25039.1265 & 0.99 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=16$ on \dataA.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 8558.23 & 0.76 \\
-% & 0.8 & 8558.23 & 0.86 \\
-% & 0.9 & 8558.23 & 0.96 \\
-%\hline 
-%\multirow{3}{*}{5} & 0.7 & 31119.1765 & 0.83 \\
-% & 0.8 & 31119.1765 & 0.90 \\
-% & 0.9 & 31119.1765 & 0.96 \\
-%\hline 
-%\multirow{3}{*}{10} & 0.7 & 83196.2015 & 0.90 \\
-% & 0.8 & 83196.2015 & 0.93 \\
-% & 0.9 & 83196.2015 & 0.99 \\
-%\hline
-%\multicolumn{4}{c}{Flipping only bits for the query} \\
-%\multirow{3}{*}{2} & 0.7 & 3091.9095 & 0.72 \\
-%& 0.8 & 3091.9095 & 0.84 \\
-% & 0.9 & 3091.9095 & 0.96 \\
-%\multirow{3}{*}{5} & 0.7 & 6095.7215 & 0.73 \\
-% & 0.8 & 6095.7215 & 0.86 \\
-% & 0.9 & 6095.7215 & 0.96 \\
-%\multirow{3}{*}{10} & 0.7 & 10976.4205 & 0.79 \\
-% & 0.8 & 10976.4205 & 0.87 \\
-% & 0.9 & 10976.4205 & 0.96 \\
-%\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
-% & 0.8 & 16634.244 & 0.89 \\
-% & 0.9 & 16634.244 & 0.96 \\
-%
-% \end{tabular}
-%\caption{\footnotesize{$K=16$ on \dataA. Random Flipping is tested here.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{2} & 0.7 & 2979.8075 & 0.76 \\
-% & 0.8 & 2979.8075 & 0.87 \\
-% & 0.9 & 2979.8075 & 0.96 \\
-%\hline
-%\multirow{3}{*}{5} & 0.7 & 5903.528 & 0.78 \\
-% & 0.8 & 5903.528 & 0.87 \\
-% & 0.9 & 5903.528 & 0.96 \\
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 10844.163 & 0.81 \\
-% & 0.8 & 10844.163 & 0.88 \\
-% & 0.9 & 10844.163 & 0.96 \\
-%\hline
-%\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
-% & 0.8 & 16634.244 & 0.89 \\
-% & 0.9 & 16634.244 & 0.96 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=16$ on \dataA. Query Driven Flipping is tested here.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%L & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 10514.8925 & 0.64 \\
-% & 0.8 & 10514.8925 & 0.83 \\
-% & 0.9 & 10514.8925 & 0.95 \\
-%\hline
-%\multirow{3}{*}{28} & 0.7 & 29065.2255 & 0.74 \\
-% & 0.8 & 29065.2255 & 0.90 \\
-% & 0.9 & 29065.2255 & 0.97 \\
-%\hline
-%\multirow{3}{*}{55} & 0.7 & 56472.7575 & 0.83 \\
-% & 0.8 & 56472.7575 & 0.93 \\
-% & 0.9 & 56472.7575 & 0.98 \\
-%\hline
-%\multirow{3}{*}{120} & 0.7 & 121284.769 & 0.89 \\
-% & 0.8 & 121284.769 & 0.96 \\
-% & 0.9 & 121284.769 & 0.99 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=16$ on \dataB.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%L & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 694.8745 & 0.53 \\
-% & 0.8 & 694.8745 & 0.76 \\
-% & 0.9 & 694.8745 & 0.92 \\
-%\hline 
-%\multirow{3}{*}{28} & 0.7 & 1922.759 & 0.63 \\
-% & 0.8 & 1922.759 & 0.84 \\
-% & 0.9 & 1922.759 & 0.95 \\
-%\hline 
-%\multirow{3}{*}{55} & 0.7 & 3761.9375 & 0.73 \\
-% & 0.8 & 3761.9375 & 0.89 \\
-% & 0.9 & 3761.9375 & 0.97 \\
-%\hline 
-%\multirow{3}{*}{120} & 0.7 & 8166.7285 & 0.79 \\
-% & 0.8 & 8166.7285 & 0.93 \\
-% & 0.9 & 8166.7285 & 0.99 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=20$ on \dataB.}}
-%\label{tab:data-so}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\small 
-%{
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%$F$ & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\hline 
-%\end{tabular}
-%\caption{$K=20$ on \dataB. Query Driven Flipping is tested here.}
-%}
-%\label{tab:big:queryDriven}
-%\end{table}
-%
-%\begin{table}
-%\centering
-%\begin{tabular}{|c|c|c|c|}
-%\hline
-%L & $\tau$ & Comparisons & Recall \\ 
-%\hline
-%\multirow{3}{*}{10} & 0.7 & 46.5485 & 0.49 \\
-%  & 0.8 & 46.5485 & 0.74 \\
-% & 0.9 & 46.5485 & 0.91 \\
-%\hline
-%\multirow{3}{*}{28} & 0.7 & 129.22 & 0.57 \\
-% & 0.8 & 129.22 & 0.81 \\
-% & 0.9 & 129.22 & 0.94 \\
-%\hline
-%\multirow{3}{*}{55} & 0.7 & 250.617 & 0.63 \\
-% & 0.8 & 250.617 & 0.85 \\
-% & 0.9 & 250.617 & 0.95 \\
-%\hline
-%\multirow{3}{*}{120} & 0.7 & 545.12 & 0.77 \\
-% & 0.8 & 545.12 & 0.90 \\
-% & 0.9 & 545.12 & 0.97 \\
-%\hline 
-% \end{tabular}
-%\caption{\footnotesize{$K=24$ on \dataB.}}
-%\label{tab:data-so}
-%\end{table}
-%
+ %\begin{table}
+ %\centering
+ %{
+ %\small \addtolength{\tabcolsep}{-4.5pt}
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %$L$ & $\tau$ & Comparisons & Recall \\
+ %\hline
+ %\multirow{3}{*}{10}  & 0.7 & 57.2255 & 0.63 \\
+ % & 0.8 & 57.2255 & 0.84 \\
+ % & 0.9 & 57.2255 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{28} & 0.7 & 152.3315 & 0.77 \\
+ % & 0.8 & 152.3315 & 0.90 \\
+ % & 0.9 & 152.3315 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{55} & 0.7 & 296.6195 & 0.89 \\
+ % & 0.8 & 296.6195 & 0.97 \\
+ % & 0.9 & 296.6195 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{120} & 0.7 & 629.5505 & 0.93 \\
+ % & 0.8 & 629.5505 & 0.98 \\
+ % & 0.9 & 629.5505 & 0.99 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=16$ on \aol.}}
+ %}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 433.041 & 0.73 \\
+ % & 0.8 & 433.041 & 0.88 \\
+ % & 0.9 & 433.041 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{5} & 0.7 & 1556.5815 & 0.86 \\
+ % & 0.8 & 1556.5815 & 0.95 \\
+ % & 0.9 & 1556.5815 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 4138.3675 & 0.94 \\
+ % & 0.8 & 4138.3675 & 0.99 \\
+ % & 0.9 & 4138.3675 & 1.00 \\
+ %\hline 
+ %\multicolumn{4}{c}{Flip query Bits only} \\
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\
+ %\hline
+ %\multirow{3}{*}{1}  & 0.7 & 108.3585 & 0.65 \\
+ % & 0.8 & 108.3585 & 0.85 \\
+ %  & 0.9 & 108.3585 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 158.9565 & 0.66 \\
+ % & 0.8 & 158.9565 & 0.85 \\
+ % & 0.9 & 158.9565 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{5} & 0.7 & 310.7435 & 0.70 \\
+ % & 0.8 & 310.7435 & 0.86 \\
+ % & 0.9 & 310.7435 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 556.796 & 0.75 \\
+ % & 0.8 & 556.796 & 0.89 \\
+ % & 0.9 & 556.796 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
+ % & 0.8 & 838.8535 & 0.92 \\
+ %& 0.9 & 838.8535 & 0.99 \\
+ %\hline
+ %\end{tabular}
+ %\caption{\footnotesize{$K=16$ on \aol. Random Flipping is tested here.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %\multicolumn{4}{c}{Flip query as well as candidates Bits} \\
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 405.239 & 0.86 \\
+ % & 0.8 & 405.239 & 0.96 \\
+ % & 0.9 & 405.239 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{5} & 0.7 & 1475.484 & 0.93 \\
+ % & 0.8 & 1475.484 & 0.99 \\
+ % & 0.9 & 1475.484 & 1.00 \\
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 4059.0105 & 0.96 \\
+ % & 0.8 & 4059.0105 & 0.99 \\
+ % & 0.9 & 4059.0105 & 1.00 \\
+ %\hline
+ %\multicolumn{4}{c}{Flip query Bits only} \\
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\
+ %\hline
+ %\multirow{3}{*}{1} & 0.7 & 106.2105 & 0.72 \\
+ % & 0.8 & 106.2105 & 0.88 \\
+ % & 0.9 & 106.2105 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 155.354 & 0.75 \\
+ % & 0.8 & 155.354 & 0.89 \\
+ % & 0.9 & 155.354 & 0.98 \\
+ %\hline
+ % \multirow{3}{*}{5} & 0.7 & 303.0655 & 0.79 \\
+ % & 0.8 & 303.0655 & 0.91 \\
+ % & 0.9 & 303.0655 & 0.99 \\
+ %\hline
+ % \multirow{3}{*}{10} & 0.7 & 551.8475 & 0.81 \\
+ % & 0.8 & 551.8475 & 0.92 \\
+ % & 0.9 & 551.8475 & 0.99 \\
+ %\hline
+ % \multirow{3}{*}{16} & 0.7 & 838.8535 & 0.82 \\
+ % & 0.8 & 838.8535 & 0.92 \\
+ % & 0.9 & 838.8535 & 0.99 \\
+ %\hline
+ %\end{tabular}
+ %\caption{\footnotesize{$K=16$ on \aol. Query Driven Flipping is tested here.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %$L$ & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 1052.419 & 0.67 \\
+ %& 0.8 & 1052.419 & 0.81 \\
+ %& 0.9 & 1052.419 & 0.96 \\
+ %\hline
+ %\multirow{3}{*}{28} & 0.7 & 2908.1875 & 0.78 \\
+ %& 0.8 & 2908.1875 & 0.90 \\
+ %& 0.9 & 2908.1875 & 0.96 \\
+ %\hline
+ %\multirow{3}{*}{55} & 0.7 & 5648.186 & 0.84 \\
+ %& 0.8 & 5648.186 & 0.92 \\
+ %& 0.9 & 5648.186 & 0.97 \\
+ %\hline
+ %\multirow{3}{*}{120} & 0.7 & 12130.4065 & 0.91 \\
+ %& 0.8 & 12130.4065 & 0.96 \\
+ %& 0.9 & 12130.4065 & 0.99 \\
+ %\hline
+ %\multirow{3}{*}{253} & 0.7 & 25039.1265 & 0.95 \\
+ %& 0.8 & 25039.1265 & 0.96 \\
+ %& 0.9 & 25039.1265 & 0.99 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=16$ on \dataA.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 8558.23 & 0.76 \\
+ % & 0.8 & 8558.23 & 0.86 \\
+ % & 0.9 & 8558.23 & 0.96 \\
+ %\hline 
+ %\multirow{3}{*}{5} & 0.7 & 31119.1765 & 0.83 \\
+ % & 0.8 & 31119.1765 & 0.90 \\
+ % & 0.9 & 31119.1765 & 0.96 \\
+ %\hline 
+ %\multirow{3}{*}{10} & 0.7 & 83196.2015 & 0.90 \\
+ % & 0.8 & 83196.2015 & 0.93 \\
+ % & 0.9 & 83196.2015 & 0.99 \\
+ %\hline
+ %\multicolumn{4}{c}{Flipping only bits for the query} \\
+ %\multirow{3}{*}{2} & 0.7 & 3091.9095 & 0.72 \\
+ %& 0.8 & 3091.9095 & 0.84 \\
+ % & 0.9 & 3091.9095 & 0.96 \\
+ %\multirow{3}{*}{5} & 0.7 & 6095.7215 & 0.73 \\
+ % & 0.8 & 6095.7215 & 0.86 \\
+ % & 0.9 & 6095.7215 & 0.96 \\
+ %\multirow{3}{*}{10} & 0.7 & 10976.4205 & 0.79 \\
+ % & 0.8 & 10976.4205 & 0.87 \\
+ % & 0.9 & 10976.4205 & 0.96 \\
+ %\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
+ % & 0.8 & 16634.244 & 0.89 \\
+ % & 0.9 & 16634.244 & 0.96 \\
+ %
+ % \end{tabular}
+ %\caption{\footnotesize{$K=16$ on \dataA. Random Flipping is tested here.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{2} & 0.7 & 2979.8075 & 0.76 \\
+ % & 0.8 & 2979.8075 & 0.87 \\
+ % & 0.9 & 2979.8075 & 0.96 \\
+ %\hline
+ %\multirow{3}{*}{5} & 0.7 & 5903.528 & 0.78 \\
+ % & 0.8 & 5903.528 & 0.87 \\
+ % & 0.9 & 5903.528 & 0.96 \\
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 10844.163 & 0.81 \\
+ % & 0.8 & 10844.163 & 0.88 \\
+ % & 0.9 & 10844.163 & 0.96 \\
+ %\hline
+ %\multirow{3}{*}{16} & 0.7 & 16634.244 & 0.81 \\
+ % & 0.8 & 16634.244 & 0.89 \\
+ % & 0.9 & 16634.244 & 0.96 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=16$ on \dataA. Query Driven Flipping is tested here.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %L & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 10514.8925 & 0.64 \\
+ % & 0.8 & 10514.8925 & 0.83 \\
+ % & 0.9 & 10514.8925 & 0.95 \\
+ %\hline
+ %\multirow{3}{*}{28} & 0.7 & 29065.2255 & 0.74 \\
+ % & 0.8 & 29065.2255 & 0.90 \\
+ % & 0.9 & 29065.2255 & 0.97 \\
+ %\hline
+ %\multirow{3}{*}{55} & 0.7 & 56472.7575 & 0.83 \\
+ % & 0.8 & 56472.7575 & 0.93 \\
+ % & 0.9 & 56472.7575 & 0.98 \\
+ %\hline
+ %\multirow{3}{*}{120} & 0.7 & 121284.769 & 0.89 \\
+ % & 0.8 & 121284.769 & 0.96 \\
+ % & 0.9 & 121284.769 & 0.99 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=16$ on \dataB.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %L & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 694.8745 & 0.53 \\
+ % & 0.8 & 694.8745 & 0.76 \\
+ % & 0.9 & 694.8745 & 0.92 \\
+ %\hline 
+ %\multirow{3}{*}{28} & 0.7 & 1922.759 & 0.63 \\
+ % & 0.8 & 1922.759 & 0.84 \\
+ % & 0.9 & 1922.759 & 0.95 \\
+ %\hline 
+ %\multirow{3}{*}{55} & 0.7 & 3761.9375 & 0.73 \\
+ % & 0.8 & 3761.9375 & 0.89 \\
+ % & 0.9 & 3761.9375 & 0.97 \\
+ %\hline 
+ %\multirow{3}{*}{120} & 0.7 & 8166.7285 & 0.79 \\
+ % & 0.8 & 8166.7285 & 0.93 \\
+ % & 0.9 & 8166.7285 & 0.99 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=20$ on \dataB.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
+ %\begin{table}
+ %\centering
+ %\small 
+ %{
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %$F$ & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\hline 
+ %\end{tabular}
+ %\caption{$K=20$ on \dataB. Query Driven Flipping is tested here.}
+ %}
+ %\label{tab:big:queryDriven}
+ %\end{table}
+ %
+ %\begin{table}
+ %\centering
+ %\begin{tabular}{|c|c|c|c|}
+ %\hline
+ %L & $\tau$ & Comparisons & Recall \\ 
+ %\hline
+ %\multirow{3}{*}{10} & 0.7 & 46.5485 & 0.49 \\
+ %  & 0.8 & 46.5485 & 0.74 \\
+ % & 0.9 & 46.5485 & 0.91 \\
+ %\hline
+ %\multirow{3}{*}{28} & 0.7 & 129.22 & 0.57 \\
+ % & 0.8 & 129.22 & 0.81 \\
+ % & 0.9 & 129.22 & 0.94 \\
+ %\hline
+ %\multirow{3}{*}{55} & 0.7 & 250.617 & 0.63 \\
+ % & 0.8 & 250.617 & 0.85 \\
+ % & 0.9 & 250.617 & 0.95 \\
+ %\hline
+ %\multirow{3}{*}{120} & 0.7 & 545.12 & 0.77 \\
+ % & 0.8 & 545.12 & 0.90 \\
+ % & 0.9 & 545.12 & 0.97 \\
+ %\hline 
+ % \end{tabular}
+ %\caption{\footnotesize{$K=24$ on \dataB.}}
+ %\label{tab:data-so}
+ %\end{table}
+ %
 
 
 
 
-\bibliographystyle{acl}
-\bibliography{lsh}
-\end{document}
-
+ \bibliographystyle{acl}
+ \bibliography{lsh}
+ \end{document}
 
