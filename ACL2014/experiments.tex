@@ -74,7 +74,7 @@ In the first experiment, we vary the similarity threshold parameter $\tau$ to be
 while fixing $K=16$ and $L=10$ for the \aol and \dataA datasets. 
 Table~\ref{tab:varyTau} shows that $\tau=0.9$ achieves higher recall than that of $\tau=0.7$.
 This is expected as finding near duplicates is easier than finding near neighbors. For the rest of this paper, 
-we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors for our test queries. 
+ $\tau$ is set as $0.7$ since we are interested in both near-duplicates and nearest-neighbors for our test queries. 
 
 In the second experiment, we vary $L$ to be in $\{1,10,28,55\}$ while fixing $K=16$ on the \aol and \dataA datasets. 
 Recall that $L$ denotes the number of hash tables and $K$ is the width of the index of the buckets in the table. 
