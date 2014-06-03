@@ -1,4 +1,5 @@
 
+\def\qvec{\textbf{q}}
 \section{Experiments}
 In this section, we illustrate experimental results to evaluate our distributed neighbor search framework.
 Our experiments are conducted on publicly available query logs collected from the AOL search engine~\cite{Pass06} as well as a 
@@ -7,7 +8,7 @@ large-scale query log from a commercial search engine.
 
 \begin{table}
 \centering
-\begin{tabular}{|c|r|r|}
+\begin{tabular}{|c|c|c|}
 \hline
 Data & $N$ & $D$  \\ 
 \hline
@@ -23,22 +24,24 @@ Data & $N$ & $D$  \\
 
 \subsection{Data}
 The first data set is the one made avialble to the public from the AOL search engine \cite{Pass06} (denoted as \aol dataset). 
-In addition, we perform evaluations using a large query log 
-from a commercial search engine, denoted as Qlogs. 
+In addition, a large query log 
+from a commercial search engine, denoted as Qlogs, is used for evaluations.
 As Qlogs typically reaches to hundres of millions of queries over multiple days (i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive set of queries posed to the search engine.}.) We then generated multiple datasets from Qlogs by sampling at various size rates. \dataA represents a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
-For each query, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion).   
-Specifically, each dimension in the feature vector of a query $q$ corresponds to a webpage (urls) that have received a user click for $q$. The weight of 
-an url feature for a query $q$ depends on the click through rate of this url for the query $q$.  
-As a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
+For each query $q$, a feature vector in a high dimensional feature space is defined as
+$\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$.
+%For each query $q$, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion). Specifically, each dimension in the feature vector of $q$ corresponds to a weight of a webpage (urls) that have received a user click for $q$. The weight of an url for $q$ is defined as the click through rate of the url.  
+Note that in a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
 Table \ref{tab:data} summarizes the statistics of our query-log datasets. 
 
-\paragraph{Test Data}: We conduct all the experiments using $2000$ random queries sampled from the query logs as the test set of queries. 
-For evaluation, we compute the true similar candidates for all the $2000$ test queries by calculating cosine similarity 
-between each test query and all the queries in the rest of the dataset. For most of the experiments, we set the similarity threshold  $\tau=0.7$, 
-meaning that the algorithm needs to retrieve candidates that have cosine similarity larger than or equal to $0.7$.
+\paragraph{Test Data} All the experiments are performed using queries $Q$ randomly sampled from the query logs as the test set of $2000$ queries. 
+That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similiarty, and $q' \in \{\dataA, \dataB, \dataC\}$. 
+%For evaluation, we compute the true similar cafor all the $2000$ test queries by calculating cosine similarity 
+%between each test query and all the queries in the rest of the dataset. 
+For most of the experiments, we set the similarity threshold  $\tau=0.7$.
+%meaning that for $q$, candidates $q'$ having  cosine similarity of larger than or equal to $0.7$ are retrieved.
 
 
-\subsection{Evaluation Metrics}
+\paragraph{Evaluation Metrics}
 We use two metrics for evaluation: recall and number of comparisons. 
 Recall of an LSH algorithm is the fraction of \emph{true} similar candidates (found using candidates returned by computing exact cosine similarity) 
 that is retrieved by the LSH algorithm.  
