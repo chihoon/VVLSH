@@ -28,7 +28,7 @@ In addition, a large query log
 from a commercial search engine, denoted as Qlogs, is used for evaluations.
 As Qlogs typically reaches to hundres of millions of queries over multiple days (i.e., $N=600$ million unique queries\footnote{this does not represent an exhaustive set of queries posed to the search engine.}.) We then generated multiple datasets from Qlogs by sampling at various size rates. \dataA represents a $1\%$ sample from Qlogs, \dataB represents a $10\%$ sample and \dataC represents the entire Qlogs. 
 For each query $q$, a feature vector in a high dimensional feature space is defined as
-$\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$.
+$\qvec = (f_1, f_2, \cdots, f_D)$, where $f_i$ is a click through rate of url $i$ and query $q$. Note that in our real implementation, $\qvec$ follows a spare representaion omitting dimensions with zero click through rate.
 %For each query $q$, a high dimensional and sparse feature vector was created over clicked urls (the number of usrls is a few billion). Specifically, each dimension in the feature vector of $q$ corresponds to a weight of a webpage (urls) that have received a user click for $q$. The weight of an url for $q$ is defined as the click through rate of the url.  
 Note that in a pre-processing step, we remove all the queries that have less than or equal to five clicked urls. 
 Table \ref{tab:data} summarizes the statistics of our query-log datasets.
