@@ -43,10 +43,11 @@ For most of the experiments, we set the similarity threshold  $\tau=0.7$.
 
 \paragraph{Evaluation Metrics}
 We use two metrics for evaluation: recall and number of comparisons. 
-Recall of an LSH algorithm is the fraction of \emph{true} similar candidates (found using candidates returned by computing exact cosine similarity) 
+Recall of an LSH algorithm is to measure how much the algorithm is able to retrieve \emph{true} similar candidates
+%, which tells how (found using candidates returned by computing exact cosine similarity) 
 that is retrieved by the LSH algorithm.  
 The number of comparisons performed by an algorithm is computed as the average number of pairwise comparisons that is done per test query. 
-The goal of this paper is to maximize recall and minimize the number of comparisons.
+The goal of this paper is to maximize recall and to minimize the number of comparisons.
 
 \subsection{Evaluating Vanilla LSH} 
 \label{subsec:eval:vanillaLSH}
