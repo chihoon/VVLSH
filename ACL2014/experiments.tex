@@ -34,7 +34,7 @@ Note that in a pre-processing step, we remove all the queries that have less tha
 Table \ref{tab:data} summarizes the statistics of our query-log datasets.
 
 \paragraph{Test Data} All the experiments are performed using queries $Q$ randomly sampled from the query logs as the test set of $2000$ queries. 
-That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similiarty, and $q' \in \{\dataA, \dataB, \dataC\}$. 
+That is, we want to find set $T$, where $T~=~\{~l~\mid~s(q, q')~\geq~\tau~\}$, $s(q, q')$ is a cosine similiarty, and $q' \in \{\textrm{\dataA}, \textrm{\dataB}, \textrm{\dataC}\}$. 
 %For evaluation, we compute the true similar cafor all the $2000$ test queries by calculating cosine similarity 
 %between each test query and all the queries in the rest of the dataset. 
 For most of the experiments, we set the similarity threshold  $\tau=0.7$.
