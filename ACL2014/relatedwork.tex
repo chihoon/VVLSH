@@ -1,10 +1,24 @@
 
 \section{Related Work}
-Locality sensitive hashing is a very well studied algorithmic tool, that has found practical uses too. 
-In processing large text corpora, however, LSH algorithms have been less used, primarily because of their
-still significant memory requirements. Recent work by~\cite{zadeh2013dimension} developed a modification of LSH algorithm, for 
+
+There has been many papers in last decade that have focused on 
+approximate, streaming, and randomized algorithms on many NLP problems. 
+Prior work on \lsh for noun clustering \cite{ravichandran05} applied 
+original version of \lsh based on \plebf (PLEB) \cite{Indyk98STOC,Charikar02STOC}. 
+The disadvantage of original \lsh algorithm is that it involves generating large number of permutations ($L=1000$, 
+generating permutation is similar to generating more tables)
+and sorting bit vectors of large width ($K=3000$). 
+To address that issue, Goyal et al. \cite{goyal12Flag} proposed a new variant of PLEB that
+is faster than the original \lsh algorithm but that still requires large number of permutations 
+($L=1000$). In addition, their work can be seen as an implementing a special case of Andoni and Indyk's \lsh algorithm.  
+
+The next major difference between our research and existing work is that the 
+existing work deals with approximating cosine similarity by Hamming distance  
+\cite{ravichandran05,vandurme-lall:2010:Short,vandurme-lall:2011:Short,goyal12Flag}. 
+In that problem setting, the goal is to minimize both false positives and negatives. 
+In our work, we focus on minimizing false negatives with zero tolerance for false positives.
+
+\cite{zadeh2013dimension} developed a distributed version of the LSH algorithm, for 
 the Jaccard distance metric, that scales to very large text corpora by virtue of being implemented on a map-reduce, 
 and by using clever sampling schemes in order to reduce the communication cost. Our work is for the cosine similarity metric, 
 and uses bit flipping in a distributed manner to reduce the number of hash tables in LSH and hence the memory. 
-Other innovations to LSH methods in the text corpora analysis domain include developing methods to compute
-LSH signatures in an online manner~\cite{van2010online}, and using reservoir sampling to compute the signatures~\cite{van2011efficient}.

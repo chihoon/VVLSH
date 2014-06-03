@@ -89,7 +89,7 @@ In particular, \lsh algorithm concatenates $K$ hash functions
 to create a new hash function $g(\cdot)$ as:
 $g(q)=(h_1(q),h_2(q),\dots,h_K(q))$. 
 A larger value of $K$ leads to larger 
-gap between probabilites of collision between close neighbors (i.e. distance less than $R$) and neighbors that are far (i.e. 
+gap between probabilities of collision between close neighbors (i.e. distance less than $R$) and neighbors that are far (i.e. 
 distance more than $cR$); 
 the corresponding probabilities being $P_1^{K}$ and $P_2^{K}$ respectively. 
 This amplification ensures a high precision of the algorithm by  
@@ -227,8 +227,8 @@ number of tables to reduce the memory footprint. The memory footprint of vanilla
 Here, we first describe four new variants of the vanilla \lsh algorithm motivated by the intuition in
 \mblshf~\cite{LvVLDB07}. \mblshf obtains significantly higher recall than the vanilla \lsh while using
 the same number of hash tables. In order to achieve this, the main intuition utilized in \mblshf is that
-in addition to looking at the hash bucket that a test query $q$ falls in, it is also possible to look at the neigboring buckets
-in order to find its near neigbour candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
+in addition to looking at the hash bucket that a test query $q$ falls in, it is also possible to look at the neighboring buckets
+in order to find its near neighbor candidates. \mblshf in ~\cite{LvVLDB07} suggests exploring the neighboring buckets in order of the
 Hamming distance from the bucket in which $q$ falls. They then empirically show that these neighboring buckets contain 
 the near neighbors with very high probability. 
 Although \mblshf is achieves a higher recall for the same number of hash tables, it will also require more 

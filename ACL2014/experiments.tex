@@ -74,7 +74,7 @@ is easier than finding nearest neighbors when $\tau=0.7$. For, rest of this pape
 we fix $\tau=0.7$ as we are interested in both near-duplicates and nearest-neighbors for our test queries. 
 
 In the second experiment, we vary $L$ to be in $\{1,10,28,55\}$ while fixing $K=16$ on the \aol and \dataA datasets. 
-Recal that $L$ denotes the number of hash tables and $K$ is the width of the index of the buckets in the table. 
+Recall that $L$ denotes the number of hash tables and $K$ is the width of the index of the buckets in the table. 
 Increasing $K$ results in increase of the precision by reducing the false positive candidates, but 
 the $L$ also need to be correspondingly increased in order the maintain a good recall
 (i.e. reduce false negatives). 
@@ -105,7 +105,7 @@ In the third experiment, we vary $K$ to be in $\{4,8,16\}$ while fixing $L=10$ o
 As expected, Table \ref{tab:varyK} shows that increasing $K$ reduces the number of 
 comparisons and worsens recall on both the datasets. This is intuitive as  
 the larger value of $K$ leads to larger 
-gap between probabilites of collision between close queries 
+gap between probabilities of collision between close queries 
 and far queries (see Section \ref{sec:vlsh}). 
 Hence, we fix $K=16$ to have few number of comparisons.   
 
@@ -306,7 +306,7 @@ queries.\footnote{As many queries can be long, hence such queries only have few 
 In the fourth experiment, Table \ref{tab:lists} shows the qualitative results for some arbitrary queries. These results are found by applying our
 system (\dflipb with parameters $L=10$, $K=24$, and $F=2$ ) on \dataC. The second column in Table \ref{tab:lists} shows that the returned approximate 
 similar neighbors can be useful in finding related queries \cite{Jones06WWW,Jain11SIGIR}. 
-The third column shows an example, where we can find several popular spellling errors. 
+The third column shows an example, where we can find several popular spelling errors. 
 The first and last column show examples of near-duplicate queries \cite{leeCIKM11}.  
 
 %different variants of a query, where user intends to find out the ``weather in trumbull ct''. 
