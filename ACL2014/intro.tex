@@ -8,8 +8,9 @@ the topic that the user has in mind.
 To provide users with a high quality service, 
 search engines such as Bing, Google, and Yahoo require
 intelligent analysis to realize users' implicit intents.
-The key resource that they have to help tease out what is meant is
-their large history of requests, in the form of large scale query logs.  
+The key resource that they have to help tease out the intent is
+their large history of requests, in the form of large scale query logs, as well
+as the log of user actions on the corresponding result pages. 
 A key primitive in 
 %One of the key interesting tasks involved in 
 learning users' implicit intents is the computation of 
@@ -18,9 +19,9 @@ Computing nearest neighbors is useful for
 many search-related problems on the Web and the Mobile such as 
 finding related queries \cite{Jones06WWW,Jain11SIGIR,Song12WSDM}, 
 finding near-duplicate queries \cite{leeCIKM11}, spelling correction \cite{ahmadEMNLP05,liSIGIR12},  
-and diversifying search results \cite{Song11SIGIR}; and many Natural Language Processing (NLP) tasks   
+and diversifying search results \cite{Song11SIGIR}; and many other Natural Language Processing (NLP) tasks   
 such as paraphrasing \cite{petrovicNAACL12,ganitkevitch13Paraphrase}, 
-distributional similarity \cite{ravichandran05,agirre09,turneyVector10}, and creating sentiment lexicons from large-scale Web data \cite{velikovich10}.   
+calculating distributional similarity \cite{ravichandran05,agirre09,turneyVector10}, and creating sentiment lexicons from large-scale Web data \cite{velikovich10}.   
 
 In this paper, we focus on the problem of finding nearest neighbors
 for a given query from very large scale query logs available from a commercial search engine. 
@@ -47,13 +48,13 @@ The reason is that the total amount of work performed is still huge,
 and simply throwing more resources at the problem is not effective. 
 Given a log of hundreds of millions queries, most are ``far'' from a
 query of interest, and we should aim to avoid doing many ``useless''
-comparisons that confirm that queries are indeed far from it. 
+comparisons that only confirm that other queries are indeed far from it. 
 % from our experiments  using 2000 random queries to attempt to retrieve neighbors from the query logs consisting of hundreds of millions of queries. In other words, even though the big \textit{O} notation is denoted as linear, \textit{2000*N} comparisons are not feasible when \textit{N} reaches to hundreds of millions.
 
 In order to address the computational challenge, this paper aims to find nearest neighbors by doing a 
 \emph{small} number of comparisons---that is, sublinear in the dataset size---instead of brute force linear search. 
 In addition to a \emph{small} number of comparisons, we aim to 
-retrieve neighboring candidates with  $100\%$ precision and high recall.
+retrieve neighboring candidates with $100\%$ precision and high recall.
 It is important that false positive rate (ratio of  ``incorrectly'' identifying queries as neighbors) 
 is penalized more severely than false negative (ratio of missing ``true'' neighbors).
 
